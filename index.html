@@ -14,8 +14,10 @@
   --radius: 8px; --radius-lg: 12px;
   --blue-50: #E6F1FB; --blue-200: #85B7EB; --blue-600: #185FA5; --blue-800: #0C447C;
   --green-50: #EAF3DE; --green-600: #3B6D11; --green-800: #27500A;
-  --amber-50: #FAEEDA; --amber-200: #FAC775; --amber-600: #854F0B; --amber-800: #633806;
-  --red-50: #FCEBEB; --red-400: #E24B4A;
+  --amber-50: #FAEEDA; --amber-200: #FAC775; --amber-800: #633806;
+  --teal-50: #E0F4F1; --teal-800: #0D6B5E;
+  --purple-50: #F0EAFB; --purple-800: #5B2D9E;
+  --red-400: #E24B4A;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -25,7 +27,8 @@
     --blue-50: #0c2a45; --blue-800: #85B7EB;
     --green-50: #152808; --green-800: #C0DD97;
     --amber-50: #2a1e06; --amber-800: #FAC775;
-    --red-50: #2a0f0f;
+    --teal-50: #0a2320; --teal-800: #5ECEC0;
+    --purple-50: #1e1030; --purple-800: #C4A0F5;
   }
 }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; padding: 2rem 1rem; }
@@ -36,27 +39,18 @@ header p { font-size: 15px; color: var(--text2); }
 .section { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
 .section-title { font-size: 12px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.1rem; display: flex; align-items: center; gap: 8px; }
 .section-title i { font-size: 16px; }
-.section-title .info-link { margin-left: auto; font-size: 12px; font-weight: 500; color: var(--text3); cursor: pointer; text-transform: none; letter-spacing: 0; display: flex; align-items: center; gap: 4px; }
-.section-title .info-link:hover { color: var(--text2); }
+.info-link { margin-left: auto; font-size: 12px; font-weight: 500; color: var(--text3); cursor: pointer; text-transform: none; letter-spacing: 0; display: flex; align-items: center; gap: 4px; }
+.info-link:hover { color: var(--text2); }
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .field-grid.three { grid-template-columns: 1fr 1fr 1fr; }
 @media (max-width: 500px) { .field-grid, .field-grid.three { grid-template-columns: 1fr 1fr; } }
 .field { display: flex; flex-direction: column; gap: 5px; }
 .field label { font-size: 13px; color: var(--text2); }
-.field input, .field select {
-  font-size: 14px; color: var(--text); background: var(--bg2);
-  border: 0.5px solid var(--border2); border-radius: var(--radius);
-  padding: 9px 11px; width: 100%; transition: border-color 0.15s;
-}
+.field input, .field select { font-size: 14px; color: var(--text); background: var(--bg2); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 9px 11px; width: 100%; transition: border-color 0.15s; }
 .field input:focus, .field select:focus { outline: none; border-color: #378ADD; box-shadow: 0 0 0 3px rgba(55,138,221,0.12); }
 .hint { font-size: 11px; color: var(--text3); }
 .toggle-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.toggle {
-  display: flex; align-items: center; gap: 7px; padding: 8px 14px;
-  border: 0.5px solid var(--border2); border-radius: var(--radius);
-  cursor: pointer; font-size: 13px; color: var(--text2);
-  background: var(--bg2); transition: all 0.15s; user-select: none;
-}
+.toggle { display: flex; align-items: center; gap: 7px; padding: 8px 14px; border: 0.5px solid var(--border2); border-radius: var(--radius); cursor: pointer; font-size: 13px; color: var(--text2); background: var(--bg2); transition: all 0.15s; user-select: none; }
 .toggle:hover { border-color: #378ADD; color: var(--text); }
 .toggle.active { background: var(--blue-50); border-color: #378ADD; color: var(--blue-800); }
 .toggle i { font-size: 15px; }
@@ -68,12 +62,7 @@ header p { font-size: 15px; color: var(--text2); }
 .turnover-table td:first-child { color: var(--blue-800); font-weight: 600; }
 .turnover-table tr+tr td { border-top: 0.5px solid var(--blue-200); }
 .var-info { background: var(--green-50); border: 0.5px solid #C0DD97; border-radius: var(--radius); padding: 10px 14px; margin-bottom: 12px; font-size: 12px; color: var(--green-600); line-height: 1.6; }
-.calc-btn {
-  width: 100%; padding: 14px; background: var(--text); color: var(--bg);
-  border: none; border-radius: var(--radius); font-size: 15px; font-weight: 600;
-  cursor: pointer; margin-top: 1rem; display: flex; align-items: center;
-  justify-content: center; gap: 8px; transition: opacity 0.15s;
-}
+.calc-btn { width: 100%; padding: 14px; background: var(--text); color: var(--bg); border: none; border-radius: var(--radius); font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.15s; }
 .calc-btn:hover { opacity: 0.85; }
 .results { display: none; margin-top: 2rem; }
 .results.visible { display: block; }
@@ -85,12 +74,10 @@ header p { font-size: 15px; color: var(--text2); }
 .metric .munit { font-size: 11px; color: var(--text3); margin-top: 2px; }
 .metric.blue { background: var(--blue-50); }
 .metric.blue .mvalue { color: var(--blue-800); }
-.metric.blue .mlabel { color: var(--blue-600); }
-.metric.blue .munit { color: var(--blue-600); }
+.metric.blue .mlabel, .metric.blue .munit { color: var(--blue-600); }
 .metric.green { background: var(--green-50); }
 .metric.green .mvalue { color: var(--green-800); }
-.metric.green .mlabel { color: var(--green-600); }
-.metric.green .munit { color: var(--green-600); }
+.metric.green .mlabel, .metric.green .munit { color: var(--green-600); }
 .rec-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 0.75rem; }
 .rec-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
 .rec-title i { font-size: 18px; color: #378ADD; }
@@ -100,10 +87,13 @@ header p { font-size: 15px; color: var(--text2); }
 .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
 .badge-blue { background: var(--blue-50); color: var(--blue-800); }
 .badge-green { background: var(--green-50); color: var(--green-800); }
-.badge-amber { background: var(--amber-50); color: var(--amber-800); }
+.badge-teal { background: var(--teal-50); color: var(--teal-800); }
+.badge-purple { background: var(--purple-50); color: var(--purple-800); }
 .media-item { padding: 10px 12px; background: var(--bg2); border-radius: var(--radius); font-size: 13px; }
 .media-item .mname { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-weight: 600; color: var(--text); }
 .media-item .mnote { color: var(--text2); line-height: 1.5; }
+.sub-item { margin-top: 8px; padding: 8px 12px; background: var(--bg2); border-left: 2px solid #378ADD; border-radius: 0 var(--radius) var(--radius) 0; font-size: 12px; color: var(--text2); line-height: 1.5; }
+.sub-item .sub-name { font-weight: 600; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
 .energy-box { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 0.75rem; }
 .energy-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 .energy-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -114,13 +104,6 @@ header p { font-size: 15px; color: var(--text2); }
 .saving-pill { display: inline-flex; align-items: center; gap: 5px; background: var(--green-50); color: var(--green-800); border-radius: 999px; font-size: 12px; font-weight: 600; padding: 5px 14px; margin-top: 10px; }
 .warning { background: var(--amber-50); border: 0.5px solid var(--amber-200); border-radius: var(--radius); padding: 10px 14px; font-size: 13px; color: var(--amber-800); margin-top: 8px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
 .warning i { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.secondary-btn {
-  width: 100%; padding: 12px; background: var(--bg2); color: var(--text);
-  border: 0.5px solid var(--border2); border-radius: var(--radius);
-  font-size: 14px; font-weight: 500; cursor: pointer; margin-top: 0.75rem;
-  display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.15s;
-}
-.secondary-btn:hover { opacity: 0.8; }
 footer { text-align: center; margin-top: 2rem; font-size: 12px; color: var(--text3); }
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
 </style>
@@ -132,7 +115,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     <p>Indtast dine poolmål og udstyr – få anbefalinger til pumpe, filter, kapacitet og strømforbrug.</p>
   </header>
 
-  <!-- Dimensioner -->
   <div class="section">
     <div class="section-title"><i class="ti ti-ripple"></i> Poolens dimensioner</div>
     <div class="field-grid" style="margin-bottom:12px">
@@ -156,8 +138,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
       <div class="field"><label>Gennemsnitsdybde (m)</label><input type="number" id="depth" placeholder="1.5" min="0.2" step="0.1"></div>
     </div>
     <div class="field-grid" id="f-round-row" style="display:none;margin-top:12px">
-      <div class="field"><label>Diameter (m)</label><input type="number" id="diameter" placeholder="3.5" min="0.5" step="0.1"><span class="hint">Ø350 cm = 3,5 m</span></div>
-      <div class="field"><label>Gennemsnitsdybde (m)</label><input type="number" id="depth-round" placeholder="1.5" min="0.2" step="0.1"></div>
+      <div class="field">
+        <label>Diameter (m)</label>
+        <input type="number" id="diameter" placeholder="3.5" min="0.5" step="0.1">
+        <span class="hint">Angiv med punktum som decimalseparator, f.eks. 3.5 (ikke 3,5)</span>
+      </div>
+      <div class="field">
+        <label>Gennemsnitsdybde (m)</label>
+        <input type="number" id="depth-round" placeholder="1.5" min="0.2" step="0.1">
+        <span class="hint">Angiv med punktum, f.eks. 1.5</span>
+      </div>
     </div>
     <div class="field" id="f-volume" style="display:none;margin-top:12px">
       <label>Estimeret volumen (m³)</label>
@@ -165,19 +155,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     </div>
   </div>
 
-  <!-- Rørsystem -->
   <div class="section">
     <div class="section-title"><i class="ti ti-settings"></i> Rørsystem</div>
     <div class="field-grid">
       <div class="field">
         <label>Rørdiameter</label>
         <select id="pipe">
-          <option value="32">32 mm</option>
-          <option value="40">40 mm</option>
-          <option value="50" selected>50 mm</option>
-          <option value="63">63 mm</option>
-          <option value="75">75 mm</option>
-          <option value="90">90 mm</option>
+          <option value="32">32 mm</option><option value="40">40 mm</option>
+          <option value="50" selected>50 mm</option><option value="63">63 mm</option>
+          <option value="75">75 mm</option><option value="90">90 mm</option>
         </select>
       </div>
       <div class="field">
@@ -187,7 +173,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     </div>
   </div>
 
-  <!-- Omløb & drift -->
   <div class="section">
     <div class="section-title">
       <i class="ti ti-clock"></i> Omløb & drift
@@ -211,7 +196,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
         <label>Omløb pr. døgn</label>
         <select id="turnovers">
           <option value="2">2 omløb/døgn – anbefalet minimum</option>
-          <option value="2.5">2,5 omløb/døgn</option>
+          <option value="2.5">2.5 omløb/døgn</option>
           <option value="3" selected>3 omløb/døgn – best practice</option>
           <option value="4">4 omløb/døgn – intensiv brug</option>
         </select>
@@ -236,7 +221,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
       <div class="field">
         <label>Strømpris (kr/kWh)</label>
         <input type="number" id="elprice" placeholder="3.00" value="3.00" min="0.5" step="0.1">
-        <span class="hint">Inkl. afgifter – typisk 2,50–4,00 kr/kWh</span>
+        <span class="hint">Inkl. afgifter – typisk 2.50–4.00 kr/kWh</span>
       </div>
     </div>
     <div id="var-fields" style="display:none">
@@ -262,7 +247,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     </div>
   </div>
 
-  <!-- Ekstraudstyr -->
   <div class="section">
     <div class="section-title"><i class="ti ti-plug"></i> Ekstraudstyr</div>
     <div class="toggle-grid" id="extras">
@@ -278,18 +262,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     </div>
   </div>
 
-  <!-- Placering -->
   <div class="section">
     <div class="section-title"><i class="ti ti-map-pin"></i> Placering</div>
-    <div class="field-grid">
-      <div class="field">
-        <label>Placering</label>
-        <select id="location">
-          <option value="outdoor">Udendørs</option>
-          <option value="indoor">Indendørs</option>
-          <option value="semi">Halvtag / overdækket</option>
-        </select>
-      </div>
+    <div class="field">
+      <label>Placering</label>
+      <select id="location">
+        <option value="outdoor">Udendørs</option>
+        <option value="indoor">Indendørs</option>
+        <option value="semi">Halvtag / overdækket</option>
+      </select>
     </div>
   </div>
 
@@ -297,36 +278,30 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     <i class="ti ti-calculator" style="font-size:18px"></i> Beregn anbefalinger
   </button>
 
-  <!-- Resultater -->
   <div class="results" id="results">
     <h2>Resultater og anbefalinger</h2>
     <div class="metric-grid" id="r-metrics"></div>
-
     <div class="rec-card">
       <div class="rec-title"><i class="ti ti-engine"></i> Pumpe</div>
       <div class="rec-value" id="r-pump">–</div>
       <div class="rec-note" id="r-pump-note"></div>
     </div>
-
     <div class="rec-card">
       <div class="rec-title"><i class="ti ti-filter"></i> Filter</div>
       <div class="rec-value" id="r-filter">–</div>
       <div class="rec-note" id="r-filter-note"></div>
       <div class="divider"></div>
       <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">Filtermateriale</div>
-      <div id="r-media" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div id="r-media" style="display:flex;flex-direction:column;gap:10px"></div>
     </div>
-
     <div class="energy-box">
       <div class="energy-title"><i class="ti ti-bolt" style="color:#378ADD"></i> Strømforbrug</div>
       <div id="r-energy-content"></div>
     </div>
-
     <div class="rec-card" id="extras-card" style="display:none">
       <div class="rec-title"><i class="ti ti-plug"></i> Ekstraudstyr – bemærkninger</div>
       <div id="r-extras"></div>
     </div>
-
     <div id="r-warnings"></div>
   </div>
 
@@ -395,31 +370,44 @@ function calculate() {
     md.appendChild(d);
   });
 
-  const pumpPow=pumpKwR<0.5?'ca. 0,37–0,55 kW':pumpKwR<0.8?'ca. 0,55–0,75 kW':pumpKwR<1.2?'ca. 0,75–1,1 kW':pumpKwR<1.6?'ca. 1,1–1,5 kW':'ca. 1,5–2,2 kW';
+  const pumpPow=pumpKwR<0.5?'ca. 0.37–0.55 kW':pumpKwR<0.8?'ca. 0.55–0.75 kW':pumpKwR<1.2?'ca. 0.75–1.1 kW':pumpKwR<1.6?'ca. 1.1–1.5 kW':'ca. 1.5–2.2 kW';
   document.getElementById('r-pump').textContent=Math.ceil(flowNeeded*1.15).toFixed(0)+' m³/t kapacitet · '+pumpHead+' m løftehøjde · '+pumpPow;
   document.getElementById('r-pump-note').textContent=pumptype==='variable'?'Variabel hastighed (EC/DC motor): Pumpen skifter automatisk mellem lav og fuld hastighed. Sparer '+savingPct+'% strøm vs. fast hastighed. Anbefales altid ved nyanlæg.':'Fast hastighed: Pumpen kører konstant på ét gear. Simpel og billig i anskaffelse, men dyrere i drift. Overvej variabel hastighed – det betaler sig typisk hjem på 1–2 sæsoner.';
   document.getElementById('r-filter').textContent='Filterkar Ø'+filterDia+' mm ('+(filterDia/1000).toFixed(2)+' m)';
-  document.getElementById('r-filter-note').textContent='Filterhastighed maks. 25 m/t ved sand, 40 m/t ved glasmedier. Vælg altid et trin større end det beregnede minimum.';
+  document.getElementById('r-filter-note').textContent='Filterhastighed maks. 25 m/t ved sand og kugler, 40 m/t ved glasmedier. Vælg altid et trin større end det beregnede minimum.';
 
   const mediaDiv=document.getElementById('r-media'); mediaDiv.innerHTML='';
-  [{name:'Filtersand (kvartssand)',note:'Billigst og mest udbredt. Kræver tilbageskylning ca. hver 2–4 uge. Fraktion 0,4–0,8 mm. Holdbarhed 5–7 år.',badge:'badge-blue',label:'Standard'},{name:'Filterglas (genbrugsglas)',note:'Bedre filtrering end sand (ned til 5 µm mod sand\'s 20 µm), kræver sjældnere skyl. Koster 20–40% mere. Holdbarhed 10+ år.',badge:'badge-green',label:'Anbefalet'},{name:'Zeolith',note:'Binder ammonium og filtrerer ned til 2–5 µm. God ved saltkloring. Kræver særlig regenerering med saltopløsning.',badge:'badge-amber',label:'Specialtilfælde'}].forEach(m=>{
+  const medias=[
+    {name:'Filtersand (kvartssand)',note:'Billigst og mest udbredt. Kræver tilbageskylning ca. hver 2–4 uge. Fraktion 0.4–0.8 mm. Holdbarhed 5–7 år.',badge:'badge-blue',label:'Standard',sub:null},
+    {name:'Filterglas (genbrugsglas)',note:'Bedre filtrering end sand (ned til 5 µm mod sand\'s 20 µm), kræver sjældnere skyl. Koster 20–40% mere. Holdbarhed 10+ år.',badge:'badge-green',label:'Anbefalet',
+     sub:{name:'AFM® Aktivt Filterglas',note:'Avanceret variant af filterglas aktiveret med en patenteret oxidationsproces. Filtrerer ned til 1–2 µm, er modstandsdygtigt over for bakterievækst (biofilm) og kræver endnu sjældnere tilbageskylning. Ideel til pools med saltkloring eller UV. Koster 30–50% mere end standard filterglas, men reducerer kemikalieforbruget mærkbart.',badge:'badge-teal',label:'Premium'}},
+    {name:'Filterkugler (polyethylen)',note:'Lette plastikkugler (Ø3–5 mm) der pakker løsere end sand og skaber mindre modstand i filtret. Filtrerer ned til ca. 10 µm. Kræver op til 30% mindre vand ved tilbageskylning. Nem at håndtere og skifte – ingen tung sandsæk. Holdbarhed 5–10 år.',badge:'badge-purple',label:'Let alternativ',sub:null}
+  ];
+  medias.forEach(m=>{
+    const wrap=document.createElement('div');
     const d=document.createElement('div'); d.className='media-item';
     d.innerHTML='<div class="mname">'+m.name+'<span class="badge '+m.badge+'">'+m.label+'</span></div><div class="mnote">'+m.note+'</div>';
-    mediaDiv.appendChild(d);
+    wrap.appendChild(d);
+    if(m.sub){
+      const sub=document.createElement('div'); sub.className='sub-item';
+      sub.innerHTML='<div class="sub-name">'+m.sub.name+' <span class="badge '+m.sub.badge+'">'+m.sub.label+'</span></div>'+m.sub.note;
+      wrap.appendChild(sub);
+    }
+    mediaDiv.appendChild(wrap);
   });
 
   const ec=document.getElementById('r-energy-content');
-  if (pumptype==='variable') {
+  if(pumptype==='variable'){
     const fullH2=parseFloat(document.getElementById('fullhours').value)||6;
     const lowF2=parseFloat(document.getElementById('lowfactor').value)||0.4;
-    ec.innerHTML='<div class="energy-compare"><div class="ecol"><div class="elabel">Fast hastighed</div><div class="enum" style="color:var(--red-400)">'+kwdayFixed.toFixed(1)+' kWh</div><div class="esub">pr. døgn</div><div class="enum" style="color:var(--red-400);font-size:18px;margin-top:8px">'+Math.round(kwdayFixed*30*elprice)+' kr</div><div class="esub">pr. måned</div></div><div class="ecol"><div class="elabel">Variabel hastighed</div><div class="enum" style="color:var(--green-800)">'+kwdayVar.toFixed(1)+' kWh</div><div class="esub">pr. døgn ('+fullH2+' t fuld + '+(24-fullH2)+' t '+Math.round(lowF2*100)+'%)</div><div class="enum" style="color:var(--green-800);font-size:18px;margin-top:8px">'+Math.round(kwdayVar*30*elprice)+' kr</div><div class="esub">pr. måned</div></div></div><div style="margin-top:10px"><span class="saving-pill"><i class="ti ti-leaf" style="font-size:12px"></i>Besparelse: '+savingPct+'% – ca. '+Math.round((kwdayFixed-kwdayVar)*30*elprice)+' kr/måned</span></div><div style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.5">Beregnet ud fra '+pumpKwR.toFixed(2)+' kW pumpe. Effektloven: '+Math.round(lowF2*100)+'% hastighed = '+Math.round(Math.pow(lowF2,3)*100)+'% effekt.</div>';
+    ec.innerHTML='<div class="energy-compare"><div class="ecol"><div class="elabel">Fast hastighed</div><div class="enum" style="color:var(--red-400)">'+kwdayFixed.toFixed(1)+' kWh</div><div class="esub">pr. døgn</div><div class="enum" style="color:var(--red-400);font-size:18px;margin-top:8px">'+Math.round(kwdayFixed*30*elprice)+' kr</div><div class="esub">pr. måned</div></div><div class="ecol"><div class="elabel">Variabel hastighed</div><div class="enum" style="color:var(--green-800)">'+kwdayVar.toFixed(1)+' kWh</div><div class="esub">pr. døgn ('+fullH2+' t fuld + '+(24-fullH2)+' t '+Math.round(lowF2*100)+'%)</div><div class="enum" style="color:var(--green-800);font-size:18px;margin-top:8px">'+Math.round(kwdayVar*30*elprice)+' kr</div><div class="esub">pr. måned</div></div></div><div style="margin-top:10px"><span class="saving-pill"><i class="ti ti-leaf" style="font-size:12px"></i>Besparelse: '+savingPct+'% – ca. '+Math.round((kwdayFixed-kwdayVar)*30*elprice)+' kr/måned</span></div><div style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.5">Beregnet ud fra '+pumpKwR.toFixed(2)+' kW pumpe. '+Math.round(lowF2*100)+'% hastighed = '+Math.round(Math.pow(lowF2,3)*100)+'% effekt.</div>';
   } else {
     ec.innerHTML='<div class="energy-compare"><div class="ecol"><div class="elabel">Forbrug pr. døgn</div><div class="enum" style="color:var(--blue-600)">'+kwdayFixed.toFixed(1)+' kWh</div><div class="esub">'+pumpKwR.toFixed(2)+' kW × 24 t</div></div><div class="ecol"><div class="elabel">Forbrug pr. måned</div><div class="enum" style="color:var(--blue-600)">'+Math.round(kwMonth)+' kWh</div><div class="esub">'+Math.round(krMonth)+' kr ved '+elprice+' kr/kWh</div></div></div><div style="font-size:12px;color:var(--text2);margin-top:10px;line-height:1.5">Skift til variabel hastighed og spar typisk 50–70% – svarende til ca. '+Math.round(kwdayFixed*0.6*30*elprice)+' kr/måned.</div>';
   }
 
   const extrasNotes=[];
-  if(active.includes('heatpump'))extrasNotes.push({icon:'ti-temperature-plus',text:'Varmepumpe: Placeres altid EFTER filtret i vandvejen. Tilføjer ca. 1,5 m modstand.'});
-  if(active.includes('heatex'))extrasNotes.push({icon:'ti-exchange',text:'Varmeveksler: Placeres efter filtret. Kræver separat kredsløb. Tilføjer 1–1,5 m modstand.'});
+  if(active.includes('heatpump'))extrasNotes.push({icon:'ti-temperature-plus',text:'Varmepumpe: Placeres altid EFTER filtret i vandvejen. Tilføjer ca. 1.5 m modstand.'});
+  if(active.includes('heatex'))extrasNotes.push({icon:'ti-exchange',text:'Varmeveksler: Placeres efter filtret. Kræver separat kredsløb. Tilføjer 1–1.5 m modstand.'});
   if(active.includes('ph'))extrasNotes.push({icon:'ti-flask',text:'Automatisk pH-regulering: Placeres typisk efter filtret. Kræver bypass-rørsystem og doseringskar.'});
   if(active.includes('salt'))extrasNotes.push({icon:'ti-droplets',text:'Saltklorinator: Kræver saltkoncentration på 3–4 g/l. Placeres sidst i vandvejen. Medfører korrosion på aluminium.'});
   if(active.includes('uv'))extrasNotes.push({icon:'ti-sun',text:'UV-anlæg: Placeres efter filtret. Reducerer klorinforbruget 20–40%.'});
