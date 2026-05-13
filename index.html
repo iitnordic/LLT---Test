@@ -11,197 +11,221 @@
   --bg:#fff;--bg2:#f5f5f3;--bg3:#eeede9;
   --text:#1a1a18;--text2:#6b6b67;--text3:#9a9a96;
   --border:rgba(0,0,0,.12);--border2:rgba(0,0,0,.22);
-  --radius:8px;--radius-lg:12px;
-  --blue-50:#E6F1FB;--blue-200:#85B7EB;--blue-600:#185FA5;--blue-800:#0C447C;
-  --green-50:#EAF3DE;--green-600:#3B6D11;--green-800:#27500A;
-  --amber-50:#FAEEDA;--amber-200:#FAC775;--amber-600:#854F0B;--amber-800:#633806;
-  --teal-50:#E0F4F1;--teal-800:#0D6B5E;
-  --purple-50:#F0EAFB;--purple-800:#5B2D9E;
-  --red-50:#FCEBEB;--red-400:#E24B4A;--red-800:#8B1A1A;
+  --r:8px;--rl:12px;
+  --b50:#E6F1FB;--b200:#85B7EB;--b600:#185FA5;--b800:#0C447C;
+  --g50:#EAF3DE;--g600:#3B6D11;--g800:#27500A;
+  --a50:#FAEEDA;--a200:#FAC775;--a600:#854F0B;--a800:#633806;
+  --t50:#E0F4F1;--t800:#0D6B5E;
+  --p50:#F0EAFB;--p800:#5B2D9E;
+  --red:#E24B4A;
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#1e1e1c;--bg2:#2a2a28;--bg3:#323230;
   --text:#f0efea;--text2:#a0a09c;--text3:#6a6a66;
   --border:rgba(255,255,255,.1);--border2:rgba(255,255,255,.18);
-  --blue-50:#0c2a45;--blue-800:#85B7EB;--blue-600:#6AACE8;
-  --green-50:#152808;--green-800:#C0DD97;--green-600:#A0C870;
-  --amber-50:#2a1e06;--amber-800:#FAC775;--amber-600:#FAB040;
-  --teal-50:#0a2320;--teal-800:#5ECEC0;
-  --purple-50:#1e1030;--purple-800:#C4A0F5;
-  --red-50:#2a0f0f;--red-400:#FF6B6B;--red-800:#FFAAAA;
+  --b50:#0c2a45;--b800:#85B7EB;--b600:#6AACE8;
+  --g50:#152808;--g800:#C0DD97;--g600:#A0C870;
+  --a50:#2a1e06;--a800:#FAC775;--a600:#FAB040;
+  --t50:#0a2320;--t800:#5ECEC0;
+  --p50:#1e1030;--p800:#C4A0F5;
+  --red:#FF6B6B;
 }}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg3);color:var(--text);min-height:100vh}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg3);color:var(--text);min-height:100vh}
 
-/* ── NAV ── */
-.app-nav{background:var(--bg);border-bottom:0.5px solid var(--border);position:sticky;top:0;z-index:100;padding:0 1rem}
-.nav-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:0;height:52px}
-.nav-logo{font-size:15px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;margin-right:auto}
-.nav-logo i{font-size:20px;color:#378ADD}
-.nav-tab{padding:0 16px;height:52px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;border-radius:0;background:none;border-top:none;border-left:none;border-right:none}
-.nav-tab:hover{color:var(--text)}
-.nav-tab.active{color:#378ADD;border-bottom-color:#378ADD}
-.nav-tab i{font-size:16px}
-.save-indicator{font-size:11px;color:var(--green-600);display:flex;align-items:center;gap:4px;opacity:0;transition:opacity .3s;margin-left:12px}
-.save-indicator.show{opacity:1}
+/* NAV */
+.nav{background:var(--bg);border-bottom:.5px solid var(--border);position:sticky;top:0;z-index:100;padding:0 1rem}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;height:54px;gap:4px}
+.nav-logo{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;margin-right:16px;white-space:nowrap}
+.nav-logo i{font-size:22px;color:#378ADD}
+.nav-scroll{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav-scroll::-webkit-scrollbar{display:none}
+.ntab{padding:6px 12px;height:36px;display:flex;align-items:center;gap:5px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border-radius:var(--r);background:none;border:none;white-space:nowrap;transition:all .15s}
+.ntab:hover{background:var(--bg2);color:var(--text)}
+.ntab.active{background:var(--b50);color:var(--b800)}
+.ntab i{font-size:15px}
+.save-pill{margin-left:auto;font-size:11px;color:var(--g600);display:flex;align-items:center;gap:4px;opacity:0;transition:opacity .4s;flex-shrink:0}
+.save-pill.show{opacity:1}
 
-/* ── PAGE ── */
-.page{display:none;padding:2rem 1rem;max-width:720px;margin:0 auto}
+/* PAGES */
+.page{display:none;max-width:900px;margin:0 auto;padding:1.5rem 1rem 3rem}
 .page.active{display:block}
-.page-header{margin-bottom:1.5rem}
-.page-header h1{font-size:22px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.page-header p{font-size:14px;color:var(--text2)}
 
-/* ── COMMON ── */
-.section{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem}
-.section-title{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
-.section-title i{font-size:16px}
-.info-link{margin-left:auto;font-size:11px;font-weight:500;color:var(--text3);cursor:pointer;text-transform:none;letter-spacing:0;display:flex;align-items:center;gap:4px}
-.info-link:hover{color:var(--text2)}
-.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field-grid.three{grid-template-columns:1fr 1fr 1fr}
-@media(max-width:500px){.field-grid,.field-grid.three{grid-template-columns:1fr 1fr}}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:13px;color:var(--text2)}
-.field input,.field select{font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius);padding:9px 11px;width:100%;transition:border-color .15s}
-.field input:focus,.field select:focus{outline:none;border-color:#378ADD;box-shadow:0 0 0 3px rgba(55,138,221,.12)}
+/* HERO CARDS on home */
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.calc-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;cursor:pointer;transition:all .15s;text-decoration:none;display:block}
+.calc-card:hover{border-color:#378ADD;transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.calc-card i{font-size:28px;margin-bottom:10px;display:block}
+.calc-card h3{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+.calc-card p{font-size:12px;color:var(--text2);line-height:1.5}
+.card-blue i{color:#378ADD}
+.card-green i{color:#5CB85C}
+.card-orange i{color:#F0AD4E}
+.card-purple i{color:#9B59B6}
+.card-teal i{color:#1ABC9C}
+.card-red i{color:#E24B4A}
+
+/* SECTIONS */
+.sec{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:1rem}
+.sec-title{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.sec-title i{font-size:16px}
+.sec-title .tip{margin-left:auto;font-size:11px;font-weight:500;color:var(--text3);cursor:pointer;text-transform:none;letter-spacing:0;display:flex;align-items:center;gap:3px}
+.sec-title .tip:hover{color:var(--text2)}
+.page-title{margin-bottom:1.5rem}
+.page-title h2{font-size:22px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.page-title p{font-size:14px;color:var(--text2)}
+.page-title h2 i{color:#378ADD}
+
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:520px){.fg,.fg3{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:5px}
+.f label{font-size:13px;color:var(--text2)}
+.f input,.f select{font-size:14px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--r);padding:9px 11px;width:100%;transition:border-color .15s}
+.f input:focus,.f select:focus{outline:none;border-color:#378ADD;box-shadow:0 0 0 3px rgba(55,138,221,.1)}
 .hint{font-size:11px;color:var(--text3)}
-.toggle-grid{display:flex;flex-wrap:wrap;gap:8px}
-.toggle{display:flex;align-items:center;gap:7px;padding:8px 14px;border:.5px solid var(--border2);border-radius:var(--radius);cursor:pointer;font-size:13px;color:var(--text2);background:var(--bg2);transition:all .15s;user-select:none}
-.toggle:hover{border-color:#378ADD;color:var(--text)}
-.toggle.active{background:var(--blue-50);border-color:#378ADD;color:var(--blue-800)}
-.toggle i{font-size:15px}
-.info-box{background:var(--blue-50);border:.5px solid var(--blue-200);border-radius:var(--radius);padding:12px 14px;margin-bottom:14px}
-.info-box-title{font-size:13px;font-weight:600;color:var(--blue-800);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.info-box-body{font-size:12px;color:var(--blue-600);line-height:1.65}
-.turnover-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
-.turnover-table td{padding:5px 8px;color:var(--blue-600)}
-.turnover-table td:first-child{color:var(--blue-800);font-weight:600}
-.turnover-table tr+tr td{border-top:.5px solid var(--blue-200)}
-.var-info{background:var(--green-50);border:.5px solid #C0DD97;border-radius:var(--radius);padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--green-600);line-height:1.6}
-.calc-btn{width:100%;padding:13px;background:var(--text);color:var(--bg);border:none;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
-.calc-btn:hover{opacity:.85}
-.save-btn{width:100%;padding:11px;background:var(--green-50);color:var(--green-800);border:.5px solid #C0DD97;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
-.save-btn:hover{background:#C0DD97}
+.toggles{display:flex;flex-wrap:wrap;gap:8px}
+.tog{display:flex;align-items:center;gap:6px;padding:7px 13px;border:.5px solid var(--border2);border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--text2);background:var(--bg2);transition:all .15s;user-select:none}
+.tog:hover{border-color:#378ADD;color:var(--text)}
+.tog.on{background:var(--b50);border-color:#378ADD;color:var(--b800)}
+.tog i{font-size:14px}
+
+/* BUTTONS */
+.btn{width:100%;padding:13px;background:var(--text);color:var(--bg);border:none;border-radius:var(--r);font-size:15px;font-weight:600;cursor:pointer;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn-sec{background:var(--bg2);color:var(--text);border:.5px solid var(--border2)}
+.btn-green{background:var(--g50);color:var(--g800);border:.5px solid #C0DD97;width:auto;padding:9px 18px;font-size:13px;margin-top:.5rem}
+
+/* RESULTS */
 .results{display:none;margin-top:1.5rem}
-.results.visible{display:block}
-.results h2{font-size:18px;font-weight:600;margin-bottom:1rem}
-.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1rem}
-.metric{background:var(--bg2);border-radius:var(--radius);padding:1rem}
-.metric .mlabel{font-size:11px;color:var(--text2);margin-bottom:5px;line-height:1.3}
-.metric .mvalue{font-size:20px;font-weight:600;color:var(--text)}
-.metric .munit{font-size:11px;color:var(--text3);margin-top:2px}
-.metric.blue{background:var(--blue-50)}.metric.blue .mvalue{color:var(--blue-800)}.metric.blue .mlabel,.metric.blue .munit{color:var(--blue-600)}
-.metric.green{background:var(--green-50)}.metric.green .mvalue{color:var(--green-800)}.metric.green .mlabel,.metric.green .munit{color:var(--green-600)}
-.metric.orange{background:var(--amber-50)}.metric.orange .mvalue{color:var(--amber-800)}.metric.orange .mlabel,.metric.orange .munit{color:var(--amber-600)}
-.rec-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:.75rem}
-.rec-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.rec-title i{font-size:18px;color:#378ADD}
-.rec-value{font-size:17px;font-weight:600;color:var(--blue-600);margin-bottom:5px}
-.rec-note{font-size:13px;color:var(--text2);line-height:1.55}
+.results.on{display:block}
+.rh{font-size:18px;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.rh i{color:#378ADD}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:1rem}
+.m{background:var(--bg2);border-radius:var(--r);padding:.9rem}
+.m .ml{font-size:11px;color:var(--text2);margin-bottom:4px;line-height:1.3}
+.m .mv{font-size:20px;font-weight:700;color:var(--text)}
+.m .mu{font-size:11px;color:var(--text3);margin-top:2px}
+.m.blue{background:var(--b50)}.m.blue .mv{color:var(--b800)}.m.blue .ml,.m.blue .mu{color:var(--b600)}
+.m.green{background:var(--g50)}.m.green .mv{color:var(--g800)}.m.green .ml,.m.green .mu{color:var(--g600)}
+.m.orange{background:var(--a50)}.m.orange .mv{color:var(--a800)}.m.orange .ml,.m.orange .mu{color:var(--a600)}
+.rcard{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:.75rem}
+.rcard-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.rcard-title i{font-size:18px;color:#378ADD}
+.rcard-val{font-size:17px;font-weight:700;color:var(--b600);margin-bottom:4px}
+.rcard-note{font-size:13px;color:var(--text2);line-height:1.55}
 .divider{height:.5px;background:var(--border);margin:1rem 0}
 .badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600}
-.badge-blue{background:var(--blue-50);color:var(--blue-800)}
-.badge-green{background:var(--green-50);color:var(--green-800)}
-.badge-teal{background:var(--teal-50);color:var(--teal-800)}
-.badge-purple{background:var(--purple-50);color:var(--purple-800)}
-.media-item{padding:10px 12px;background:var(--bg2);border-radius:var(--radius);font-size:13px}
-.media-item .mname{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-weight:600;color:var(--text)}
-.media-item .mnote{color:var(--text2);line-height:1.5}
-.sub-item{margin-top:8px;padding:8px 12px;background:var(--bg2);border-left:2px solid #378ADD;border-radius:0 var(--radius) var(--radius) 0;font-size:12px;color:var(--text2);line-height:1.5}
-.sub-item .sub-name{font-weight:600;color:var(--text);margin-bottom:3px;display:flex;align-items:center;gap:6px}
-.energy-box{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:.75rem}
-.energy-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.energy-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ecol{background:var(--bg2);border-radius:var(--radius);padding:12px}
-.ecol .elabel{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
-.ecol .enum{font-size:22px;font-weight:700;margin-bottom:2px}
-.ecol .esub{font-size:11px;color:var(--text2)}
-.saving-pill{display:inline-flex;align-items:center;gap:5px;background:var(--green-50);color:var(--green-800);border-radius:999px;font-size:12px;font-weight:600;padding:5px 14px;margin-top:10px}
-.warning{background:var(--amber-50);border:.5px solid var(--amber-200);border-radius:var(--radius);padding:10px 14px;font-size:13px;color:var(--amber-800);margin-top:8px;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
-.warning i{font-size:16px;flex-shrink:0;margin-top:1px}
-.lookup-row{display:flex;gap:8px;align-items:flex-end}
-.lookup-row .field{flex:1}
-.lookup-btn{padding:9px 14px;background:var(--blue-50);color:var(--blue-800);border:.5px solid var(--blue-200);border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:all .15s;flex-shrink:0}
-.lookup-btn:hover{background:var(--blue-200)}
-.lookup-btn:disabled{opacity:.5;cursor:not-allowed}
-.lookup-result{margin-top:10px;padding:12px 14px;border-radius:var(--radius);font-size:13px;line-height:1.6;border:.5px solid}
-.lookup-result.found{background:var(--green-50);border-color:#C0DD97;color:var(--green-800)}
-.lookup-result.not-found{background:var(--amber-50);border-color:var(--amber-200);color:var(--amber-800)}
-.lookup-result.loading{background:var(--blue-50);border-color:var(--blue-200);color:var(--blue-600)}
-.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:8px}
-.spec-item{background:var(--bg);border-radius:var(--radius);padding:8px 10px}
-.spec-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);margin-bottom:2px}
-.spec-val{font-size:15px;font-weight:700;color:var(--text)}
-.spinner{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.manual-row{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:13px;color:var(--text2)}
-.manual-row input{width:100px;padding:7px 10px;font-size:13px;color:var(--text);background:var(--bg2);border:.5px solid var(--border2);border-radius:var(--radius)}
-.spec-editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:500px){.spec-editor-grid{grid-template-columns:1fr}}
-.use-specs-btn{margin-top:10px;padding:8px 16px;background:var(--green-50);color:var(--green-800);border:.5px solid #C0DD97;border-radius:var(--radius);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
-.use-specs-btn:hover{background:#C0DD97}
-/* ── EQUIPMENT TYPE TABS ── */
-.equip-tabs{display:flex;gap:0;border:.5px solid var(--border2);border-radius:var(--radius);overflow:hidden;margin-bottom:14px}
-.equip-tab{flex:1;padding:9px 8px;font-size:12px;font-weight:600;text-align:center;cursor:pointer;background:var(--bg2);color:var(--text2);border:none;transition:all .15s;border-right:.5px solid var(--border2)}
-.equip-tab:last-child{border-right:none}
-.equip-tab:hover{color:var(--text)}
-.equip-tab.active{background:var(--blue-50);color:var(--blue-800)}
-.equip-tab i{display:block;font-size:18px;margin-bottom:3px}
-.equip-panel{display:none}
-.equip-panel.active{display:block}
-.custom-gear-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:10px}
-.custom-gear-row .field{flex:1}
-.custom-gear-list{display:flex;flex-direction:column;gap:6px;margin-top:10px}
-.gear-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg2);border-radius:var(--radius);font-size:13px}
-.gear-item .gear-name{flex:1;font-weight:500;color:var(--text)}
-.gear-item .gear-spec{color:var(--text2);font-size:12px}
-.gear-item .gear-del{padding:3px 8px;background:var(--red-50);color:var(--red-400);border:.5px solid var(--red-400);border-radius:var(--radius);font-size:11px;cursor:pointer;flex-shrink:0}
-.gear-item .gear-del:hover{background:var(--red-400);color:#fff}
-.aio-badge{display:inline-flex;align-items:center;gap:5px;background:var(--teal-50);color:var(--teal-800);border-radius:999px;font-size:11px;font-weight:600;padding:3px 10px;margin-left:8px}
+.bdg-blue{background:var(--b50);color:var(--b800)}
+.bdg-green{background:var(--g50);color:var(--g800)}
+.bdg-teal{background:var(--t50);color:var(--t800)}
+.bdg-purple{background:var(--p50);color:var(--p800)}
+.mitem{padding:10px 12px;background:var(--bg2);border-radius:var(--r);font-size:13px;margin-bottom:8px}
+.mitem-name{display:flex;align-items:center;gap:7px;font-weight:600;color:var(--text);margin-bottom:3px}
+.mitem-note{color:var(--text2);line-height:1.5}
+.subitem{margin-top:6px;padding:8px 12px;background:var(--bg2);border-left:2px solid #378ADD;border-radius:0 var(--r) var(--r) 0;font-size:12px;color:var(--text2);line-height:1.5}
+.subitem-name{font-weight:600;color:var(--text);margin-bottom:2px;display:flex;align-items:center;gap:5px}
+.warn{background:var(--a50);border:.5px solid var(--a200);border-radius:var(--r);padding:10px 14px;font-size:13px;color:var(--a800);margin-top:8px;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.warn i{font-size:16px;flex-shrink:0;margin-top:1px}
+.info-box{background:var(--b50);border:.5px solid var(--b200);border-radius:var(--r);padding:12px 14px;margin-bottom:14px}
+.info-box h4{font-size:13px;font-weight:600;color:var(--b800);margin-bottom:6px}
+.info-box p,.info-box li{font-size:12px;color:var(--b600);line-height:1.65}
+.ecols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ecol{background:var(--bg2);border-radius:var(--r);padding:12px}
+.ecol .el{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.ecol .ev{font-size:22px;font-weight:700;margin-bottom:2px}
+.ecol .es{font-size:11px;color:var(--text2)}
+.save-pill2{display:inline-flex;align-items:center;gap:5px;background:var(--g50);color:var(--g800);border-radius:999px;font-size:12px;font-weight:600;padding:5px 14px;margin-top:10px}
+.var-info{background:var(--g50);border:.5px solid #C0DD97;border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--g600);line-height:1.6}
 
-
-/* ── WATER CHEMISTRY PAGE ── */
-.chem-hero{background:linear-gradient(135deg,#0C447C 0%,#185FA5 60%,#378ADD 100%);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1rem;color:#fff}
-.chem-hero h2{font-size:18px;font-weight:600;margin-bottom:4px}
-.chem-hero p{font-size:13px;opacity:.85}
-.measurement-form .field label{color:var(--text2)}
-.param-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.param-card{background:var(--bg2);border-radius:var(--radius);padding:12px;position:relative}
-.param-card .plabel{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;display:flex;align-items:center;gap:4px}
-.param-card .prange{font-size:10px;color:var(--text3);margin-bottom:8px}
-.param-card input{font-size:18px;font-weight:600;color:var(--text);background:transparent;border:none;border-bottom:1.5px solid var(--border2);padding:4px 0;width:100%;outline:none}
-.param-card input:focus{border-bottom-color:#378ADD}
-.param-card .punit{font-size:11px;color:var(--text3);margin-top:3px}
-.log-entry{background:var(--bg);border:.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:.75rem;cursor:pointer;transition:border-color .15s}
-.log-entry:hover{border-color:var(--blue-200)}
+/* WATER CHEM */
+.param-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.pc{background:var(--bg2);border-radius:var(--r);padding:12px;position:relative}
+.pc .pl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.pc .pr{font-size:10px;color:var(--text3);margin-bottom:7px}
+.pc input{font-size:18px;font-weight:600;color:var(--text);background:transparent;border:none;border-bottom:1.5px solid var(--border2);padding:4px 0;width:100%;outline:none}
+.pc input:focus{border-bottom-color:#378ADD}
+.pc .pu{font-size:11px;color:var(--text3);margin-top:3px}
+.log-entry{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:.75rem;cursor:pointer;transition:border-color .15s}
+.log-entry:hover{border-color:var(--b200)}
 .log-entry.expanded{border-color:#378ADD}
 .log-header{display:flex;align-items:center;gap:10px}
 .log-date{font-size:13px;font-weight:600;color:var(--text);flex:1}
-.log-badges{display:flex;gap:6px;flex-wrap:wrap}
-.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.status-ok{background:#5CB85C}
-.status-warn{background:#F0AD4E}
-.status-bad{background:#E24B4A}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.s-ok{background:#5CB85C}.s-warn{background:#F0AD4E}.s-bad{background:var(--red)}
 .log-params{display:none;margin-top:10px;padding-top:10px;border-top:.5px solid var(--border)}
 .log-params.show{display:block}
-.param-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13px;border-bottom:.5px solid var(--border)}
-.param-row:last-child{border-bottom:none}
-.param-row .pname{color:var(--text2)}
-.param-row .pval{font-weight:600;color:var(--text)}
-.param-row .pstatus{font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600}
-.pstatus.ok{background:var(--green-50);color:var(--green-800)}
-.pstatus.low{background:var(--blue-50);color:var(--blue-800)}
-.pstatus.high{background:var(--red-50);color:var(--red-800)}
-.pstatus.warn{background:var(--amber-50);color:var(--amber-800)}
-.ai-recs{margin-top:12px;padding:12px;background:var(--blue-50);border-radius:var(--radius);font-size:13px;color:var(--blue-800);line-height:1.65}
-.ai-recs .rec-head{font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.ai-recs ul{padding-left:18px}
-.ai-recs li{margin-bottom:4px}
-.empty-state{text-align:center;padding:3rem 1rem;color:var(--text3)}
-.empty-state i{font-size:48px;margin-bottom:12px;display:block;opacity:.3}
-.empty-state p{font-size:14px}
-.delete-btn{padding:4px 8px;background:var(--red-50);color:var(--red-400);border:.5px solid var(--red-400);border-radius:var(--radius);font-size:11px;cursor:pointer;display:flex;align-items:center;gap:3px;transition:all .15s;flex-shrink:0}
-.delete-btn:hover{background:var(--red-400);color:#fff}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:13px;border-bottom:.5px solid var(--border)}
+.prow:last-child{border-bottom:none}
+.prow .pn{color:var(--text2)}.prow .pv{font-weight:600}.prow .ps{font-size:11px;padding:2px 8px;border-radius:999px;font-weight:600}
+.ps.ok{background:var(--g50);color:var(--g800)}.ps.low{background:var(--b50);color:var(--b800)}.ps.high{background:#FCEBEB;color:#8B1A1A}.ps.warn{background:var(--a50);color:var(--a800)}
+.ai-rec{margin-top:10px;padding:12px;background:var(--b50);border-radius:var(--r);font-size:13px;color:var(--b800);line-height:1.65}
+.ai-rec h4{font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.empty{text-align:center;padding:3rem 1rem;color:var(--text3)}
+.empty i{font-size:44px;display:block;margin-bottom:10px;opacity:.3}
+.empty p{font-size:14px}
+.del-btn{padding:3px 8px;background:#FCEBEB;color:var(--red);border:.5px solid var(--red);border-radius:var(--r);font-size:11px;cursor:pointer}
+.del-btn:hover{background:var(--red);color:#fff}
+.spinner{display:inline-block;width:13px;height:13px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+
+
+
+/* DASHBOARD */
+.dash-section{margin-bottom:1rem}
+.dash-header{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text3);margin-bottom:8px;display:flex;align-items:center;gap:6px;justify-content:space-between}
+.dash-header-left{display:flex;align-items:center;gap:6px}
+.dash-header i{font-size:14px}
+.dash-edit{font-size:11px;font-weight:500;color:var(--text3);cursor:pointer;text-transform:none;letter-spacing:0;display:flex;align-items:center;gap:3px}
+.dash-edit:hover{color:var(--text2)}
+.dash-card{background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:.75rem}
+.dash-card-empty{background:var(--bg2);border:.5px dashed var(--border2);border-radius:var(--rl);padding:1rem 1.25rem;margin-bottom:.75rem;cursor:pointer;transition:all .15s}
+.dash-card-empty:hover{border-color:#378ADD}
+.dash-card-empty p{font-size:13px;color:var(--text3);display:flex;align-items:center;gap:6px}
+.dash-row{display:flex;flex-wrap:wrap;gap:6px 12px;margin-bottom:2px}
+.dash-item{display:flex;flex-direction:column;min-width:90px;flex:1}
+.dash-item .di-label{font-size:11px;color:var(--text3);margin-bottom:1px}
+.dash-item .di-value{font-size:14px;font-weight:500;color:var(--text)}
+.dash-item .di-unit{font-size:11px;color:var(--text3)}
+.dash-divider{height:.5px;background:var(--border);margin:8px 0}
+.dash-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:500}
+.dtag-blue{background:var(--b50);color:var(--b800)}
+.dtag-green{background:var(--g50);color:var(--g800)}
+.dtag-amber{background:var(--a50);color:var(--a800)}
+.dtag-red{background:#FCEBEB;color:#8B1A1A}
+.dtag-gray{background:var(--bg2);color:var(--text2)}
+.dtag-teal{background:var(--t50);color:var(--t800)}
+.dash-status{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500}
+.chem-mini-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-top:6px}
+.chem-mini-item{background:var(--bg2);border-radius:var(--r);padding:6px 8px;text-align:center}
+.cmi-label{font-size:10px;color:var(--text3);margin-bottom:2px}
+.cmi-val{font-size:14px;font-weight:600}
+.cmi-unit{font-size:9px;color:var(--text3)}
+.cmi-ok .cmi-val{color:var(--g800)}.cmi-ok{background:var(--g50)}
+.cmi-low .cmi-val{color:var(--b800)}.cmi-low{background:var(--b50)}
+.cmi-high .cmi-val{color:#8B1A1A}.cmi-high{background:#FCEBEB}
+.cmi-na .cmi-val{color:var(--text3)}
+.dash-chem-date{font-size:11px;color:var(--text3);margin-bottom:8px}
+.no-data-yet{text-align:center;padding:2rem 0;color:var(--text3)}
+.no-data-yet i{font-size:36px;display:block;margin-bottom:8px;opacity:.25}
+.no-data-yet p{font-size:13px}
+
+/* VANDVEJ DIAGRAM */
+.flow-section{margin-bottom:1rem}
+.flow-empty{background:var(--bg);border:.5px dashed var(--border2);border-radius:var(--rl);padding:2rem 1rem;text-align:center;color:var(--text3);font-size:13px;cursor:pointer;transition:all .15s}
+.flow-empty:hover{border-color:#378ADD;color:var(--text2)}
+.flow-empty i{font-size:32px;display:block;margin-bottom:8px;opacity:.35}
+
+/* MIN POOL */
+.profile-complete{background:var(--g50);border:.5px solid #C0DD97;border-radius:var(--r);padding:10px 14px;font-size:13px;color:var(--g800);display:flex;align-items:center;gap:8px;margin-bottom:1rem}
+.profile-empty{background:var(--a50);border:.5px solid var(--a200);border-radius:var(--r);padding:10px 14px;font-size:13px;color:var(--a800);display:flex;align-items:center;gap:8px;margin-bottom:1rem}
+.eq-card{background:var(--bg2);border-radius:var(--r);padding:10px 12px;display:flex;align-items:center;gap:10px;font-size:13px}
+.eq-card i{font-size:18px;color:#378ADD;flex-shrink:0}
+.eq-card .eq-name{font-weight:600;color:var(--text);flex:1}
+.eq-card .eq-spec{font-size:12px;color:var(--text2)}
+.eq-grid{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.ntab-highlight{background:var(--b50)!important;color:var(--b800)!important}
 
 footer{text-align:center;padding:2rem 1rem;font-size:12px;color:var(--text3)}
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
@@ -209,910 +233,1723 @@ input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 </head>
 <body>
 
-<nav class="app-nav">
+<nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo"><i class="ti ti-droplet"></i> Pool Beregner</div>
-    <button class="nav-tab active" onclick="showPage('setup')" id="tab-setup"><i class="ti ti-settings"></i> Mit setup</button>
-    <button class="nav-tab" onclick="showPage('chem')" id="tab-chem"><i class="ti ti-flask"></i> Vandkemi</button>
-    <span class="save-indicator" id="save-indicator"><i class="ti ti-check" style="font-size:12px"></i> Gemt</span>
+    <div class="nav-logo"><i class="ti ti-droplet"></i>Pool Beregner</div>
+    <div class="nav-scroll">
+      <button class="ntab active" onclick="nav('home')" id="ntab-home"><i class="ti ti-home"></i>Hjem</button>
+      <button class="ntab" onclick="nav('vol')" id="ntab-vol"><i class="ti ti-ripple"></i>Volumen</button>
+      <button class="ntab" onclick="nav('filter')" id="ntab-filter"><i class="ti ti-filter"></i>Pumpe &amp; filter</button>
+      <button class="ntab" onclick="nav('power')" id="ntab-power"><i class="ti ti-bolt"></i>Strøm</button>
+      <button class="ntab" onclick="nav('salt')" id="ntab-salt"><i class="ti ti-droplets"></i>Salt</button>
+      <button class="ntab" onclick="nav('chem')" id="ntab-chem"><i class="ti ti-flask"></i>Vandkemi</button>
+      <button class="ntab" onclick="nav('mypool')" id="ntab-mypool" style="border:.5px solid var(--border2)"><i class="ti ti-user-circle"></i>Min Pool</button>
+    </div>
+    <span class="save-pill" id="save-pill"><i class="ti ti-check" style="font-size:11px"></i>Gemt</span>
   </div>
 </nav>
 
-<!-- ═══════════════════ PAGE: SETUP ═══════════════════ -->
-<div class="page active" id="page-setup">
-  <div class="page-header">
-    <h1><i class="ti ti-ripple" style="color:#378ADD"></i> Pool-setup beregner</h1>
-    <p>Indtast dine poolmål og udstyr – data gemmes automatisk i din browser.</p>
+<!-- ═══ HOME ═══ -->
+<div class="page active" id="page-home">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;margin-top:.5rem;flex-wrap:wrap;gap:8px">
+    <div>
+      <h2 style="font-size:22px;font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:3px;color:var(--text)"><i class="ti ti-layout-dashboard" style="color:#378ADD"></i>Overblik</h2>
+      <p style="font-size:14px;color:var(--text2)">Samlet oversigt over din pool og alle beregnere.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-sec" style="width:auto;padding:7px 14px;font-size:13px;margin-top:0" onclick="nav('mypool')"><i class="ti ti-user-circle"></i>Min Pool</button>
+      <button class="btn btn-sec" style="width:auto;padding:7px 14px;font-size:13px;margin-top:0" onclick="nav('chem')"><i class="ti ti-flask"></i>Ny kemi-måling</button>
+    </div>
   </div>
 
-  <div class="section">
-    <div class="section-title"><i class="ti ti-ripple"></i> Poolens dimensioner</div>
-    <div class="field-grid" style="margin-bottom:12px">
-      <div class="field"><label>Form</label>
-        <select id="shape">
-          <option value="rect">Rektangulær</option><option value="round">Rund</option>
-          <option value="oval">Oval</option><option value="freeform">Fri form (estimer volumen)</option>
+  <!-- Dashboard -->
+  <div id="home-dashboard"></div>
+
+  <!-- Vandvej -->
+  <div class="flow-section" id="home-flow-wrap">
+    <div id="home-flow-container"></div>
+  </div>
+
+  <!-- Beregnere genveje -->
+  <div class="dash-header" style="margin-top:1rem">
+    <div class="dash-header-left"><i class="ti ti-calculator"></i>Beregnere</div>
+  </div>
+  <div class="calc-grid" style="margin-bottom:1rem">
+    <a class="calc-card card-blue" onclick="nav('vol')">
+      <i class="ti ti-ripple"></i>
+      <h3>Volumenberegner</h3>
+      <p>Beregn vandmængden ud fra mål og form.</p>
+    </a>
+    <a class="calc-card card-green" onclick="nav('filter')">
+      <i class="ti ti-filter"></i>
+      <h3>Pumpe &amp; filter</h3>
+      <p>Find pumpe- og filterdimension.</p>
+    </a>
+    <a class="calc-card card-orange" onclick="nav('power')">
+      <i class="ti ti-bolt"></i>
+      <h3>Strømberegner</h3>
+      <p>Driftsomkostninger for pumpe og VP.</p>
+    </a>
+    <a class="calc-card card-purple" onclick="nav('salt')">
+      <i class="ti ti-droplets"></i>
+      <h3>Saltberegner</h3>
+      <p>Beregn saltmængde til saltvandspool.</p>
+    </a>
+    <a class="calc-card card-teal" onclick="nav('chem')">
+      <i class="ti ti-flask"></i>
+      <h3>Vandkemi-log</h3>
+      <p>Registrér målinger og få korrektionsanbefalinger.</p>
+    </a>
+  </div>
+
+  <footer>Pool Beregner &copy; 2025 &nbsp;·&nbsp; Vejledende – konsulter fagfolk ved større anlæg.</footer>
+</div>
+
+<!-- ═══ VOLUMEN ═══ -->
+<div class="page" id="page-vol">
+  <div class="page-title">
+    <h2><i class="ti ti-ripple"></i>Volumenberegner</h2>
+    <p>Beregn vandmængden i din pool – bruges som grundlag for alle andre beregnere.</p>
+  </div>
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-ripple"></i>Poolens form og mål</div>
+    <div class="fg" style="margin-bottom:12px">
+      <div class="f"><label>Poolform</label>
+        <select id="v-shape" onchange="updateVShape()">
+          <option value="rect">Rektangulær</option>
+          <option value="round">Rund</option>
+          <option value="oval">Oval</option>
+          <option value="free">Fri form (angiv volumen direkte)</option>
         </select>
       </div>
-      <div class="field"><label>Enhed</label><select id="unit"><option value="m">Meter</option><option value="cm">Centimeter</option></select></div>
     </div>
-    <div class="field-grid three" id="dim-fields">
-      <div class="field"><label id="lbl-length">Længde (m)</label><input type="number" id="length" placeholder="8" min="0.5" step="0.1"></div>
-      <div class="field"><label id="lbl-width">Bredde (m)</label><input type="number" id="width" placeholder="4" min="0.5" step="0.1"></div>
-      <div class="field"><label>Gennemsnitsdybde (m)</label><input type="number" id="depth" placeholder="1.5" min="0.2" step="0.1"></div>
+    <div id="v-rect-fields" class="fg3" style="margin-bottom:12px">
+      <div class="f"><label id="v-l-lbl">Længde (m)</label><input type="number" id="v-length" placeholder="8" min="0.1" step="0.1"></div>
+      <div class="f"><label id="v-w-lbl">Bredde (m)</label><input type="number" id="v-width" placeholder="4" min="0.1" step="0.1"></div>
+      <div class="f"><label>Gennemsnitsdybde (m)</label><input type="number" id="v-depth" placeholder="1.5" min="0.1" step="0.1"></div>
     </div>
-    <div class="field-grid" id="f-round-row" style="display:none;margin-top:12px">
-      <div class="field"><label>Diameter (m)</label><input type="number" id="diameter" placeholder="3.5" min="0.5" step="0.1"><span class="hint">Angiv med punktum, f.eks. 3.5</span></div>
-      <div class="field"><label>Gennemsnitsdybde (m)</label><input type="number" id="depth-round" placeholder="1.5" min="0.2" step="0.1"><span class="hint">Angiv med punktum, f.eks. 1.5</span></div>
+    <div id="v-round-fields" class="fg" style="display:none;margin-bottom:12px">
+      <div class="f"><label>Diameter (m)</label><input type="number" id="v-dia" placeholder="3.5" min="0.1" step="0.1"><span class="hint">Angiv med punktum: 3.5 (ikke 3,5)</span></div>
+      <div class="f"><label>Gennemsnitsdybde (m)</label><input type="number" id="v-depth-r" placeholder="1.5" min="0.1" step="0.1"><span class="hint">Angiv med punktum: 1.5</span></div>
     </div>
-    <div class="field" id="f-volume" style="display:none;margin-top:12px">
-      <label>Estimeret volumen (m³)</label><input type="number" id="volume-manual" placeholder="50" min="1" step="0.5">
+    <div id="v-free-fields" style="display:none;margin-bottom:12px">
+      <div class="f"><label>Vandvolumen (m³) – anslået</label><input type="number" id="v-manual" placeholder="50" min="1" step="0.5"></div>
     </div>
   </div>
+  <button class="btn" onclick="calcVol()"><i class="ti ti-calculator"></i>Beregn volumen</button>
+  <div class="results" id="vol-results">
+    <div class="rh"><i class="ti ti-droplet"></i>Resultat</div>
+    <div class="mgrid" id="vol-metrics"></div>
+    <div class="flow-section" id="home-flow-wrap">
+    <div id="home-flow-container"></div>
+  </div>
+    <div class="sec" style="background:var(--b50);border-color:var(--b200)">
+      <p style="font-size:13px;color:var(--b800);line-height:1.6" id="vol-tip"></p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1rem">
+      <button class="btn btn-sec" style="width:auto;padding:9px 18px;font-size:13px;margin-top:0" onclick="nav('filter')"><i class="ti ti-filter"></i>Gå til pumpe & filter</button>
+      <button class="btn btn-sec" style="width:auto;padding:9px 18px;font-size:13px;margin-top:0" onclick="nav('power')"><i class="ti ti-bolt"></i>Gå til strøm</button>
+      <button class="btn btn-sec" style="width:auto;padding:9px 18px;font-size:13px;margin-top:0" onclick="nav('salt')"><i class="ti ti-droplets"></i>Gå til salt</button>
+    </div>
+  </div>
+  <footer>Pool Beregner &copy; 2025</footer>
+</div>
 
-  <div class="section">
-    <div class="section-title"><i class="ti ti-settings"></i> Rørsystem</div>
-    <div class="field-grid">
-      <div class="field"><label>Rørdiameter</label>
-        <select id="pipe">
+<!-- ═══ PUMPE & FILTER ═══ -->
+<div class="page" id="page-filter">
+  <div class="page-title">
+    <h2><i class="ti ti-filter"></i>Pumpe &amp; filter beregner</h2>
+    <p>Find den rigtige pumpe og filterdimension baseret på din pools volumen og opsætning.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-droplet"></i>Pooldata</div>
+    <div class="fg">
+      <div class="f"><label>Vandvolumen (m³)</label><input type="number" id="pf-vol" placeholder="50" min="1" step="0.5"><span class="hint">Fra volumenberegneren – eller estimer selv</span></div>
+      <div class="f"><label>Rørdiameter</label>
+        <select id="pf-pipe">
           <option value="32">32 mm</option><option value="38">38 mm</option><option value="40">40 mm</option>
-          <option value="50" selected>50 mm</option><option value="63">63 mm</option><option value="75">75 mm</option><option value="90">90 mm</option>
+          <option value="50" selected>50 mm</option><option value="63">63 mm</option>
+          <option value="75">75 mm</option><option value="90">90 mm</option>
         </select>
       </div>
-      <div class="field"><label>Rørlængde (m, estimat)</label><input type="number" id="pipelen" placeholder="20" min="1" step="1"></div>
+      <div class="f"><label>Rørlængde (m, estimat)</label><input type="number" id="pf-pipelen" placeholder="15" min="1" step="1"></div>
+      <div class="f"><label>Omløb pr. døgn
+        <span class="tip" onclick="toggleBox('pf-info')" style="display:inline-flex;margin-left:6px"><i class="ti ti-info-circle" style="font-size:13px"></i></span>
+      </label>
+        <select id="pf-turns">
+          <option value="2">2 omløb – minimum</option>
+          <option value="3" selected>3 omløb – best practice</option>
+          <option value="4">4 omløb – intensiv</option>
+        </select>
+      </div>
+    </div>
+    <div id="pf-info" class="info-box" style="display:none;margin-top:12px">
+      <h4><i class="ti ti-bulb" style="font-size:13px"></i> Hvad er omløbstid?</h4>
+      <p>Omløbstiden er det antal timer det tager at pumpe hele poolens vandvolumen én gang igennem filtret. Best practice for en privat pool er <strong>2–3 omløb i døgnet</strong> – svarende til at filteret "ser" alt vandet 2–3 gange dagligt.</p>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">
-      <i class="ti ti-clock"></i> Omløb & drift
-      <span class="info-link" onclick="toggleInfo()"><i class="ti ti-info-circle"></i> Hvad er omløbstid?</span>
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-plug"></i>Ekstraudstyr (tilvalg)</div>
+    <div class="toggles" id="pf-extras">
+      <div class="tog" data-id="heatpump"><i class="ti ti-temperature-plus"></i>Varmepumpe</div>
+      <div class="tog" data-id="heatex"><i class="ti ti-exchange"></i>Varmeveksler</div>
+      <div class="tog" data-id="ph"><i class="ti ti-flask"></i>Auto pH</div>
+      <div class="tog" data-id="salt"><i class="ti ti-droplets"></i>Saltklorinator</div>
+      <div class="tog" data-id="uv"><i class="ti ti-sun"></i>UV-anlæg</div>
+      <div class="tog" data-id="waterfall"><i class="ti ti-waterfall"></i>Vandfald/dyser</div>
+      <div class="tog" data-id="spa"><i class="ti ti-mood-happy"></i>Spa/boblesystem</div>
     </div>
-    <div id="info-box" class="info-box" style="display:none">
-      <div class="info-box-title"><i class="ti ti-bulb" style="font-size:14px"></i> Hvad er omløbstid?</div>
-      <div class="info-box-body">
-        Omløbstid er den tid det tager at pumpe hele poolens vandvolumen én gang igennem filtret.<br><br>
-        <strong style="color:var(--blue-800)">Anbefalet best practice:</strong> Alt vand bør cirkuleres <strong>2–3 gange i døgnet</strong>.
-        <table class="turnover-table">
-          <tr><td>Privat pool, normal brug</td><td>2 omløb/døgn (12 t pr. omløb)</td></tr>
-          <tr><td>Hyppig brug / mange badende</td><td>2–3 omløb/døgn (8–12 t)</td></tr>
-          <tr><td>Kommerciel / offentlig pool</td><td>3+ omløb/døgn (≤8 t)</td></tr>
-        </table>
-      </div>
+  </div>
+
+  <button class="btn" onclick="calcFilter()"><i class="ti ti-calculator"></i>Beregn pumpe &amp; filter</button>
+  <div class="results" id="filter-results">
+    <div class="rh"><i class="ti ti-filter"></i>Anbefalinger</div>
+    <div class="mgrid" id="filter-metrics"></div>
+    <div class="rcard">
+      <div class="rcard-title"><i class="ti ti-engine"></i>Cirkulationspumpe</div>
+      <div class="rcard-val" id="pf-pump-val"></div>
+      <div class="rcard-note" id="pf-pump-note"></div>
     </div>
-    <div class="field-grid" style="margin-bottom:12px">
-      <div class="field"><label>Omløb pr. døgn</label>
-        <select id="turnovers">
-          <option value="2">2 omløb/døgn – minimum</option>
-          <option value="2.5">2.5 omløb/døgn</option>
-          <option value="3" selected>3 omløb/døgn – best practice</option>
-          <option value="4">4 omløb/døgn – intensiv</option>
-        </select>
-      </div>
-      <div class="field"><label>Strømpris (kr/kWh)</label>
-        <input type="number" id="elprice" value="3.00" min="0.5" step="0.1">
-        <span class="hint">Inkl. afgifter – typisk 2.50–4.00 kr/kWh</span>
-      </div>
+    <div class="rcard">
+      <div class="rcard-title"><i class="ti ti-filter"></i>Filterkar</div>
+      <div class="rcard-val" id="pf-filter-val"></div>
+      <div class="rcard-note" id="pf-filter-note"></div>
+      <div class="divider"></div>
+      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">Filtermateriale – sammenligning</div>
+      <div id="pf-media"></div>
     </div>
-    <div class="field-grid" style="margin-bottom:12px">
-      <div class="field"><label>Pumpetype</label>
-        <select id="pumptype" onchange="toggleVarFields()">
+    <div class="rcard" id="pf-extras-card" style="display:none">
+      <div class="rcard-title"><i class="ti ti-plug"></i>Ekstraudstyr – bemærkninger</div>
+      <div id="pf-extras-notes"></div>
+    </div>
+    <div id="pf-warns"></div>
+  </div>
+  <footer>Pool Beregner &copy; 2025</footer>
+</div>
+
+<!-- ═══ STRØM ═══ -->
+<div class="page" id="page-power">
+  <div class="page-title">
+    <h2><i class="ti ti-bolt"></i>Strømberegner</h2>
+    <p>Beregn driftsomkostninger for pumpe og varmepumpe pr. dag og måned.</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-engine"></i>Cirkulationspumpe</div>
+    <div class="fg">
+      <div class="f"><label>Pumpeeffekt (W)</label><input type="number" id="pw-watt" placeholder="550" min="10" step="10"><span class="hint">Se databladet – typisk 200–1500 W</span></div>
+      <div class="f"><label>Pumpetype</label>
+        <select id="pw-type" onchange="togglePwVar()">
           <option value="fixed">Fast hastighed</option>
-          <option value="variable">Variabel hastighed (EC/DC)</option>
+          <option value="var">Variabel hastighed (EC/DC)</option>
         </select>
       </div>
     </div>
-    <div id="var-fields" style="display:none">
-      <div class="var-info"><i class="ti ti-leaf" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>
-        <strong style="color:var(--green-800)">Variabel hastighed:</strong> Pumpen kører på lav hastighed det meste af døgnet. Sparer typisk 50–70% strøm.
+    <div id="pw-var-fields" style="display:none;margin-top:12px">
+      <div class="var-info"><i class="ti ti-leaf" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i>
+        <strong>Variabel hastighed:</strong> Pumpen kører på lav hastighed om natten og fuld hastighed i badetimer. Typisk 50–70% besparelse.
       </div>
-      <div class="field-grid">
-        <div class="field"><label>Timer på fuld hastighed/døgn</label><input type="number" id="fullhours" value="6" min="1" max="23" step="1"><span class="hint">Typisk badetimer + 2 t ekstra</span></div>
-        <div class="field"><label>Lav-hastighed faktor</label>
-          <select id="lowfactor"><option value="0.3">30%</option><option value="0.4" selected>40% (anbefalet)</option><option value="0.5">50%</option></select>
+      <div class="fg">
+        <div class="f"><label>Timer på fuld hastighed / døgn</label><input type="number" id="pw-fullh" value="6" min="1" max="23" step="1"><span class="hint">Badetimer + 2 t ekstra</span></div>
+        <div class="f"><label>Lav-hastighedsniveau</label>
+          <select id="pw-lowf"><option value="0.3">30%</option><option value="0.4" selected>40% (anbefalet)</option><option value="0.5">50%</option></select>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title"><i class="ti ti-engine"></i> Pumpe &amp; filter</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.5">Vælg om du har et kombineret sandfilteranlæg (pumpe + filter i én enhed), eller pumpe og filter købt separat.</p>
-
-    <!-- Type tabs -->
-    <div class="equip-tabs">
-      <button class="equip-tab active" onclick="switchEquipTab('separate')" id="etab-separate"><i class="ti ti-components"></i>Separat pumpe + filter</button>
-      <button class="equip-tab" onclick="switchEquipTab('combo')" id="etab-combo"><i class="ti ti-box"></i>Kombineret anlæg</button>
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-temperature-plus"></i>Varmepumpe (valgfri)</div>
+    <div class="fg">
+      <div class="f"><label>El-forbrug / input (W)</label><input type="number" id="pw-hp-watt" placeholder="2500" min="0" step="50"><span class="hint">Fra databladet – IKKE varmeydelsen</span></div>
+      <div class="f"><label>Timer i drift pr. døgn</label><input type="number" id="pw-hp-hours" placeholder="8" value="8" min="0" max="24" step="0.5"><span class="hint">Typisk 6–12 t/døgn i sæsonen</span></div>
+      <div class="f"><label>Måneder i sæson</label><input type="number" id="pw-hp-months" placeholder="5" value="5" min="1" max="12" step="1"></div>
     </div>
+  </div>
 
-    <!-- ── Panel: Separat pumpe + filter ── -->
-    <div class="equip-panel active" id="epanel-separate">
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-currency-krone-danish"></i>Strømpris</div>
+    <div class="fg">
+      <div class="f"><label>Pris pr. kWh (kr)</label><input type="number" id="pw-price" value="3.00" min="0.5" step="0.1"><span class="hint">Inkl. afgifter – typisk 2.50–4.00 kr/kWh</span></div>
+    </div>
+  </div>
 
-      <!-- Pumpe -->
-      <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><i class="ti ti-engine" style="font-size:15px;color:#378ADD"></i> Pumpe</div>
-      <div class="lookup-row">
-        <div class="field"><label>Pumpemodel (søg for auto-specs)</label><input type="text" id="pump-model" placeholder="F.eks. Speck Badu 90/11, Pentair WhisperFlo 1.5 HP"></div>
-        <button class="lookup-btn" onclick="lookupDevice('pump')" id="pump-lookup-btn"><i class="ti ti-search"></i> Søg specs</button>
+  <button class="btn" onclick="calcPower()"><i class="ti ti-calculator"></i>Beregn strømforbrug</button>
+  <div class="results" id="power-results">
+    <div class="rh"><i class="ti ti-bolt"></i>Strømforbrug</div>
+    <div class="mgrid" id="pw-metrics"></div>
+    <div id="pw-detail"></div>
+  </div>
+  <footer>Pool Beregner &copy; 2025</footer>
+</div>
+
+<!-- ═══ SALT ═══ -->
+<div class="page" id="page-salt">
+  <div class="page-title">
+    <h2><i class="ti ti-droplets"></i>Saltberegner</h2>
+    <p>Beregn hvor meget salt der skal tilsættes for at nå det ideelle niveau i din saltvandspool.</p>
+  </div>
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-droplet"></i>Pooldata</div>
+    <div class="fg">
+      <div class="f"><label>Vandvolumen (m³)</label><input type="number" id="salt-vol" placeholder="50" min="1" step="0.5"></div>
+      <div class="f"><label>Nuværende saltindhold (g/L)</label><input type="number" id="salt-current" placeholder="1.5" min="0" step="0.1"><span class="hint">0 = rent vand / ukendt</span></div>
+      <div class="f"><label>Ønsket saltindhold (g/L)</label>
+        <select id="salt-target">
+          <option value="3.0">3.0 g/L – minimum</option>
+          <option value="3.2" selected>3.2 g/L – anbefalet</option>
+          <option value="3.5">3.5 g/L – højt</option>
+          <option value="4.0">4.0 g/L – maksimum</option>
+        </select>
       </div>
-      <div id="pump-lookup-result"></div>
-      <div id="pump-specs-editor" style="display:none;margin-top:12px">
-        <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Bekræft / ret specs</div>
-        <div class="spec-editor-grid">
-          <div class="field"><label>Effekt (W)</label><input type="number" id="pump-watt" placeholder="750" min="50" step="10"></div>
-          <div class="field"><label>Max flow (m³/t)</label><input type="number" id="pump-flow" placeholder="9.5" min="0" step="0.5"></div>
-          <div class="field"><label>Løftehøjde (m)</label><input type="number" id="pump-head" placeholder="10" min="0" step="0.5"></div>
-          <div class="field"><label>Variabel hastighed</label>
-            <select id="pump-variable"><option value="no">Nej – fast</option><option value="yes">Ja – variabel (EC/DC)</option></select>
-          </div>
+      <div class="f"><label>Salttype</label>
+        <select id="salt-type">
+          <option value="pool">Poolsalt (99%+ rent NaCl)</option>
+          <option value="table">Almindeligt havsalt (~97%)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <button class="btn" onclick="calcSalt()"><i class="ti ti-calculator"></i>Beregn saltmængde</button>
+  <div class="results" id="salt-results">
+    <div class="rh"><i class="ti ti-droplets"></i>Resultat</div>
+    <div class="mgrid" id="salt-metrics"></div>
+    <div class="rcard">
+      <div class="rcard-title"><i class="ti ti-info-circle"></i>Vejledning</div>
+      <div class="rcard-note" id="salt-note"></div>
+    </div>
+  </div>
+  <footer>Pool Beregner &copy; 2025</footer>
+</div>
+
+<!-- ═══ VANDKEMI ═══ -->
+<div class="page" id="page-chem">
+  <div class="page-title">
+    <h2><i class="ti ti-flask"></i>Vandkemi-log</h2>
+    <p>Registrér målinger, gem historik og få anbefalinger til kemikorrektioner.</p>
+  </div>
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-plus"></i>Ny måling</div>
+    <div class="param-grid">
+      <div class="pc"><div class="pl">pH</div><div class="pr">Ideal: 7.2–7.6</div><input type="number" id="m-ph" placeholder="7.4" min="6" max="9" step="0.1"><div class="pu">pH</div></div>
+      <div class="pc"><div class="pl">Fri klor</div><div class="pr">Ideal: 0.5–1.5 mg/L</div><input type="number" id="m-cl" placeholder="1.0" min="0" max="10" step="0.1"><div class="pu">mg/L</div></div>
+      <div class="pc"><div class="pl">Alkalinitet</div><div class="pr">Ideal: 80–120 mg/L</div><input type="number" id="m-alk" placeholder="100" min="0" max="500" step="1"><div class="pu">mg/L</div></div>
+      <div class="pc"><div class="pl">Kalcium</div><div class="pr">Ideal: 200–400 mg/L</div><input type="number" id="m-ca" placeholder="250" min="0" max="1000" step="5"><div class="pu">mg/L</div></div>
+      <div class="pc"><div class="pl">Cyanuric acid</div><div class="pr">Ideal: 20–50 mg/L</div><input type="number" id="m-cya" placeholder="30" min="0" max="200" step="1"><div class="pu">mg/L</div></div>
+      <div class="pc" id="m-salt-card" style="display:none"><div class="pl">Salt</div><div class="pr">Ideal: 2700–3400 mg/L</div><input type="number" id="m-salt" placeholder="3000" min="0" max="6000" step="50"><div class="pu">mg/L</div></div>
+      <div class="pc"><div class="pl">Temperatur</div><div class="pr">Info</div><input type="number" id="m-temp" placeholder="24" min="0" max="40" step="0.5"><div class="pu">°C</div></div>
+    </div>
+    <div class="f" style="margin-bottom:12px"><label>Note (valgfri)</label><input type="text" id="m-note" placeholder="F.eks. efter regn, mange badende..."></div>
+    <button class="btn" onclick="addMeasurement()"><i class="ti ti-sparkles"></i>Tilføj måling &amp; få anbefalinger</button>
+  </div>
+  <div style="font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;margin-top:1.5rem">Historik</div>
+  <div id="chem-log"></div>
+  <footer>Pool Beregner &copy; 2025 &nbsp;·&nbsp; Kemianbefalingerne er vejledende.</footer>
+</div>
+
+
+<!-- ═══ MIN POOL ═══ -->
+<div class="page" id="page-mypool">
+  <div class="page-title">
+    <h2><i class="ti ti-user-circle"></i>Min Pool</h2>
+    <p>Indtast oplysninger om din pool og dit udstyr én gang – bruges automatisk i vandkemi, strøm og saltberegneren.</p>
+  </div>
+
+  <div id="mp-status"></div>
+
+  <!-- Pool -->
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-ripple"></i>Pool</div>
+    <div class="fg">
+      <div class="f"><label>Poolnavn/beskrivelse</label><input type="text" id="mp-name" placeholder="F.eks. Baghavens pool"></div>
+      <div class="f"><label>Vandvolumen (m³)</label><input type="number" id="mp-vol" placeholder="14.4" min="0.5" step="0.1"><span class="hint">Fra volumenberegneren – eller estimer</span></div>
+      <div class="f"><label>Pooltype</label>
+        <select id="mp-pooltype">
+          <option value="outdoor">Udendørs nedgravet</option>
+          <option value="above">Overjordisk</option>
+          <option value="indoor">Indendørs</option>
+          <option value="semi">Halvt nedgravet</option>
+        </select>
+      </div>
+      <div class="f"><label>Folie / belægning</label>
+        <select id="mp-liner">
+          <option value="folie">PVC folie</option>
+          <option value="beton">Beton/fliser</option>
+          <option value="fiber">Fiberpol</option>
+          <option value="stål">Stål/plade</option>
+          <option value="andet">Andet</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtration system -->
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-engine"></i>Filtrationssystem</div>
+    <div class="fg">
+      <div class="f"><label>System-type</label>
+        <select id="mp-systype" onchange="mpToggleSys()">
+          <option value="separate">Separat pumpe + filter</option>
+          <option value="combo">Kombineret sandfilteranlæg</option>
+        </select>
+      </div>
+    </div>
+    <div id="mp-separate-fields" style="margin-top:12px">
+      <div class="fg" style="margin-bottom:10px">
+        <div class="f"><label>Pumpe – fabrikat/model</label><input type="text" id="mp-pump-model" placeholder="F.eks. Speck Badu 90/11, Gre Confort 0.75"></div>
+        <div class="f"><label>Pumpeeffekt (W)</label><input type="number" id="mp-pump-watt" placeholder="550" min="10" step="10"></div>
+        <div class="f"><label>Pumpe-type</label>
+          <select id="mp-pump-speed">
+            <option value="fixed">Fast hastighed</option>
+            <option value="var">Variabel (EC/DC)</option>
+          </select>
         </div>
-      </div>
-      <div id="pump-manual-fallback" class="manual-row"><span>Eller angiv effekt manuelt:</span><input type="number" id="pump-watt-fallback" placeholder="750" min="50" step="10"><span>W</span></div>
-
-      <div style="height:.5px;background:var(--border);margin:18px 0"></div>
-
-      <!-- Filter -->
-      <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:6px"><i class="ti ti-filter" style="font-size:15px;color:#378ADD"></i> Sandfilter</div>
-      <div class="spec-editor-grid" style="margin-bottom:10px">
-        <div class="field"><label>Filter fabrikat / model</label><input type="text" id="filter-name" placeholder="F.eks. Cantabric 500, Hayward S311"></div>
-        <div class="field"><label>Filterkar diameter (mm)</label><input type="number" id="filter-dia-custom" placeholder="500" min="100" step="25"></div>
-        <div class="field"><label>Filtermateriale</label>
-          <select id="filter-media-custom">
+        <div class="f"><label>Filter – fabrikat/model</label><input type="text" id="mp-filter-model" placeholder="F.eks. Cantabric 500"></div>
+        <div class="f"><label>Filterdiameter (mm)</label><input type="number" id="mp-filter-dia" placeholder="500" min="100" step="25"></div>
+        <div class="f"><label>Filtermateriale</label>
+          <select id="mp-filter-media">
             <option value="sand">Filtersand</option>
             <option value="glass">Filterglas</option>
             <option value="afm">AFM® Aktivt filterglas</option>
             <option value="balls">Filterkugler</option>
           </select>
         </div>
-        <div class="field"><label>Max flow (m³/t)</label><input type="number" id="filter-flow-custom" placeholder="15" min="0" step="0.5"></div>
-      </div>
-      <div id="separate-gear-summary" class="custom-gear-list" style="margin-top:4px"></div>
-    </div>
-
-    <!-- ── Panel: Kombineret anlæg ── -->
-    <div class="equip-panel" id="epanel-combo">
-      <div style="background:var(--teal-50);border:.5px solid #9DCFC8;border-radius:var(--radius);padding:10px 14px;font-size:13px;color:var(--teal-800);margin-bottom:14px;line-height:1.5">
-        <i class="ti ti-info-circle" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>
-        Et kombineret sandfilteranlæg har pumpe og filter i én enhed, f.eks. Pool Azuro Pro S144, Intex Krystal Clear mv.
-      </div>
-      <div class="lookup-row">
-        <div class="field"><label>Anlægsmodel</label><input type="text" id="combo-model" placeholder="F.eks. Pool Azuro Pro S144 Speck 6 m³"></div>
-        <button class="lookup-btn" onclick="lookupDevice('combo')" id="combo-lookup-btn"><i class="ti ti-search"></i> Søg specs</button>
-      </div>
-      <div id="combo-lookup-result"></div>
-      <div id="combo-specs-editor" style="display:none;margin-top:12px">
-        <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">
-          Bekræft / ret specs <span class="aio-badge"><i class="ti ti-box" style="font-size:11px"></i> Kombineret anlæg</span>
-        </div>
-        <div class="spec-editor-grid">
-          <div class="field"><label>Pumpeeffekt (W)</label><input type="number" id="combo-watt" placeholder="300" min="50" step="10"></div>
-          <div class="field"><label>Flow (m³/t)</label><input type="number" id="combo-flow" placeholder="6" min="0" step="0.5"></div>
-          <div class="field"><label>Filterkar diameter (mm)</label><input type="number" id="combo-filter-dia" placeholder="400" min="100" step="25"></div>
-          <div class="field"><label>Filtermateriale</label>
-            <select id="combo-filter-media">
-              <option value="sand">Filtersand</option>
-              <option value="glass">Filterglas</option>
-              <option value="afm">AFM® Aktivt filterglas</option>
-              <option value="balls">Filterkugler</option>
-            </select>
-          </div>
-          <div class="field"><label>Variabel hastighed</label>
-            <select id="combo-variable"><option value="no">Nej – fast</option><option value="yes">Ja – variabel</option></select>
-          </div>
-          <div class="field"><label>Max løftehøjde (m)</label><input type="number" id="combo-head" placeholder="8" min="0" step="0.5"></div>
-        </div>
-      </div>
-      <!-- Manuel tilføjelse -->
-      <div style="margin-top:14px;padding-top:14px;border-top:.5px solid var(--border)">
-        <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Eller tilføj manuelt</div>
-        <div class="custom-gear-row">
-          <div class="field"><label>Anlægsnavn</label><input type="text" id="custom-combo-name" placeholder="F.eks. Intex Krystal Clear 28636"></div>
-          <div class="field"><label>Flow (m³/t)</label><input type="number" id="custom-combo-flow" placeholder="6" min="0" step="0.5"></div>
-          <div class="field"><label>Effekt (W)</label><input type="number" id="custom-combo-watt" placeholder="300" min="10" step="10"></div>
-          <button class="lookup-btn" onclick="addCustomGear('combo')"><i class="ti ti-plus"></i> Tilføj</button>
-        </div>
-        <div id="custom-combo-list" class="custom-gear-list"></div>
       </div>
     </div>
-
-  </div>
-  <div class="section">
-    <div class="section-title"><i class="ti ti-plug"></i> Øvrigt ekstraudstyr</div>
-    <div class="toggle-grid" id="extras">
-      <div class="toggle" data-id="heatpump" id="toggle-heatpump" onclick="toggleHeatpumpSection(this)"><i class="ti ti-temperature-plus"></i> Varmepumpe</div>
-      <div class="toggle" data-id="heatex"><i class="ti ti-exchange"></i> Varmeveksler</div>
-      <div class="toggle" data-id="ph"><i class="ti ti-flask"></i> Auto pH-regulering</div>
-      <div class="toggle" data-id="salt"><i class="ti ti-droplets"></i> Saltklorinator</div>
-      <div class="toggle" data-id="uv"><i class="ti ti-sun"></i> UV-anlæg</div>
-      <div class="toggle" data-id="robot"><i class="ti ti-robot"></i> Bundstøvsuger</div>
-      <div class="toggle" data-id="waterfall"><i class="ti ti-waterfall"></i> Vandfald / dyser</div>
-      <div class="toggle" data-id="spa"><i class="ti ti-mood-happy"></i> Spa / boblesystem</div>
-      <div class="toggle" data-id="cover"><i class="ti ti-stack"></i> Automatisk låg</div>
-    </div>
-  </div>
-
-  <div class="section" id="hp-section" style="display:none">
-    <div class="section-title"><i class="ti ti-temperature-plus"></i> Varmepumpe – model & effekt</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5">Søg efter din varmepumpemodel for at inkludere strømforbrug i beregningen.</p>
-    <div class="lookup-row">
-      <div class="field"><label>Varmepumpemodel</label><input type="text" id="hp-model" placeholder="F.eks. Swim &amp; Fun 1404 11kW"></div>
-      <button class="lookup-btn" onclick="lookupDevice('hp')" id="hp-lookup-btn"><i class="ti ti-search"></i> Søg specs</button>
-    </div>
-    <div id="hp-lookup-result"></div>
-    <div id="hp-specs-editor" style="display:none;margin-top:12px">
-      <div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Bekræft / ret specs</div>
-      <div class="spec-editor-grid">
-        <div class="field"><label>El-forbrug input (W)</label><input type="number" id="hp-watt" placeholder="2500" min="100" step="50"></div>
-        <div class="field"><label>Varmeydelse (kW)</label><input type="number" id="hp-heating-kw" placeholder="11" min="0" step="0.5"></div>
-        <div class="field"><label>COP</label><input type="number" id="hp-cop" placeholder="4.5" min="1" step="0.1"><span class="hint">COP = varme ud / el ind</span></div>
-        <div class="field"><label>Pumpe-type</label>
-          <select id="hp-type"><option value="on-off">On/Off (standard)</option><option value="inverter">Inverter</option><option value="full-inverter">Full Inverter</option></select>
+    <div id="mp-combo-fields" style="display:none;margin-top:12px">
+      <div class="fg">
+        <div class="f"><label>Anlæg – fabrikat/model</label><input type="text" id="mp-combo-model" placeholder="F.eks. Pool Azuro Pro S144 Speck 6 m³"></div>
+        <div class="f"><label>Pumpeeffekt (W)</label><input type="number" id="mp-combo-watt" placeholder="300" min="10" step="10"></div>
+        <div class="f"><label>Flow (m³/t)</label><input type="number" id="mp-combo-flow" placeholder="6" min="0" step="0.5"></div>
+        <div class="f"><label>Filterdiameter (mm)</label><input type="number" id="mp-combo-dia" placeholder="400" min="100" step="25"></div>
+        <div class="f"><label>Filtermateriale</label>
+          <select id="mp-combo-media">
+            <option value="sand">Filtersand</option>
+            <option value="glass">Filterglas</option>
+            <option value="afm">AFM® Aktivt filterglas</option>
+            <option value="balls">Filterkugler</option>
+          </select>
         </div>
       </div>
     </div>
-    <div id="hp-manual-fallback" class="manual-row"><span>Eller angiv el-forbrug manuelt:</span><input type="number" id="hp-watt-fallback" placeholder="2500" min="100" step="50"><span>W</span></div>
-    <div class="field-grid" style="margin-top:12px">
-      <div class="field"><label>Timer pr. døgn i drift</label><input type="number" id="hp-hours" value="8" min="0" max="24" step="0.5"><span class="hint">Typisk 6–12 t/døgn i sæsonen</span></div>
-      <div class="field"><label>Måneder i sæson</label><input type="number" id="hp-months" value="5" min="1" max="12" step="1"><span class="hint">Typisk maj–september = 5 mdr.</span></div>
+  </div>
+
+  <!-- Opvarmning -->
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-temperature-plus"></i>Opvarmning (valgfri)</div>
+    <div class="fg">
+      <div class="f"><label>Varmepumpe – fabrikat/model</label><input type="text" id="mp-hp-model" placeholder="F.eks. Swim &amp; Fun 1404 11kW"></div>
+      <div class="f"><label>El-forbrug / input (W)</label><input type="number" id="mp-hp-watt" placeholder="2500" min="0" step="50"><span class="hint">Fra databladet – IKKE varmeydelsen</span></div>
+      <div class="f"><label>Varmeydelse (kW)</label><input type="number" id="mp-hp-heat" placeholder="11" min="0" step="0.5"></div>
+      <div class="f"><label>COP</label><input type="number" id="mp-hp-cop" placeholder="4.5" min="1" step="0.1"></div>
+      <div class="f"><label>Timer i drift pr. døgn</label><input type="number" id="mp-hp-hours" placeholder="8" value="8" min="0" max="24" step="0.5"></div>
+      <div class="f"><label>Måneder i sæson</label><input type="number" id="mp-hp-months" placeholder="5" value="5" min="1" max="12" step="1"></div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title"><i class="ti ti-map-pin"></i> Placering</div>
-    <div class="field"><label>Placering</label>
-      <select id="location"><option value="outdoor">Udendørs</option><option value="indoor">Indendørs</option><option value="semi">Halvtag / overdækket</option></select>
+  <!-- Ekstraudstyr -->
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-plug"></i>Ekstraudstyr</div>
+    <div class="toggles" id="mp-extras">
+      <div class="tog" data-id="salt"><i class="ti ti-droplets"></i>Saltklorinator</div>
+      <div class="tog" data-id="ph-auto"><i class="ti ti-flask"></i>Auto pH-regulering</div>
+      <div class="tog" data-id="uv"><i class="ti ti-sun"></i>UV-anlæg</div>
+      <div class="tog" data-id="robot"><i class="ti ti-robot"></i>Poolrobot</div>
+      <div class="tog" data-id="cover"><i class="ti ti-stack"></i>Automatisk låg</div>
+      <div class="tog" data-id="heatex"><i class="ti ti-exchange"></i>Varmeveksler</div>
+      <div class="tog" data-id="waterfall"><i class="ti ti-waterfall"></i>Vandfald/dyser</div>
+      <div class="tog" data-id="light"><i class="ti ti-bulb"></i>Poolbelysning</div>
+      <div class="tog" data-id="spa"><i class="ti ti-mood-happy"></i>Spa/boblesystem</div>
+    </div>
+    <div class="f" style="margin-top:12px"><label>Saltklorinator – model (hvis valgt)</label><input type="text" id="mp-salt-model" placeholder="F.eks. Hayward AquaRite 20g/t"></div>
+    <div class="f" style="margin-top:10px"><label>pH-regulering type (hvis valgt)</label>
+      <select id="mp-ph-type">
+        <option value="">– ikke valgt –</option>
+        <option value="minus">pH-minus (syre-dosering)</option>
+        <option value="both">pH-minus + pH-plus (dobbelt)</option>
+        <option value="co2">CO₂-dosering</option>
+      </select>
     </div>
   </div>
 
-  <button class="calc-btn" onclick="calculate()"><i class="ti ti-calculator" style="font-size:18px"></i> Beregn anbefalinger</button>
-  <button class="save-btn" onclick="saveSetup()"><i class="ti ti-device-floppy"></i> Gem mit setup</button>
-
-  <div class="results" id="results">
-    <h2>Resultater og anbefalinger</h2>
-    <div class="metric-grid" id="r-metrics"></div>
-    <div class="rec-card">
-      <div class="rec-title"><i class="ti ti-engine"></i> Anbefalet cirkulationspumpe</div>
-      <div class="rec-value" id="r-pump">–</div>
-      <div class="rec-note" id="r-pump-note"></div>
+  <!-- Strømpris -->
+  <div class="sec">
+    <div class="sec-title"><i class="ti ti-currency-krone-danish"></i>Strøm</div>
+    <div class="fg">
+      <div class="f"><label>Strømpris (kr/kWh)</label><input type="number" id="mp-elprice" value="3.00" min="0.5" step="0.1"><span class="hint">Inkl. afgifter – typisk 2.50–4.00 kr/kWh</span></div>
     </div>
-    <div class="rec-card">
-      <div class="rec-title"><i class="ti ti-filter"></i> Filter</div>
-      <div class="rec-value" id="r-filter">–</div>
-      <div class="rec-note" id="r-filter-note"></div>
-      <div class="divider"></div>
-      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">Filtermateriale</div>
-      <div id="r-media" style="display:flex;flex-direction:column;gap:10px"></div>
-    </div>
-    <div class="energy-box">
-      <div class="energy-title"><i class="ti ti-bolt" style="color:#378ADD"></i> Samlet strømforbrug</div>
-      <div id="r-energy-content"></div>
-    </div>
-    <div class="rec-card" id="extras-card" style="display:none">
-      <div class="rec-title"><i class="ti ti-plug"></i> Ekstraudstyr – bemærkninger</div>
-      <div id="r-extras"></div>
-    </div>
-    <div id="r-warnings"></div>
   </div>
 
-  <footer>Pool Beregner &copy; 2025 &nbsp;·&nbsp; Vejledende – konsulter en fagperson ved større anlæg.</footer>
-</div>
+  <button class="btn" onclick="saveMyPool()"><i class="ti ti-device-floppy"></i>Gem Min Pool-profil</button>
 
-<!-- ═══════════════════ PAGE: VANDKEMI ═══════════════════ -->
-<div class="page" id="page-chem">
-  <div class="page-header">
-    <h1><i class="ti ti-flask" style="color:#378ADD"></i> Vandkemi-log</h1>
-    <p>Registrér dine målinger – appen gemmer historik og anbefaler korrektioner med AI.</p>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><i class="ti ti-plus"></i> Ny måling</div>
-    <div class="param-grid" style="margin-bottom:14px">
-      <div class="param-card">
-        <div class="plabel"><i class="ti ti-test-pipe" style="font-size:13px"></i> pH</div>
-        <div class="prange">Ideal: 7.2–7.6</div>
-        <input type="number" id="m-ph" placeholder="7.4" min="6" max="9" step="0.1">
-        <div class="punit">pH</div>
-      </div>
-      <div class="param-card">
-        <div class="plabel"><i class="ti ti-droplets" style="font-size:13px"></i> Klor (fri)</div>
-        <div class="prange">Ideal: 0.5–1.5 mg/L</div>
-        <input type="number" id="m-chlorine" placeholder="1.0" min="0" max="10" step="0.1">
-        <div class="punit">mg/L</div>
-      </div>
-      <div class="param-card">
-        <div class="plabel"><i class="ti ti-atom" style="font-size:13px"></i> Total alkalinitet</div>
-        <div class="prange">Ideal: 80–120 mg/L</div>
-        <input type="number" id="m-alk" placeholder="100" min="0" max="500" step="1">
-        <div class="punit">mg/L (ppm)</div>
-      </div>
-      <div class="param-card">
-        <div class="plabel"><i class="ti ti-building" style="font-size:13px"></i> Kalciumhårdhed</div>
-        <div class="prange">Ideal: 200–400 mg/L</div>
-        <input type="number" id="m-calcium" placeholder="250" min="0" max="1000" step="5">
-        <div class="punit">mg/L (ppm)</div>
-      </div>
-      <div class="param-card">
-        <div class="plabel"><i class="ti ti-sun" style="font-size:13px"></i> Cyanuric acid</div>
-        <div class="prange">Ideal: 20–50 mg/L</div>
-        <input type="number" id="m-cya" placeholder="30" min="0" max="200" step="1">
-        <div class="punit">mg/L (ppm)</div>
-      </div>
-      <div class="param-card" id="salt-param-card" style="display:none">
-        <div class="plabel"><i class="ti ti-droplets" style="font-size:13px"></i> Salt</div>
-        <div class="prange">Ideal: 2700–3400 mg/L</div>
-        <input type="number" id="m-salt" placeholder="3000" min="0" max="6000" step="50">
-        <div class="punit">mg/L (ppm)</div>
-      </div>
-      <div class="param-card">
-        <div class="plabel"><i class="ti ti-temperature" style="font-size:13px"></i> Vandtemperatur</div>
-        <div class="prange">Info</div>
-        <input type="number" id="m-temp" placeholder="24" min="0" max="40" step="0.5">
-        <div class="punit">°C</div>
-      </div>
+  <!-- Profile summary -->
+  <div id="mp-summary" style="display:none;margin-top:1.5rem">
+    <div class="rh"><i class="ti ti-check"></i>Gemt profil</div>
+    <div id="mp-summary-content"></div>
+    <div class="sec" style="background:var(--b50);border-color:var(--b200);margin-top:1rem">
+      <p style="font-size:13px;color:var(--b800);line-height:1.7">
+        <strong>Dine data bruges nu automatisk:</strong><br>
+        · Vandkemi-anbefalinger tager højde for dit udstyr (salt, pH-auto mv.)<br>
+        · Strømberegneren er forudfyldt med din pumpes og varmepumpes data<br>
+        · Saltberegneren kender din pools volumen
+      </p>
     </div>
-    <div class="field" style="margin-bottom:12px">
-      <label>Note (valgfri)</label>
-      <input type="text" id="m-note" placeholder="F.eks. efter regn, mange badende...">
-    </div>
-    <button class="calc-btn" onclick="addMeasurement()"><i class="ti ti-plus" style="font-size:18px"></i> Tilføj måling & få anbefalinger</button>
   </div>
-
-  <div id="chem-log-container">
-    <div style="font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Historik</div>
-    <div id="chem-log"></div>
-  </div>
-
-  <footer>Pool Beregner &copy; 2025 &nbsp;·&nbsp; Kemianbefalinger er vejledende – følg altid produktvejledninger.</footer>
+  <footer>Pool Beregner &copy; 2025</footer>
 </div>
 
 <script>
-const deviceSpecs={pump:null,hp:null};
-const SETUP_KEY='poolberegner_setup';
-const CHEM_KEY='poolberegner_chem';
+const LS = 'pb2';
+const CHEM = 'pb2_chem';
 
-// ── PAGE NAV ──────────────────────────────────────────────────────────────────
-function showPage(p){
-  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('active'));
-  document.getElementById('page-'+p).classList.add('active');
-  document.getElementById('tab-'+p).classList.add('active');
-  if(p==='chem') renderChemLog();
+// ── NAV ──────────────────────────────────────────────────────────────────────
+function nav(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.ntab').forEach(x => x.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  document.getElementById('ntab-' + p).classList.add('active');
+  window.scrollTo(0, 0);
+  if (p === 'chem') renderChemLog();
+  if (p === 'home') { renderFlowDiagram(); renderDashboard(); }
 }
 
-// ── SAVE INDICATOR ─────────────────────────────────────────────────────────────
-function flashSaved(){
-  const el=document.getElementById('save-indicator');
-  el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),2000);
-}
-
-// ── SETUP SAVE/LOAD ───────────────────────────────────────────────────────────
-function getSetupData(){
-  return{
-    shape:document.getElementById('shape').value,
-    length:document.getElementById('length').value,
-    width:document.getElementById('width').value,
-    depth:document.getElementById('depth').value,
-    diameter:document.getElementById('diameter').value,
-    depthRound:document.getElementById('depth-round').value,
-    volumeManual:document.getElementById('volume-manual').value,
-    pipe:document.getElementById('pipe').value,
-    pipelen:document.getElementById('pipelen').value,
-    turnovers:document.getElementById('turnovers').value,
-    elprice:document.getElementById('elprice').value,
-    pumptype:document.getElementById('pumptype').value,
-    fullhours:document.getElementById('fullhours').value,
-    lowfactor:document.getElementById('lowfactor').value,
-    location:document.getElementById('location').value,
-    pumpModel:document.getElementById('pump-model').value,
-    pumpWatt:document.getElementById('pump-watt').value,
-    pumpWattFallback:document.getElementById('pump-watt-fallback').value,
-    pumpFlow:document.getElementById('pump-flow').value,
-    pumpHead:document.getElementById('pump-head').value,
-    pumpVariable:document.getElementById('pump-variable').value,
-    pumpEditorVisible:document.getElementById('pump-specs-editor').style.display!=='none',
-    hpModel:document.getElementById('hp-model').value,
-    hpWatt:document.getElementById('hp-watt').value,
-    hpWattFallback:document.getElementById('hp-watt-fallback').value,
-    hpHeatingKw:document.getElementById('hp-heating-kw').value,
-    hpCop:document.getElementById('hp-cop').value,
-    hpType:document.getElementById('hp-type').value,
-    hpHours:document.getElementById('hp-hours').value,
-    hpMonths:document.getElementById('hp-months').value,
-    hpEditorVisible:document.getElementById('hp-specs-editor').style.display!=='none',
-    hpSectionVisible:document.getElementById('hp-section').style.display!=='none',
-    activeToggles:Array.from(document.querySelectorAll('.toggle.active')).map(t=>t.dataset.id),
-    comboModel:document.getElementById('combo-model')?document.getElementById('combo-model').value:'',
-    comboWatt:document.getElementById('combo-watt')?document.getElementById('combo-watt').value:'',
-    comboFlow:document.getElementById('combo-flow')?document.getElementById('combo-flow').value:'',
-    comboFilterDia:document.getElementById('combo-filter-dia')?document.getElementById('combo-filter-dia').value:'',
-    comboHead:document.getElementById('combo-head')?document.getElementById('combo-head').value:'',
-    comboEditorVisible:document.getElementById('combo-specs-editor')&&document.getElementById('combo-specs-editor').style.display!=='none',
-    deviceSpecs:deviceSpecs,
-    activeEquipTab:activeEquipTab,
-    customGear:JSON.parse(JSON.stringify(customGear))
+// ── SAVE / LOAD ───────────────────────────────────────────────────────────────
+function flash() { const el = document.getElementById('save-pill'); el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2000); }
+function save() {
+  const d = {
+    vShape: v('v-shape'), vLen: v('v-length'), vWid: v('v-width'), vDep: v('v-depth'),
+    vDia: v('v-dia'), vDepR: v('v-depth-r'), vMan: v('v-manual'),
+    pfVol: v('pf-vol'), pfPipe: v('pf-pipe'), pfPipelen: v('pf-pipelen'), pfTurns: v('pf-turns'),
+    pfExtras: Array.from(document.querySelectorAll('#pf-extras .tog.on')).map(t => t.dataset.id),
+    pwWatt: v('pw-watt'), pwType: v('pw-type'), pwFullH: v('pw-fullh'), pwLowF: v('pw-lowf'),
+    pwHpWatt: v('pw-hp-watt'), pwHpHours: v('pw-hp-hours'), pwHpMonths: v('pw-hp-months'), pwPrice: v('pw-price'),
+    saltVol: v('salt-vol'), saltCur: v('salt-current'), saltTarget: v('salt-target'), saltType: v('salt-type'),
   };
+  localStorage.setItem(LS, JSON.stringify(d));
+  flash();
+}
+function v(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+function set(id, val) { const el = document.getElementById(id); if (el && val !== undefined && val !== null) el.value = val; }
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem(LS) || '{}');
+    if (!d.vShape) return;
+    set('v-shape', d.vShape); updateVShape();
+    ['v-length','v-width','v-depth','v-dia','v-depth-r','v-manual'].forEach((id,i) => set(id, [d.vLen,d.vWid,d.vDep,d.vDia,d.vDepR,d.vMan][i]));
+    set('pf-vol', d.pfVol); set('pf-pipe', d.pfPipe); set('pf-pipelen', d.pfPipelen); set('pf-turns', d.pfTurns);
+    if (d.pfExtras) d.pfExtras.forEach(id => { const t = document.querySelector('#pf-extras .tog[data-id="' + id + '"]'); if (t) t.classList.add('on'); });
+    set('pw-watt', d.pwWatt); set('pw-type', d.pwType); togglePwVar();
+    set('pw-fullh', d.pwFullH); set('pw-lowf', d.pwLowF);
+    set('pw-hp-watt', d.pwHpWatt); set('pw-hp-hours', d.pwHpHours); set('pw-hp-months', d.pwHpMonths); set('pw-price', d.pwPrice);
+    set('salt-vol', d.saltVol); set('salt-current', d.saltCur); set('salt-target', d.saltTarget); set('salt-type', d.saltType);
+  } catch(e) {}
+}
+document.addEventListener('change', save);
+document.addEventListener('input', save);
+
+// ── SHAPE ─────────────────────────────────────────────────────────────────────
+function updateVShape() {
+  const s = v('v-shape');
+  document.getElementById('v-rect-fields').style.display = (s==='rect'||s==='oval') ? '' : 'none';
+  document.getElementById('v-round-fields').style.display = s==='round' ? '' : 'none';
+  document.getElementById('v-free-fields').style.display = s==='free' ? '' : 'none';
+  document.getElementById('v-l-lbl').textContent = s==='oval' ? 'Stor akse (m)' : 'Længde (m)';
+  document.getElementById('v-w-lbl').textContent = s==='oval' ? 'Lille akse (m)' : 'Bredde (m)';
 }
 
-function saveSetup(){
-  localStorage.setItem(SETUP_KEY,JSON.stringify(getSetupData()));
-  flashSaved();
+function getVolume() {
+  const s = v('v-shape');
+  if (s==='rect') return (parseFloat(v('v-length'))||0)*(parseFloat(v('v-width'))||0)*(parseFloat(v('v-depth'))||0);
+  if (s==='round') { const r=(parseFloat(v('v-dia'))||0)/2; return Math.PI*r*r*(parseFloat(v('v-depth-r'))||0); }
+  if (s==='oval') { const l=parseFloat(v('v-length'))||0,w=parseFloat(v('v-width'))||0; return Math.PI*(l/2)*(w/2)*(parseFloat(v('v-depth'))||0); }
+  return parseFloat(v('v-manual'))||0;
 }
 
-// Auto-save on any input change
-document.addEventListener('change',function(e){
-  if(document.getElementById('page-setup').classList.contains('active')){
-    localStorage.setItem(SETUP_KEY,JSON.stringify(getSetupData()));
-    flashSaved();
-  }
-});
+function toggleBox(id) { const el=document.getElementById(id); el.style.display=el.style.display==='none'?'':'none'; }
+document.querySelectorAll('#pf-extras .tog').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
 
-function loadSetup(){
-  const raw=localStorage.getItem(SETUP_KEY);
-  if(!raw) return;
-  try{
-    const d=JSON.parse(raw);
-    const set=(id,v)=>{const el=document.getElementById(id);if(el&&v!==undefined&&v!=='')el.value=v;};
-    set('shape',d.shape); shapeChanged();
-    set('length',d.length);set('width',d.width);set('depth',d.depth);
-    set('diameter',d.diameter);set('depth-round',d.depthRound);set('volume-manual',d.volumeManual);
-    set('pipe',d.pipe);set('pipelen',d.pipelen);
-    set('turnovers',d.turnovers);set('elprice',d.elprice);
-    set('pumptype',d.pumptype); toggleVarFields();
-    set('fullhours',d.fullhours);set('lowfactor',d.lowfactor);
-    set('location',d.location);
-    set('pump-model',d.pumpModel);set('pump-watt',d.pumpWatt);
-    set('pump-watt-fallback',d.pumpWattFallback);
-    set('pump-flow',d.pumpFlow);set('pump-head',d.pumpHead);
-    set('pump-variable',d.pumpVariable);
-    if(d.pumpEditorVisible){
-      document.getElementById('pump-specs-editor').style.display='';
-      document.getElementById('pump-manual-fallback').style.display='none';
+// ── VOL CALC ──────────────────────────────────────────────────────────────────
+function calcVol() {
+  const vol = getVolume();
+  if (!vol || vol < 0.5) { alert('Indtast gyldige poolmål.'); return; }
+  const s = v('v-shape');
+  const md = document.getElementById('vol-metrics'); md.innerHTML = '';
+  const litres = vol * 1000;
+  const metrics = [
+    { l:'Vandvolumen', v:vol.toFixed(2), u:'m³' },
+    { l:'Liter', v:Math.round(litres).toLocaleString('da-DK'), u:'liter' },
+    { l:'Flow til skimmer (3 oml.)', v:(vol/8).toFixed(1), u:'m³/t' },
+    { l:'Pumpedrift pr. dag', v:'24 t', u:'kontinuerlig drift' },
+  ];
+  metrics.forEach(m => { const d=document.createElement('div'); d.className='m'; d.innerHTML='<div class="ml">'+m.l+'</div><div class="mv">'+m.v+'</div><div class="mu">'+m.u+'</div>'; md.appendChild(d); });
+  document.getElementById('vol-tip').innerHTML = '<strong>Tip:</strong> Din pool indeholder <strong>' + vol.toFixed(1) + ' m³ (' + Math.round(litres).toLocaleString('da-DK') + ' liter)</strong>. Brug dette tal som input i pumpe/filter- og strømberegneren. Saltberegneren bruger også dette tal.';
+  document.getElementById('vol-results').classList.add('on');
+  // Auto-fill other calculators
+  set('pf-vol', vol.toFixed(2));
+  set('salt-vol', vol.toFixed(2));
+  save();
+}
+
+// ── FILTER CALC ───────────────────────────────────────────────────────────────
+function pipeMax(d) { return {32:6,38:8,40:10,50:18,63:28,75:40,90:60}[parseInt(d)]||18; }
+function pumpKw(f,h) { return (f/3600*1000*9.81*h)/(0.55*1000); }
+
+function calcFilter() {
+  const vol = parseFloat(v('pf-vol')) || 0;
+  if (!vol) { alert('Angiv vandvolumen – brug volumenberegneren eller skriv direkte.'); return; }
+  const turns = parseFloat(v('pf-turns')) || 3;
+  const pipeD = parseInt(v('pf-pipe'));
+  const pipelen = parseFloat(v('pf-pipelen')) || 15;
+  const active = Array.from(document.querySelectorAll('#pf-extras .tog.on')).map(t => t.dataset.id);
+  const flowH = 24 / turns;
+  const flowNeeded = vol / flowH;
+  const pipeCap = pipeMax(pipeD);
+  const headLoss = 0.5 + pipelen*0.02
+    + (active.includes('heatpump') ? 1.5 : 0)
+    + (active.includes('heatex') ? 1.2 : 0)
+    + (active.includes('uv') ? 0.5 : 0)
+    + (active.includes('salt') ? 0.8 : 0)
+    + (active.includes('ph') ? 0.3 : 0);
+  const head = Math.ceil(headLoss + 3);
+  const pumpKwR = Math.ceil(pumpKw(flowNeeded*1.15, head)*10)/10;
+  const pumpW = Math.round(pumpKwR*1000);
+  // Filterhastighed: maks 25 m/t men ANBEFALET driftsværdi er 15-20 m/t for sand
+  // Vi beregner på 15 m/t (konservativt, giver renere vand og længere filterlevetid)
+  // Tilføj desuden en sikkerhedsfaktor på 1.25 og rund OP til næste standardstørrelse
+  const filterSpeedRec = 15; // m/t anbefalet
+  const filterAreaNeeded = (flowNeeded * 1.25) / filterSpeedRec;
+  const filterDiaCalc = Math.sqrt((filterAreaNeeded * 4) / Math.PI) * 1000;
+  // Round up to nearest 25mm standard size
+  const filterDia = Math.ceil(filterDiaCalc / 25) * 25;
+  const filterDiaMin = Math.ceil(Math.sqrt((flowNeeded/25*4)/Math.PI)*1000/25)*25; // absolut minimum
+
+  const md = document.getElementById('filter-metrics'); md.innerHTML = '';
+  [{l:'Volumen',v:vol,u:'m³'},{l:'Omløb/døgn',v:turns,u:'x'},{l:'Omløbstid',v:(24/turns).toFixed(1),u:'t pr. omløb'},{l:'Nødvendigt flow',v:flowNeeded.toFixed(1),u:'m³/t'},{l:'Pumpe min.',v:pumpW,u:'W',c:'blue'},{l:'Filter Ø anbefalet',v:filterDia,u:'mm (min. '+filterDiaMin+')',c:'green'}].forEach(m => {
+    const d=document.createElement('div'); d.className='m '+(m.c||'');
+    d.innerHTML='<div class="ml">'+m.l+'</div><div class="mv">'+m.v+'</div><div class="mu">'+m.u+'</div>'; md.appendChild(d);
+  });
+
+  const pumpRange = pumpKwR < 0.5 ? '0.37–0.55 kW' : pumpKwR < 0.8 ? '0.55–0.75 kW' : pumpKwR < 1.2 ? '0.75–1.1 kW' : pumpKwR < 1.6 ? '1.1–1.5 kW' : '1.5–2.2 kW';
+  document.getElementById('pf-pump-val').textContent = Math.ceil(flowNeeded*1.15).toFixed(0)+' m³/t · '+head+' m løftehøjde · ca. '+pumpRange;
+  document.getElementById('pf-pump-note').textContent = 'Vælg en pumpe der kan levere mindst 15% mere flow end beregnet. Variabel hastighed (EC/DC motor) anbefales – typisk 50–70% strømbesparelse.';
+  document.getElementById('pf-filter-val').textContent = 'Anbefalet Ø' + filterDia + ' mm – minimum Ø' + filterDiaMin + ' mm';
+  document.getElementById('pf-filter-note').innerHTML =
+    '<strong>Anbefalet Ø' + filterDia + ' mm</strong> – beregnet ved 15 m/t filterhastighed med 25% sikkerhedsmargen. ' +
+    'Det absolutte minimum er Ø' + filterDiaMin + ' mm (ved maks. 25 m/t), men lav filterhastighed giver bedre vandkvalitet og længere levetid på filtermediet. ' +
+    '<br><br><strong>Tommelfingerregel:</strong> Vælg altid den næste standardstørrelse op – det koster lidt mere men giver markant bedre filtrering og mere fleksibilitet hvis belastningen øges.';
+
+  const pm = document.getElementById('pf-media'); pm.innerHTML = '';
+  [{name:'Filtersand (kvartssand)',note:'Billigst og mest udbredt. Kræver tilbageskylning hver 2–4 uger. Fraktion 0.4–0.8 mm. Holdbarhed 5–7 år.',badge:'bdg-blue',lbl:'Standard',sub:null},
+   {name:'Filterglas (genbrugsglas)',note:'Filtrerer ned til 5 µm (vs. sand 20 µm). Kræver sjældnere tilbageskylning. 20–40% dyrere. Holdbarhed 10+ år.',badge:'bdg-green',lbl:'Anbefalet',
+    sub:{name:'AFM® Aktivt filterglas',note:'Patenteret oxidationsproces. Filtrerer ned til 1–2 µm. Modstandsdygtigt over for biofilm. Ideel til pools med saltkloring eller UV. 30–50% dyrere end standard filterglas.',badge:'bdg-teal',lbl:'Premium'}},
+   {name:'Filterkugler (polyethylen)',note:'Lette plastikkugler Ø3–5 mm. Filtrerer til ca. 10 µm. Op til 30% mindre vand ved tilbageskylning. Nem at håndtere. Holdbarhed 5–10 år.',badge:'bdg-purple',lbl:'Let alternativ',sub:null}
+  ].forEach(m => {
+    const wrap=document.createElement('div');
+    const d=document.createElement('div'); d.className='mitem';
+    d.innerHTML='<div class="mitem-name">'+m.name+'<span class="badge '+m.badge+'">'+m.lbl+'</span></div><div class="mitem-note">'+m.note+'</div>';
+    wrap.appendChild(d);
+    if (m.sub) {
+      const sub=document.createElement('div'); sub.className='subitem';
+      sub.innerHTML='<div class="subitem-name">'+m.sub.name+' <span class="badge '+m.sub.badge+'">'+m.sub.lbl+'</span></div>'+m.sub.note;
+      wrap.appendChild(sub);
     }
-    set('hp-model',d.hpModel);set('hp-watt',d.hpWatt);
-    set('hp-watt-fallback',d.hpWattFallback);
-    set('hp-heating-kw',d.hpHeatingKw);set('hp-cop',d.hpCop);
-    set('hp-type',d.hpType);set('hp-hours',d.hpHours);set('hp-months',d.hpMonths);
-    if(d.hpEditorVisible){
-      document.getElementById('hp-specs-editor').style.display='';
-      document.getElementById('hp-manual-fallback').style.display='none';
-    }
-    if(d.hpSectionVisible){
-      document.getElementById('hp-section').style.display='';
-      const t=document.getElementById('toggle-heatpump');
-      t.classList.add('active');
-    }
-    if(d.activeToggles){
-      d.activeToggles.forEach(id=>{
-        const t=document.querySelector(`.toggle[data-id="${id}"]`);
-        if(t&&id!=='heatpump') t.classList.add('active');
-      });
-    }
-    if(d.deviceSpecs) Object.assign(deviceSpecs,d.deviceSpecs);
-  }catch(e){console.warn('Could not load setup',e);}
+    pm.appendChild(wrap);
+  });
+
+  const extNotes=[];
+  if(active.includes('heatpump'))extNotes.push({icon:'ti-temperature-plus',t:'Varmepumpe: Placeres EFTER filtret. Tilføjer ca. 1.5 m modstand. Vælg pumpe med tilstrækkelig løftehøjde.'});
+  if(active.includes('heatex'))extNotes.push({icon:'ti-exchange',t:'Varmeveksler: Placeres efter filtret. Kræver separat kredsløb. Tilføjer 1–1.5 m modstand.'});
+  if(active.includes('ph'))extNotes.push({icon:'ti-flask',t:'Auto pH: Placeres efter filtret. Kræver bypass-rørsystem og doseringskar med pH-minus/-plus.'});
+  if(active.includes('salt'))extNotes.push({icon:'ti-droplets',t:'Saltklorinator: Placeres sidst i vandvejen. Kræver 3–4 g/L salt. Medfører korrosion på aluminium.'});
+  if(active.includes('uv'))extNotes.push({icon:'ti-sun',t:'UV-anlæg: Placeres efter filtret. Reducerer kemikalieforbruget 20–40%.'});
+  if(active.includes('waterfall'))extNotes.push({icon:'ti-waterfall',t:'Vandfald/dyser: Tillæg 2–5 m³/t ekstra i pumpe og filter. Overvej separat vandfaldspumpe.'});
+  if(active.includes('spa'))extNotes.push({icon:'ti-mood-happy',t:'Spa/boblesystem: Kræver separat luftpumpe (blower). Kortere omløbstid anbefales.'});
+  const ec=document.getElementById('pf-extras-card'),en=document.getElementById('pf-extras-notes');
+  en.innerHTML='';
+  if(extNotes.length>0){
+    ec.style.display='';
+    extNotes.forEach((e,i)=>{const d=document.createElement('div');d.style.cssText='display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:13px;color:var(--text2);line-height:1.5'+(i<extNotes.length-1?';border-bottom:.5px solid var(--border)':'');d.innerHTML='<i class="ti '+e.icon+'" style="font-size:16px;color:#378ADD;flex-shrink:0;margin-top:1px"></i><span>'+e.t+'</span>';en.appendChild(d);});
+  } else ec.style.display='none';
+
+  const wd=document.getElementById('pf-warns'); wd.innerHTML='';
+  if(flowNeeded>pipeCap) wd.innerHTML+='<div class="warn"><i class="ti ti-alert-triangle"></i><span>Rør Ø'+pipeD+' mm maks. '+pipeCap+' m³/t, men beregningen kræver '+flowNeeded.toFixed(1)+' m³/t. Overvej at opgradere rørdiameteren.</span></div>';
+  if(vol>200) wd.innerHTML+='<div class="warn" style="margin-top:8px"><i class="ti ti-info-circle"></i><span>Store pools over 200 m³ kan kræve dobbelt filtersystem og professionel hydraulisk beregning.</span></div>';
+
+  document.getElementById('filter-results').classList.add('on');
+  // auto-fill strøm
+  set('pw-watt', pumpW);
+  save();
 }
 
-// ── SHAPE HANDLER ─────────────────────────────────────────────────────────────
-function shapeChanged(){
-  const v=document.getElementById('shape').value;
-  document.getElementById('dim-fields').style.display=(v==='rect'||v==='oval')?'':'none';
-  document.getElementById('f-round-row').style.display=v==='round'?'':'none';
-  document.getElementById('f-volume').style.display=v==='freeform'?'':'none';
-  document.getElementById('lbl-length').textContent=v==='oval'?'Stor akse (m)':'Længde (m)';
-  document.getElementById('lbl-width').textContent=v==='oval'?'Lille akse (m)':'Bredde (m)';
-}
-document.getElementById('shape').addEventListener('change',shapeChanged);
-document.querySelectorAll('#extras .toggle').forEach(t=>{
-  if(t.id!=='toggle-heatpump') t.addEventListener('click',()=>t.classList.toggle('active'));
-});
-function getActive(){return Array.from(document.querySelectorAll('#extras .toggle.active')).map(t=>t.dataset.id);}
-function toggleInfo(){const b=document.getElementById('info-box');b.style.display=b.style.display==='none'?'':'none';}
-function toggleVarFields(){document.getElementById('var-fields').style.display=document.getElementById('pumptype').value==='variable'?'':'none';}
+// ── POWER CALC ────────────────────────────────────────────────────────────────
+function togglePwVar() { document.getElementById('pw-var-fields').style.display=v('pw-type')==='var'?'':'none'; }
 
-function toggleHeatpumpSection(el){
-  el.classList.toggle('active');
-  const sec=document.getElementById('hp-section');
-  sec.style.display=el.classList.contains('active')?'':'none';
-  if(!el.classList.contains('active')){
-    document.getElementById('hp-watt').value='';
-    document.getElementById('hp-watt-fallback').value='';
-    document.getElementById('hp-specs-editor').style.display='none';
-    document.getElementById('hp-manual-fallback').style.display='';
-    document.getElementById('hp-lookup-result').innerHTML='';
-    deviceSpecs.hp=null;
+function calcPower() {
+  const watt = parseFloat(v('pw-watt')) || 0;
+  if (!watt) { alert('Angiv pumpeeffekt i watt.'); return; }
+  const isVar = v('pw-type') === 'var';
+  const price = parseFloat(v('pw-price')) || 3.0;
+  const kw = watt / 1000;
+  const kwdFixed = kw * 24;
+  let kwdVar = 0, saving = 0;
+  if (isVar) {
+    const fh = parseFloat(v('pw-fullh')) || 6;
+    const lf = parseFloat(v('pw-lowf')) || 0.4;
+    kwdVar = kw*fh + kw*Math.pow(lf,3)*(24-fh);
+    saving = Math.round((1-kwdVar/kwdFixed)*100);
   }
-}
+  const kwdPump = isVar ? kwdVar : kwdFixed;
+  const hpW = parseFloat(v('pw-hp-watt')) || 0;
+  const hpH = parseFloat(v('pw-hp-hours')) || 0;
+  const hpMon = parseFloat(v('pw-hp-months')) || 5;
+  const kwdHP = hpW > 0 ? (hpW/1000)*hpH : 0;
+  const kwdTotal = kwdPump + kwdHP;
+  const krDay = kwdTotal * price;
+  const krMon = krDay * 30;
 
-// ── VOLUME ────────────────────────────────────────────────────────────────────
-function calcVolume(){
-  const s=document.getElementById('shape').value;
-  if(s==='rect') return (parseFloat(document.getElementById('length').value)||0)*(parseFloat(document.getElementById('width').value)||0)*(parseFloat(document.getElementById('depth').value)||0);
-  if(s==='round'){const r=(parseFloat(document.getElementById('diameter').value)||0)/2;return Math.PI*r*r*(parseFloat(document.getElementById('depth-round').value)||0);}
-  if(s==='oval'){const l=parseFloat(document.getElementById('length').value)||0,w=parseFloat(document.getElementById('width').value)||0;return Math.PI*(l/2)*(w/2)*(parseFloat(document.getElementById('depth').value)||0);}
-  return parseFloat(document.getElementById('volume-manual').value)||0;
-}
-function pipeMaxFlow(d){return{32:6,38:8,40:10,50:18,63:28,75:40,90:60}[d]||18;}
-function pumpKwCalc(f,h){return(f/3600*1000*9.81*h)/(0.55*1000);}
-
-// ── EQUIPMENT TABS ────────────────────────────────────────────────────────────
-let activeEquipTab = 'separate';
-function switchEquipTab(tab) {
-  activeEquipTab = tab;
-  document.querySelectorAll('.equip-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.equip-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('etab-' + tab).classList.add('active');
-  document.getElementById('epanel-' + tab).classList.add('active');
-}
-
-// Custom gear lists stored in memory (also saved to localStorage via getSetupData)
-const customGear = { pump: [], filter: [], combo: [] };
-
-function addCustomGear(type) {
-  let name, spec, spec2;
-  if (type === 'combo') {
-    name = document.getElementById('custom-combo-name').value.trim();
-    spec = parseFloat(document.getElementById('custom-combo-flow').value) || 0;
-    spec2 = parseFloat(document.getElementById('custom-combo-watt').value) || 0;
-    if (!name) { alert('Angiv et navn.'); return; }
-    customGear.combo.push({ name, flow: spec, watt: spec2, id: Date.now() });
-    document.getElementById('custom-combo-name').value = '';
-    document.getElementById('custom-combo-flow').value = '';
-    document.getElementById('custom-combo-watt').value = '';
+  const md = document.getElementById('pw-metrics'); md.innerHTML = '';
+  const ms = [
+    {l:'Pumpe pr. dag',v:kwdPump.toFixed(1),u:'kWh',c:'blue'},
+    {l:'Pumpe pr. md.',v:Math.round(kwdPump*30),u:'kWh · '+Math.round(kwdPump*30*price)+' kr',c:'blue'},
+  ];
+  if(hpW>0){
+    ms.push({l:'Varmepumpe/dag',v:kwdHP.toFixed(1),u:'kWh ('+hpH+' t)',c:'orange'});
+    ms.push({l:'Varmepumpe pr. md.',v:Math.round(kwdHP*30),u:'kWh · '+Math.round(kwdHP*30*price)+' kr',c:'orange'});
+    ms.push({l:'Samlet pr. md.',v:Math.round(krMon)+' kr',u:'pumpe + varmepumpe',c:'green'});
+    ms.push({l:'Varmepumpe sæson ('+hpMon+' mdr.)',v:Math.round(kwdHP*30*hpMon*price)+' kr',u:'estimat',c:''});
+  } else {
+    ms.push({l:'Pris pr. dag',v:Math.round(kwdPump*price)+' kr',u:'ved '+price+' kr/kWh',c:''});
+    ms.push({l:'Pris pr. md.',v:Math.round(kwdPump*30*price)+' kr',u:'pumpe alene',c:'green'});
   }
-  renderCustomGear(type);
-  saveSetup();
-}
+  ms.forEach(m=>{const d=document.createElement('div');d.className='m '+(m.c||'');d.innerHTML='<div class="ml">'+m.l+'</div><div class="mv">'+m.v+'</div><div class="mu">'+m.u+'</div>';md.appendChild(d);});
 
-function removeCustomGear(type, id) {
-  customGear[type] = customGear[type].filter(g => g.id !== id);
-  renderCustomGear(type);
-  saveSetup();
-}
-
-function renderCustomGear(type) {
-  const container = document.getElementById('custom-' + type + '-list');
-  if (!container) return;
-  const items = customGear[type];
-  if (items.length === 0) { container.innerHTML = ''; return; }
-  const iconMap = { pump: 'ti-engine', filter: 'ti-filter', combo: 'ti-box' };
-  container.innerHTML = items.map(function(g) {
-    let specText = '';
-    if (type === 'pump') specText = (g.watt ? g.watt + ' W' : '') + (g.flow ? ' · ' + g.flow + ' m\u00b3/t' : '');
-    if (type === 'filter') specText = g.dia ? '\u00d8' + g.dia + ' mm' : '';
-    if (type === 'combo') specText = (g.flow ? g.flow + ' m\u00b3/t' : '') + (g.watt ? ' · ' + g.watt + ' W' : '');
-    return '<div class="gear-item">' +
-      '<i class="ti ' + iconMap[type] + '" style="font-size:16px;color:#378ADD;flex-shrink:0"></i>' +
-      '<span class="gear-name">' + g.name + '</span>' +
-      '<span class="gear-spec">' + specText + '</span>' +
-      '<button class="gear-del" onclick="removeCustomGear(\'' + type + '\',' + g.id + ')"><i class="ti ti-trash" style="font-size:12px"></i></button>' +
-      '</div>';
-  }).join('');
-}
-
-function getPumpWattFromSetup() {
-  if (activeEquipTab === 'combo') {
-    const edVis = document.getElementById('combo-specs-editor').style.display !== 'none';
-    if (edVis) return parseFloat(document.getElementById('combo-watt').value) || 0;
-    if (customGear.combo.length > 0) return customGear.combo[0].watt || 0;
-    return 0;
+  const det = document.getElementById('pw-detail');
+  let html = '';
+  if(isVar){
+    html += '<div class="rcard"><div class="rcard-title"><i class="ti ti-engine"></i>Pumpe – variabel vs. fast</div><div class="ecols"><div class="ecol"><div class="el">Fast hastighed</div><div class="ev" style="color:var(--red)">'+kwdFixed.toFixed(1)+' kWh</div><div class="es">pr. dag</div><div class="ev" style="color:var(--red);font-size:18px;margin-top:8px">'+Math.round(kwdFixed*30*price)+' kr</div><div class="es">pr. måned</div></div><div class="ecol"><div class="el">Variabel hastighed</div><div class="ev" style="color:var(--g800)">'+kwdVar.toFixed(1)+' kWh</div><div class="es">pr. dag</div><div class="ev" style="color:var(--g800);font-size:18px;margin-top:8px">'+Math.round(kwdVar*30*price)+' kr</div><div class="es">pr. måned</div></div></div><div style="margin-top:10px"><span class="save-pill2"><i class="ti ti-leaf" style="font-size:12px"></i>Besparelse: '+saving+'% – ca. '+Math.round((kwdFixed-kwdVar)*30*price)+' kr/md</span></div></div>';
+  } else {
+    html += '<div class="rcard"><div class="rcard-title"><i class="ti ti-engine"></i>Pumpe – fast hastighed</div><div class="ecols"><div class="ecol"><div class="el">Forbrug pr. dag</div><div class="ev" style="color:var(--b600)">'+kwdPump.toFixed(1)+' kWh</div><div class="es">'+kw.toFixed(3)+' kW × 24 t</div></div><div class="ecol"><div class="el">Forbrug pr. md.</div><div class="ev" style="color:var(--b600)">'+Math.round(kwdPump*30)+' kWh</div><div class="es">'+Math.round(kwdPump*30*price)+' kr</div></div></div><div style="font-size:12px;color:var(--text2);margin-top:10px">Skift til variabel hastighed og spar typisk 50–70% – ca. '+Math.round(kwdFixed*0.6*30*price)+' kr/md.</div></div>';
   }
-  // separate: pump
-  const edVis = document.getElementById('pump-specs-editor').style.display !== 'none';
-  if (edVis) return parseFloat(document.getElementById('pump-watt').value) || 0;
-  return parseFloat(document.getElementById('pump-watt-fallback').value) || 0;
-}
-
-function getFilterDiaFromSetup(calculated) {
-  if (activeEquipTab === 'combo') {
-    const edVis = document.getElementById('combo-specs-editor').style.display !== 'none';
-    if (edVis) {
-      const d = parseFloat(document.getElementById('combo-filter-dia').value) || 0;
-      if (d) return d;
-    }
-    if (customGear.combo.length > 0 && customGear.combo[0].dia) return customGear.combo[0].dia;
-    return calculated;
+  if(hpW>0){
+    html += '<div class="rcard"><div class="rcard-title"><i class="ti ti-temperature-plus"></i>Varmepumpe</div><div class="ecols"><div class="ecol"><div class="el">Forbrug pr. dag</div><div class="ev" style="color:var(--a600)">'+kwdHP.toFixed(1)+' kWh</div><div class="es">'+(hpW/1000).toFixed(2)+' kW × '+hpH+' t</div></div><div class="ecol"><div class="el">Forbrug pr. md.</div><div class="ev" style="color:var(--a600)">'+Math.round(kwdHP*30)+' kWh</div><div class="es">'+Math.round(kwdHP*30*price)+' kr/md</div></div></div><div style="font-size:12px;color:var(--text2);margin-top:8px">Sæsonestimeret forbrug ('+hpMon+' mdr.): ca. <strong>'+Math.round(kwdHP*30*hpMon*price)+' kr</strong> i alt.</div></div>';
+    html += '<div class="rcard"><div class="rcard-title"><i class="ti ti-calculator"></i>Samlet forbrug</div><div class="ecols"><div class="ecol"><div class="el">Samlet pr. dag</div><div class="ev" style="color:var(--g800)">'+kwdTotal.toFixed(1)+' kWh</div><div class="es">'+Math.round(krDay)+' kr/dag</div></div><div class="ecol"><div class="el">Samlet pr. md.</div><div class="ev" style="color:var(--g800)">'+Math.round(kwdTotal*30)+' kWh</div><div class="es">'+Math.round(krMon)+' kr/md</div></div></div></div>';
   }
-  // separate: use filter-dia-custom if filled in
-  const d = parseFloat(document.getElementById('filter-dia-custom').value) || 0;
-  if (d) return d;
-  return calculated;
+  det.innerHTML = html;
+  document.getElementById('power-results').classList.add('on');
 }
 
-function getComboFilterNote() {
-  const mediaMap = { sand: 'Filtersand', glass: 'Filterglas', afm: 'AFM® Aktivt filterglas', balls: 'Filterkugler' };
-  if (activeEquipTab === 'combo') {
-    const edVis = document.getElementById('combo-specs-editor').style.display !== 'none';
-    if (edVis) {
-      const media = mediaMap[document.getElementById('combo-filter-media').value] || '';
-      const dia = document.getElementById('combo-filter-dia').value;
-      const modelName = document.getElementById('combo-model').value.trim();
-      return (modelName || 'Kombineret anlæg') + (dia ? ' · Ø' + dia + ' mm' : '') + (media ? ' · ' + media : '');
-    }
-    if (customGear.combo.length > 0) return customGear.combo[0].name;
-    return null;
+// ── SALT CALC ─────────────────────────────────────────────────────────────────
+function calcSalt() {
+  const vol = parseFloat(v('salt-vol')) || 0;
+  if (!vol) { alert('Angiv vandvolumen.'); return; }
+  const cur = parseFloat(v('salt-current')) || 0;
+  const target = parseFloat(v('salt-target')) || 3.2;
+  const purity = v('salt-type') === 'pool' ? 0.99 : 0.97;
+  const diff = Math.max(0, target - cur);
+  const kgNeeded = (diff * vol * 1000) / (purity * 1000);
+
+  const md = document.getElementById('salt-metrics'); md.innerHTML = '';
+  [{l:'Volumen',v:vol,u:'m³'},{l:'Nuværende',v:cur.toFixed(1),u:'g/L'},{l:'Målværdi',v:target,u:'g/L'},{l:'Skal tilsættes',v:kgNeeded>0?kgNeeded.toFixed(1):'0',u:'kg salt',c:kgNeeded>0?'orange':'green'}].forEach(m=>{
+    const d=document.createElement('div');d.className='m '+(m.c||'');d.innerHTML='<div class="ml">'+m.l+'</div><div class="mv">'+m.v+'</div><div class="mu">'+m.u+'</div>';md.appendChild(d);
+  });
+  const note = document.getElementById('salt-note');
+  if(kgNeeded <= 0){
+    note.innerHTML = '<strong>Saltniveauet er allerede over målværdien.</strong> Delvist vandskifte er eneste måde at sænke saltkoncentrationen.';
+  } else {
+    const bags25 = Math.ceil(kgNeeded/25);
+    const bags10 = Math.ceil(kgNeeded/10);
+    note.innerHTML = 'Tilsæt <strong>'+kgNeeded.toFixed(1)+' kg salt</strong> fordelt over poolen med pumpen i gang. Det svarer til ca. <strong>'+bags25+' sæk à 25 kg</strong> eller <strong>'+bags10+' sæk à 10 kg</strong>.<br><br>Tilsæt saltet ad gangen og lad pumpen cirkulere i mindst 24 timer inden næste måling. Tjek saltindholdet igen inden opstart af saltklorinatoranlægget.';
   }
-  // separate: show filter name + dia + media if filled
-  const fname = document.getElementById('filter-name').value.trim();
-  const fdia = document.getElementById('filter-dia-custom').value;
-  const fmedia = mediaMap[document.getElementById('filter-media-custom').value] || '';
-  if (fname || fdia) {
-    return (fname || 'Sandfilter') + (fdia ? ' · Ø' + fdia + ' mm' : '') + (fmedia ? ' · ' + fmedia : '');
-  }
-  return null;
-}
-
-
-// ── DEVICE LOOKUP ──────────────────────────────────────────────────────────────
-async function lookupDevice(type){
-  const isHP=type==='hp';
-  const modelInput=document.getElementById(isHP?'hp-model':'pump-model');
-  const resultDiv=document.getElementById(isHP?'hp-lookup-result':'pump-lookup-result');
-  const btn=document.getElementById(isHP?'hp-lookup-btn':'pump-lookup-btn');
-  const modelName=modelInput.value.trim();
-  if(!modelName){alert('Indtast venligst et modelnavn.');return;}
-  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Søger...';
-  resultDiv.innerHTML='<div class="lookup-result loading"><span class="spinner"></span> Søger specs for <strong>'+modelName+'</strong>...</div>';
-  const isCombo=type==='combo';
-  const prompt=isHP
-    ?`Du er ekspert i pool varmepumper. Find tekniske specs for: "${modelName}". Søg online. Svar KUN med JSON: {"found":true/false,"brand":"...","model":"...","heating_kw":tal,"input_kw":tal,"cop":tal,"noise_db":tal_eller_null,"note":"..."}`
-    :isCombo
-    ?`Du er ekspert i pool sandfilteranlæg og kombinerede filter/pumpe-systemer. Find tekniske specs for dette kombinerede sandfilteranlæg: "${modelName}". Søg online. Svar KUN med JSON: {"found":true/false,"brand":"...","model":"...","power_w":tal,"flow_m3h":tal,"filter_dia_mm":tal,"head_m":tal_eller_null,"variable_speed":false,"filter_media":"sand","note":"..."}`
-    :`Du er ekspert i pool cirkulationspumper. Find tekniske specs for: "${modelName}". Søg online. Svar KUN med JSON: {"found":true/false,"brand":"...","model":"...","power_w":tal,"flow_m3h":tal_eller_null,"head_m":tal_eller_null,"variable_speed":true/false,"note":"..."}`;
-  try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
-    const data=await resp.json();
-    let text='';for(const b of data.content){if(b.type==='text')text+=b.text;}
-    const m=text.match(/\{[\s\S]*\}/);if(!m)throw new Error('no json');
-    const specs=JSON.parse(m[0]);deviceSpecs[type]=specs;
-    if(specs.found){populateSpecEditor(type,specs,true);}
-    else{resultDiv.innerHTML=`<div class="lookup-result not-found"><strong>⚠ Ikke identificeret præcist</strong><br>${specs.note}<br><button class="use-specs-btn" style="margin-top:10px" onclick='populateSpecEditor("${type}",${JSON.stringify(specs)},false)'><i class="ti ti-check"></i> Brug disse estimerede specs</button></div>`;}
-  }catch(e){resultDiv.innerHTML='<div class="lookup-result not-found"><strong>Kunne ikke hente specs.</strong><br>Angiv effekten manuelt nedenfor.</div>';}
-  btn.disabled=false;btn.innerHTML='<i class="ti ti-search"></i> Søg specs';
-}
-
-function populateSpecEditor(type,specs,found){
-  const isHP=type==='hp';
-  const editor=document.getElementById(isHP?'hp-specs-editor':'pump-specs-editor');
-  const fallback=document.getElementById(isHP?'hp-manual-fallback':'pump-manual-fallback');
-  const isCombo2=type==='combo';
-  if(isHP){
-    document.getElementById('hp-watt').value=Math.round((specs.input_kw||0)*1000)||'';
-    document.getElementById('hp-heating-kw').value=specs.heating_kw||'';
-    document.getElementById('hp-cop').value=specs.cop||'';
-  }else if(isCombo2){
-    document.getElementById('combo-watt').value=specs.power_w||'';
-    document.getElementById('combo-flow').value=specs.flow_m3h||'';
-    document.getElementById('combo-filter-dia').value=specs.filter_dia_mm||'';
-    document.getElementById('combo-head').value=specs.head_m||'';
-    document.getElementById('combo-variable').value=specs.variable_speed?'yes':'no';
-    if(specs.filter_media)document.getElementById('combo-filter-media').value=specs.filter_media;
-  }else{
-    document.getElementById('pump-watt').value=specs.power_w||'';
-    document.getElementById('pump-flow').value=specs.flow_m3h||'';
-    document.getElementById('pump-head').value=specs.head_m||'';
-    document.getElementById('pump-variable').value=specs.variable_speed?'yes':'no';
-  }
-  editor.style.display='';fallback.style.display='none';
-  const resultDiv=document.getElementById(isHP?'hp-lookup-result':isCombo2?'combo-lookup-result':'pump-lookup-result');
-  const cls=found?'found':'not-found';const icon=found?'✓':'⚠';const lbl=found?'Fundet':'Estimerede specs';
-  resultDiv.innerHTML=`<div class="lookup-result ${cls}"><strong>${icon} ${lbl}: ${specs.brand||''} ${specs.model||''}</strong><div style="font-size:12px;margin-top:4px;opacity:.85">Specs udfyldt nedenfor – ret dem frit.</div></div>`;
-}
-
-// ── CALCULATE ─────────────────────────────────────────────────────────────────
-function calculate(){
-  const vol=calcVolume();
-  if(!vol||vol<1){alert('Indtast venligst gyldige poolmål.');return;}
-  const active=getActive();
-  const turnovers=parseFloat(document.getElementById('turnovers').value);
-  const pumptype=document.getElementById('pumptype').value;
-  const elprice=parseFloat(document.getElementById('elprice').value)||3.0;
-  const pipeD=parseInt(document.getElementById('pipe').value);
-  const pipelen=parseFloat(document.getElementById('pipelen').value)||15;
-  const turnoverHours=24/turnovers;
-  const flowNeeded=vol/turnoverHours;
-  const pipeCap=pipeMaxFlow(pipeD);
-  const pipeWarn=flowNeeded>pipeCap;
-  const hpPresent=document.getElementById('hp-section').style.display!=='none';
-  const headLoss=0.5+pipelen*0.02+(active.includes('heatex')?1.2:0)+(active.includes('uv')?0.5:0)+(active.includes('salt')?0.8:0)+(active.includes('ph')?0.3:0)+(hpPresent?1.5:0);
-  const pumpHead=Math.ceil(headLoss+3);
-  let pumpWatt=getPumpWattFromSetup();
-  if(!pumpWatt){pumpWatt=Math.ceil(pumpKwCalc(flowNeeded*1.15,pumpHead)*1000/10)*10;}
-  const pumpKwR=pumpWatt/1000;
-  const calcFilterDia=Math.ceil(Math.sqrt((flowNeeded/25*4)/Math.PI)*1000/25)*25;
-  const filterDia=getFilterDiaFromSetup(calcFilterDia);
-  const comboNote=getComboFilterNote();
-  let kwdayPumpFixed=pumpKwR*24,kwdayPumpVar=0,savingPct=0;
-  if(pumptype==='variable'){const fH=parseFloat(document.getElementById('fullhours').value)||6;const lF=parseFloat(document.getElementById('lowfactor').value)||0.4;kwdayPumpVar=pumpKwR*fH+pumpKwR*Math.pow(lF,3)*(24-fH);savingPct=Math.round((1-kwdayPumpVar/kwdayPumpFixed)*100);}
-  const kwdayPump=pumptype==='variable'?kwdayPumpVar:kwdayPumpFixed;
-  const hpEdVis=document.getElementById('hp-specs-editor').style.display!=='none';
-  const hpWatt=hpPresent?(hpEdVis?(parseFloat(document.getElementById('hp-watt').value)||0):(parseFloat(document.getElementById('hp-watt-fallback').value)||0)):0;
-  const hpCop=hpEdVis?(parseFloat(document.getElementById('hp-cop').value)||null):null;
-  const hpType=hpEdVis?document.getElementById('hp-type').value:'on-off';
-  const hpHours=parseFloat(document.getElementById('hp-hours').value)||0;
-  const hpMonths=parseFloat(document.getElementById('hp-months').value)||5;
-  const kwdayHP=hpWatt>0?(hpWatt/1000)*hpHours:0;
-  const kwdayTotal=kwdayPump+kwdayHP;
-  const krDayTotal=kwdayTotal*elprice;
-  const krMonthTotal=krDayTotal*30;
-  const kwMonthPump=kwdayPump*30;
-  const kwMonthHP=kwdayHP*30;
-  const krSeasonHP=kwdayHP*30*hpMonths*elprice;
-  const krMonthPump=kwdayPump*30*elprice;
-
-  const md=document.getElementById('r-metrics');md.innerHTML='';
-  const metrics=[{l:'Poolvolumen',v:vol.toFixed(1),u:'m³',c:''},{l:'Omløb pr. døgn',v:turnovers,u:'omløb/døgn',c:''},{l:'Flowrate',v:flowNeeded.toFixed(1),u:'m³/t',c:''},{l:'Pumpe pr. døgn',v:kwdayPump.toFixed(1),u:'kWh',c:'blue'},{l:'Pumpe pr. måned',v:Math.round(kwMonthPump),u:'kWh · '+Math.round(krMonthPump)+' kr',c:'blue'}];
-  if(hpWatt>0){metrics.push({l:'Varmepumpe pr. døgn',v:kwdayHP.toFixed(1),u:'kWh ('+hpHours+' t)',c:'orange'});metrics.push({l:'VP pr. måned',v:Math.round(kwMonthHP),u:'kWh · '+Math.round(kwdayHP*30*elprice)+' kr',c:'orange'});metrics.push({l:'Samlet pr. måned',v:Math.round(krMonthTotal)+' kr',u:'pumpe + varmepumpe',c:'green'});}
-  else{metrics.push({l:'Pris pr. døgn',v:Math.round(kwdayPump*elprice)+' kr',u:'ved '+elprice+' kr/kWh',c:''});metrics.push({l:'Pris pr. måned',v:Math.round(krMonthPump)+' kr',u:'pumpe alene',c:'green'});}
-  metrics.forEach(m=>{const d=document.createElement('div');d.className='metric '+m.c;d.innerHTML='<div class="mlabel">'+m.l+'</div><div class="mvalue">'+m.v+'</div><div class="munit">'+m.u+'</div>';md.appendChild(d);});
-
-  const pumpLabel=deviceSpecs.pump&&deviceSpecs.pump.found?deviceSpecs.pump.brand+' '+deviceSpecs.pump.model+' ('+pumpWatt+' W)':Math.ceil(flowNeeded*1.15).toFixed(0)+' m³/t · '+pumpHead+' m løftehøjde · '+pumpWatt+' W';
-  document.getElementById('r-pump').textContent=pumpLabel;
-  document.getElementById('r-pump-note').textContent=pumptype==='variable'?'Variabel hastighed: Sparer '+savingPct+'% strøm vs. fast hastighed.':'Fast hastighed. Overvej variabel hastighed – sparer typisk 50–70% strøm.';
-  document.getElementById('r-filter').textContent=comboNote?comboNote:'Filterkar Ø'+filterDia+' mm ('+(filterDia/1000).toFixed(2)+' m)';
-  document.getElementById('r-filter-note').textContent='Filterhastighed maks. 25 m/t ved sand og kugler, 40 m/t ved glasmedier.';
-
-  const mediaDiv=document.getElementById('r-media');mediaDiv.innerHTML='';
-  [{name:'Filtersand (kvartssand)',note:'Billigst og mest udbredt. Kræver tilbageskylning ca. hver 2–4 uge. Fraktion 0.4–0.8 mm. Holdbarhed 5–7 år.',badge:'badge-blue',label:'Standard',sub:null},{name:'Filterglas (genbrugsglas)',note:'Bedre filtrering end sand (ned til 5 µm). Koster 20–40% mere. Holdbarhed 10+ år.',badge:'badge-green',label:'Anbefalet',sub:{name:'AFM® Aktivt Filterglas',note:'Filtrerer ned til 1–2 µm, modstandsdygtigt over for biofilm. Ideel til pools med saltkloring eller UV.',badge:'badge-teal',label:'Premium'}},{name:'Filterkugler (polyethylen)',note:'Lette plastikkugler (Ø3–5 mm). Filtrerer ned til ca. 10 µm. Op til 30% mindre vand ved tilbageskylning.',badge:'badge-purple',label:'Let alternativ',sub:null}].forEach(m=>{const wrap=document.createElement('div');const d=document.createElement('div');d.className='media-item';d.innerHTML='<div class="mname">'+m.name+'<span class="badge '+m.badge+'">'+m.label+'</span></div><div class="mnote">'+m.note+'</div>';wrap.appendChild(d);if(m.sub){const sub=document.createElement('div');sub.className='sub-item';sub.innerHTML='<div class="sub-name">'+m.sub.name+' <span class="badge '+m.sub.badge+'">'+m.sub.label+'</span></div>'+m.sub.note;wrap.appendChild(sub);}mediaDiv.appendChild(wrap);});
-
-  const ec=document.getElementById('r-energy-content');let ehtml='';
-  if(pumptype==='variable'){ehtml+=`<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px">Cirkulationspumpe</div><div class="energy-compare"><div class="ecol"><div class="elabel">Fast hastighed</div><div class="enum" style="color:var(--red-400)">${kwdayPumpFixed.toFixed(1)} kWh</div><div class="esub">pr. døgn</div><div class="enum" style="color:var(--red-400);font-size:18px;margin-top:8px">${Math.round(kwdayPumpFixed*30*elprice)} kr</div><div class="esub">pr. måned</div></div><div class="ecol"><div class="elabel">Variabel hastighed</div><div class="enum" style="color:var(--green-800)">${kwdayPumpVar.toFixed(1)} kWh</div><div class="esub">pr. døgn</div><div class="enum" style="color:var(--green-800);font-size:18px;margin-top:8px">${Math.round(kwdayPumpVar*30*elprice)} kr</div><div class="esub">pr. måned</div></div></div><div style="margin-top:8px"><span class="saving-pill"><i class="ti ti-leaf" style="font-size:12px"></i>Besparelse: ${savingPct}% – ca. ${Math.round((kwdayPumpFixed-kwdayPumpVar)*30*elprice)} kr/måned</span></div>`;}
-  else{ehtml+=`<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px">Cirkulationspumpe</div><div class="energy-compare"><div class="ecol"><div class="elabel">Forbrug pr. døgn</div><div class="enum" style="color:var(--blue-600)">${kwdayPump.toFixed(1)} kWh</div><div class="esub">${pumpKwR.toFixed(2)} kW × 24 t</div></div><div class="ecol"><div class="elabel">Forbrug pr. måned</div><div class="enum" style="color:var(--blue-600)">${Math.round(kwMonthPump)} kWh</div><div class="esub">${Math.round(krMonthPump)} kr</div></div></div>`;}
-  if(hpWatt>0){const hpLabel=deviceSpecs.hp&&deviceSpecs.hp.found?deviceSpecs.hp.brand+' '+deviceSpecs.hp.model:'Varmepumpe ('+hpWatt+' W)';const copNote=hpCop?' · COP '+hpCop+' ('+hpType+')':'';ehtml+=`<div style="height:.5px;background:var(--border);margin:14px 0"></div><div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px">Varmepumpe – ${hpLabel}</div><div class="energy-compare"><div class="ecol"><div class="elabel">Forbrug pr. døgn</div><div class="enum" style="color:var(--amber-600)">${kwdayHP.toFixed(1)} kWh</div><div class="esub">${(hpWatt/1000).toFixed(2)} kW × ${hpHours} t${copNote}</div></div><div class="ecol"><div class="elabel">Forbrug pr. måned</div><div class="enum" style="color:var(--amber-600)">${Math.round(kwMonthHP)} kWh</div><div class="esub">${Math.round(kwdayHP*30*elprice)} kr/md</div></div></div><div style="margin-top:8px;font-size:12px;color:var(--text2)">Sæsonestimeret (${hpMonths} mdr.): ca. <strong>${Math.round(krSeasonHP)} kr</strong></div><div style="height:.5px;background:var(--border);margin:14px 0"></div><div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px">Samlet</div><div class="energy-compare"><div class="ecol"><div class="elabel">Samlet pr. døgn</div><div class="enum" style="color:var(--green-800)">${kwdayTotal.toFixed(1)} kWh</div><div class="esub">${Math.round(krDayTotal)} kr/dag</div></div><div class="ecol"><div class="elabel">Samlet pr. måned</div><div class="enum" style="color:var(--green-800)">${Math.round(kwdayTotal*30)} kWh</div><div class="esub">${Math.round(krMonthTotal)} kr/md</div></div></div>`;}
-  ec.innerHTML=ehtml;
-
-  const extrasNotes=[];
-  if(active.includes('heatex'))extrasNotes.push({icon:'ti-exchange',text:'Varmeveksler: Placeres efter filtret. Kræver separat kredsløb. Tilføjer 1–1.5 m modstand.'});
-  if(active.includes('ph'))extrasNotes.push({icon:'ti-flask',text:'Automatisk pH-regulering: Placeres typisk efter filtret. Kræver bypass-rørsystem og doseringskar.'});
-  if(active.includes('salt'))extrasNotes.push({icon:'ti-droplets',text:'Saltklorinator: Kræver saltkoncentration på 3–4 g/l. Medfører korrosion på aluminium.'});
-  if(active.includes('uv'))extrasNotes.push({icon:'ti-sun',text:'UV-anlæg: Placeres efter filtret. Reducerer klorinforbruget 20–40%.'});
-  if(active.includes('robot'))extrasNotes.push({icon:'ti-robot',text:'Bundstøvsuger: Har eget kredsløb – påvirker ikke filterdimensionering.'});
-  if(active.includes('waterfall'))extrasNotes.push({icon:'ti-waterfall',text:'Vandfald/dyser: Tillæg 2–5 m³/t ekstra i pumpe og filter.'});
-  if(active.includes('spa'))extrasNotes.push({icon:'ti-mood-happy',text:'Spa/boblesystem: Kræver separat luftpumpe (blower).'});
-  if(active.includes('cover'))extrasNotes.push({icon:'ti-stack',text:'Automatisk låg: Reducerer varmetab markant.'});
-  const extCard=document.getElementById('extras-card'),extDiv=document.getElementById('r-extras');extDiv.innerHTML='';
-  if(extrasNotes.length>0){extCard.style.display='';extrasNotes.forEach((e,i)=>{const d=document.createElement('div');d.style.cssText='display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:13px;color:var(--text2);line-height:1.5'+(i<extrasNotes.length-1?';border-bottom:.5px solid var(--border)':'');d.innerHTML='<i class="ti '+e.icon+'" style="font-size:16px;color:#378ADD;flex-shrink:0;margin-top:1px"></i><span>'+e.text+'</span>';extDiv.appendChild(d);});}
-  else extCard.style.display='none';
-
-  const warnDiv=document.getElementById('r-warnings');warnDiv.innerHTML='';
-  if(pipeWarn)warnDiv.innerHTML+='<div class="warning"><i class="ti ti-alert-triangle"></i><span>Dit rør på '+pipeD+' mm maks. '+pipeCap+' m³/t, men beregningen kræver '+flowNeeded.toFixed(1)+' m³/t.</span></div>';
-  if(vol>200)warnDiv.innerHTML+='<div class="warning" style="margin-top:8px"><i class="ti ti-info-circle"></i><span>Store pools (over 200 m³) kan kræve dobbelte filtre og professionel hydraulisk beregning.</span></div>';
-
-  document.getElementById('results').classList.add('visible');
-  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
-  saveSetup();
+  document.getElementById('salt-results').classList.add('on');
 }
 
 // ── WATER CHEMISTRY ───────────────────────────────────────────────────────────
-// Show/hide salt field based on setup
-function updateSaltField(){
-  const hasSalt=Array.from(document.querySelectorAll('#extras .toggle.active')).some(t=>t.dataset.id==='salt');
-  document.getElementById('salt-param-card').style.display=hasSalt?'':'none';
+function statusFor(p,val){
+  const r={ph:{low:7.2,high:7.6},cl:{low:0.5,high:1.5},alk:{low:80,high:120},ca:{low:200,high:400},cya:{low:20,high:50},salt:{low:2700,high:3400}};
+  const rng=r[p];if(!rng||val===null||val==='')return'unknown';
+  return val<rng.low?'low':val>rng.high?'high':'ok';
 }
-document.querySelectorAll('#extras .toggle').forEach(t=>t.addEventListener('click',()=>setTimeout(updateSaltField,50)));
-
-function getChemLog(){try{return JSON.parse(localStorage.getItem(CHEM_KEY)||'[]');}catch{return[];}}
-function saveChemLog(log){localStorage.setItem(CHEM_KEY,JSON.stringify(log));}
-
-function statusFor(param,val){
-  const ranges={
-    ph:{low:7.2,high:7.6},
-    chlorine:{low:0.5,high:1.5},
-    alk:{low:80,high:120},
-    calcium:{low:200,high:400},
-    cya:{low:20,high:50},
-    salt:{low:2700,high:3400}
-  };
-  const r=ranges[param];if(!r||val===null||val==='')return'unknown';
-  if(val<r.low)return'low';
-  if(val>r.high)return'high';
-  return'ok';
-}
-
-function overallStatus(entry){
-  const params=['ph','chlorine','alk','calcium'];
+function overallSt(e){
   let bad=0,warn=0;
-  params.forEach(p=>{const s=statusFor(p,parseFloat(entry[p]));if(s==='high'||s==='low'){if(p==='ph'||p==='chlorine')bad++;else warn++;}});
-  if(bad>0)return'bad';if(warn>0)return'warn';return'ok';
+  ['ph','cl'].forEach(p=>{const s=statusFor(p,parseFloat(e[p]));if(s==='low'||s==='high')bad++;});
+  ['alk','ca'].forEach(p=>{const s=statusFor(p,parseFloat(e[p]));if(s==='low'||s==='high')warn++;});
+  return bad>0?'bad':warn>0?'warn':'ok';
 }
+function getChemLog(){try{return JSON.parse(localStorage.getItem(CHEM)||'[]');}catch{return[];}}
+function saveChemLog(log){localStorage.setItem(CHEM,JSON.stringify(log));}
 
-async function addMeasurement(){
-  const entry={
-    id:Date.now(),
-    date:new Date().toLocaleString('da-DK'),
-    ph:document.getElementById('m-ph').value,
-    chlorine:document.getElementById('m-chlorine').value,
-    alk:document.getElementById('m-alk').value,
-    calcium:document.getElementById('m-calcium').value,
-    cya:document.getElementById('m-cya').value,
-    salt:document.getElementById('m-salt').value,
-    temp:document.getElementById('m-temp').value,
-    note:document.getElementById('m-note').value,
-    recs:null,
-    loading:true
+
+// ── MIN POOL ──────────────────────────────────────────────────────────────────
+const MP_KEY = 'pb2_mypool';
+
+function mpToggleSys() {
+  const isSep = document.getElementById('mp-systype').value === 'separate';
+  document.getElementById('mp-separate-fields').style.display = isSep ? '' : 'none';
+  document.getElementById('mp-combo-fields').style.display = isSep ? 'none' : '';
+}
+document.querySelectorAll('#mp-extras .tog').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
+
+function getMPData() {
+  return {
+    name: v('mp-name'), vol: v('mp-vol'), pooltype: v('mp-pooltype'), liner: v('mp-liner'),
+    systype: v('mp-systype'),
+    pumpModel: v('mp-pump-model'), pumpWatt: v('mp-pump-watt'), pumpSpeed: v('mp-pump-speed'),
+    filterModel: v('mp-filter-model'), filterDia: v('mp-filter-dia'), filterMedia: v('mp-filter-media'),
+    comboModel: v('mp-combo-model'), comboWatt: v('mp-combo-watt'), comboFlow: v('mp-combo-flow'), comboDia: v('mp-combo-dia'), comboMedia: v('mp-combo-media'),
+    hpModel: v('mp-hp-model'), hpWatt: v('mp-hp-watt'), hpHeat: v('mp-hp-heat'), hpCop: v('mp-hp-cop'), hpHours: v('mp-hp-hours'), hpMonths: v('mp-hp-months'),
+    extras: Array.from(document.querySelectorAll('#mp-extras .tog.on')).map(t => t.dataset.id),
+    saltModel: v('mp-salt-model'), phType: v('mp-ph-type'),
+    elprice: v('mp-elprice')
   };
-  if(!entry.ph&&!entry.chlorine&&!entry.alk){alert('Indtast mindst pH, klor eller alkalinitet.');return;}
-
-  const log=getChemLog();
-  log.unshift(entry);
-  saveChemLog(log);
-  renderChemLog();
-
-  // Clear form
-  ['m-ph','m-chlorine','m-alk','m-calcium','m-cya','m-salt','m-temp','m-note'].forEach(id=>document.getElementById(id).value='');
-
-  // Get AI recommendations
-  const volEst=calcVolume();
-  const setup=getSetupData();
-  const prompt=`Du er ekspert i pool vandkemi. En pool-ejer har målt følgende værdier${volEst>0?' (pool ca. '+volEst.toFixed(0)+' m³)':''}:
-pH: ${entry.ph||'ikke målt'}
-Fri klor: ${entry.chlorine||'ikke målt'} mg/L
-Total alkalinitet: ${entry.alk||'ikke målt'} mg/L
-Kalciumhårdhed: ${entry.calcium||'ikke målt'} mg/L
-Cyanuric acid: ${entry.cya||'ikke målt'} mg/L
-Salt: ${entry.salt||'ikke målt'} mg/L
-Vandtemperatur: ${entry.temp||'ikke målt'} °C
-${entry.note?'Note: '+entry.note:''}
-Ekstraudstyr: ${setup.activeToggles&&setup.activeToggles.length?setup.activeToggles.join(', '):'standard'}
-
-Giv konkrete anbefalinger til hvad der skal korrigeres. Vær specifik: angiv hvilke kemikalier der skal tilsættes og ca. mængder baseret på poolvolumen hvis muligt. Svar på dansk, kortfattet og praktisk. Hvis alle værdier er fine, sig det. Max 150 ord.`;
-
-  try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,messages:[{role:'user',content:prompt}]})});
-    const data=await resp.json();
-    let text='';for(const b of data.content){if(b.type==='text')text+=b.text;}
-    log[0].recs=text;log[0].loading=false;
-  }catch(e){log[0].recs='Kunne ikke hente anbefalinger. Tjek din internetforbindelse.';log[0].loading=false;}
-  saveChemLog(log);
-  renderChemLog();
 }
+
+function saveMyPool() {
+  const d = getMPData();
+  localStorage.setItem(MP_KEY, JSON.stringify(d));
+  flash();
+  // Auto-fill other calculators
+  if (d.vol) { set('pf-vol', d.vol); set('salt-vol', d.vol); }
+  const pumpW = d.systype === 'combo' ? d.comboWatt : d.pumpWatt;
+  if (pumpW) { set('pw-watt', pumpW); if (d.pumpSpeed === 'var') set('pw-type', 'var'); }
+  if (d.hpWatt) { set('pw-hp-watt', d.hpWatt); set('pw-hp-hours', d.hpHours); set('pw-hp-months', d.hpMonths); }
+  if (d.elprice) set('pw-price', d.elprice);
+  renderMPSummary(d);
+  document.getElementById('mp-summary').style.display = '';
+  // Update nav tab to show it's filled
+  document.getElementById('ntab-mypool').classList.add('ntab-highlight');
+  save();
+  renderFlowDiagram();
+  renderDashboard();
+}
+
+function loadMyPool() {
+  try {
+    const d = JSON.parse(localStorage.getItem(MP_KEY) || 'null');
+    if (!d) return;
+    set('mp-name', d.name); set('mp-vol', d.vol); set('mp-pooltype', d.pooltype); set('mp-liner', d.liner);
+    set('mp-systype', d.systype); mpToggleSys();
+    set('mp-pump-model', d.pumpModel); set('mp-pump-watt', d.pumpWatt); set('mp-pump-speed', d.pumpSpeed);
+    set('mp-filter-model', d.filterModel); set('mp-filter-dia', d.filterDia); set('mp-filter-media', d.filterMedia);
+    set('mp-combo-model', d.comboModel); set('mp-combo-watt', d.comboWatt); set('mp-combo-flow', d.comboFlow); set('mp-combo-dia', d.comboDia); set('mp-combo-media', d.comboMedia);
+    set('mp-hp-model', d.hpModel); set('mp-hp-watt', d.hpWatt); set('mp-hp-heat', d.hpHeat); set('mp-hp-cop', d.hpCop); set('mp-hp-hours', d.hpHours); set('mp-hp-months', d.hpMonths);
+    if (d.extras) d.extras.forEach(id => { const t = document.querySelector('#mp-extras .tog[data-id="' + id + '"]'); if(t) t.classList.add('on'); });
+    set('mp-salt-model', d.saltModel); set('mp-ph-type', d.phType);
+    set('mp-elprice', d.elprice);
+    renderMPSummary(d);
+    document.getElementById('mp-summary').style.display = '';
+    document.getElementById('ntab-mypool').classList.add('ntab-highlight');
+    // Auto-fill calculators silently
+    if (d.vol) { set('pf-vol', d.vol); set('salt-vol', d.vol); }
+    const pumpW = d.systype === 'combo' ? d.comboWatt : d.pumpWatt;
+    if (pumpW) { set('pw-watt', pumpW); if (d.pumpSpeed === 'var') { set('pw-type', 'var'); togglePwVar(); } }
+    if (d.hpWatt) { set('pw-hp-watt', d.hpWatt); set('pw-hp-hours', d.hpHours); set('pw-hp-months', d.hpMonths); }
+    if (d.elprice) set('pw-price', d.elprice);
+  } catch(e) {}
+}
+
+function renderMPSummary(d) {
+  const mediaLabels = { sand:'Filtersand', glass:'Filterglas', afm:'AFM® Aktivt filterglas', balls:'Filterkugler' };
+  const extLabels = { salt:'Saltklorinator', 'ph-auto':'Auto pH', uv:'UV-anlæg', robot:'Poolrobot', cover:'Automatisk låg', heatex:'Varmeveksler', waterfall:'Vandfald', light:'Belysning', spa:'Spa' };
+  let items = [];
+  if (d.vol) items.push({ icon:'ti-droplet', name:'Pool', spec:(d.name||'Din pool')+' · '+d.vol+' m³' });
+  if (d.systype === 'combo' && d.comboModel) {
+    items.push({ icon:'ti-box', name:'Kombineret anlæg', spec:d.comboModel+(d.comboWatt?' · '+d.comboWatt+' W':'')+(d.comboDia?' · Ø'+d.comboDia+' mm':'') });
+  } else {
+    if (d.pumpModel || d.pumpWatt) items.push({ icon:'ti-engine', name:'Pumpe', spec:(d.pumpModel||'')+(d.pumpWatt?' · '+d.pumpWatt+' W':'')+(d.pumpSpeed==='var'?' · Variabel':'') });
+    if (d.filterModel || d.filterDia) items.push({ icon:'ti-filter', name:'Filter', spec:(d.filterModel||'')+(d.filterDia?' · Ø'+d.filterDia+' mm':'')+(d.filterMedia?' · '+mediaLabels[d.filterMedia]:'') });
+  }
+  if (d.hpModel || d.hpWatt) items.push({ icon:'ti-temperature-plus', name:'Varmepumpe', spec:(d.hpModel||'')+(d.hpWatt?' · '+d.hpWatt+' W input':'')+(d.hpCop?' · COP '+d.hpCop:'') });
+  if (d.extras && d.extras.length) items.push({ icon:'ti-plug', name:'Ekstraudstyr', spec:d.extras.map(e => extLabels[e]||e).join(', ') });
+  if (d.elprice) items.push({ icon:'ti-currency-krone-danish', name:'Strømpris', spec:d.elprice+' kr/kWh' });
+  const sc = document.getElementById('mp-summary-content');
+  sc.innerHTML = '<div class="eq-grid">' + items.map(i =>
+    '<div class="eq-card"><i class="ti '+i.icon+'"></i><span class="eq-name">'+i.name+'</span><span class="eq-spec">'+i.spec+'</span></div>'
+  ).join('') + '</div>';
+  // Update status banner
+  const st = document.getElementById('mp-status');
+  if (items.length > 1) {
+    st.innerHTML = '<div class="profile-complete"><i class="ti ti-circle-check" style="font-size:18px"></i><span>Din Pool-profil er udfyldt – data bruges automatisk i strøm, salt og vandkemi.</span></div>';
+  }
+}
+
+function getMPProfile() {
+  try { return JSON.parse(localStorage.getItem(MP_KEY) || 'null'); } catch { return null; }
+}
+
+
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+function renderDashboard() {
+  const el = document.getElementById('home-dashboard');
+  if (!el) return;
+
+  const mp  = getMPProfile();
+  const ls  = JSON.parse(localStorage.getItem(LS) || '{}');
+  const log = getChemLog();
+  const lastChem = log.length > 0 ? log[0] : null;
+
+  let html2 = '';
+
+  // ── POOL & UDSTYR ──────────────────────────────────────────────────────────
+  html2 += '<div class="dash-section">';
+  html2 += '<div class="dash-header"><div class="dash-header-left"><i class="ti ti-droplet"></i>Pool &amp; udstyr</div><span class="dash-edit" onclick="nav(\'mypool\')"><i class="ti ti-edit" style="font-size:12px"></i>Rediger</span></div>';
+
+  if (!mp || !mp.vol) {
+    html2 += '<div class="dash-card-empty" onclick="nav(\'mypool\')">';
+    html2 += '<p><i class="ti ti-plus-circle" style="font-size:16px;color:#378ADD"></i>Tilføj dine pooloplysninger i "Min Pool" for at se oversigten her</p>';
+    html2 += '</div>';
+  } else {
+    const mediaMap = { sand:'Filtersand', glass:'Filterglas', afm:'AFM® Aktivt filterglas', balls:'Filterkugler' };
+    const poolTypeMap = { outdoor:'Udendørs nedgravet', above:'Overjordisk', indoor:'Indendørs', semi:'Halvt nedgravet' };
+    const linerMap = { folie:'PVC folie', beton:'Beton/fliser', fiber:'Fiberpol', stål:'Stål/plade', andet:'Andet' };
+    const isSep = !mp.systype || mp.systype === 'separate';
+    const pumpW = isSep ? mp.pumpWatt : mp.comboWatt;
+    const filterDia = isSep ? mp.filterDia : mp.comboDia;
+    const filterMedia = isSep ? mp.filterMedia : mp.comboMedia;
+    const pumpModel = isSep ? mp.pumpModel : mp.comboModel;
+
+    html2 += '<div class="dash-card">';
+
+    // Pool info row
+    html2 += '<div class="dash-row">';
+    if (mp.name) html2 += ditem('Navn', mp.name, '');
+    html2 += ditem('Volumen', mp.vol, 'm³');
+    if (mp.pooltype) html2 += ditem('Type', poolTypeMap[mp.pooltype] || mp.pooltype, '');
+    if (mp.liner) html2 += ditem('Belægning', linerMap[mp.liner] || mp.liner, '');
+    html2 += '</div>';
+
+    html2 += '<div class="dash-divider"></div>';
+
+    // Filtration row
+    html2 += '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin-bottom:6px">' + (isSep ? 'Pumpe' : 'Kombineret anlæg') + '</div>';
+    html2 += '<div class="dash-row">';
+    if (pumpModel) html2 += ditem('Model', pumpModel, '');
+    if (pumpW)     html2 += ditem('Effekt', pumpW, 'W');
+    if (mp.pumpSpeed === 'var') html2 += ditem('Hastighed', 'Variabel EC/DC', '');
+    else if (mp.pumpSpeed === 'fixed') html2 += ditem('Hastighed', 'Fast', '');
+    html2 += '</div>';
+
+    if (isSep && (mp.filterModel || filterDia)) {
+      html2 += '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin:8px 0 6px">Filter</div>';
+      html2 += '<div class="dash-row">';
+      if (mp.filterModel) html2 += ditem('Model', mp.filterModel, '');
+      if (filterDia)      html2 += ditem('Diameter', 'Ø' + filterDia, 'mm');
+      if (filterMedia)    html2 += ditem('Medie', mediaMap[filterMedia] || filterMedia, '');
+      html2 += '</div>';
+    } else if (!isSep && filterDia) {
+      html2 += '<div class="dash-row" style="margin-top:6px">';
+      html2 += ditem('Filterkar', 'Ø' + filterDia, 'mm');
+      if (filterMedia) html2 += ditem('Medie', mediaMap[filterMedia] || filterMedia, '');
+      if (mp.comboFlow) html2 += ditem('Flow', mp.comboFlow, 'm³/t');
+      html2 += '</div>';
+    }
+
+    // Varmepumpe
+    if (mp.hpWatt || mp.hpModel) {
+      html2 += '<div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);margin:8px 0 6px">Varmepumpe</div>';
+      html2 += '<div class="dash-row">';
+      if (mp.hpModel)  html2 += ditem('Model', mp.hpModel, '');
+      if (mp.hpWatt)   html2 += ditem('El-input', mp.hpWatt, 'W');
+      if (mp.hpHeat)   html2 += ditem('Varmeydelse', mp.hpHeat, 'kW');
+      if (mp.hpCop)    html2 += ditem('COP', mp.hpCop, '');
+      if (mp.hpHours)  html2 += ditem('Drift', mp.hpHours, 't/dag');
+      html2 += '</div>';
+    }
+
+    // Ekstraudstyr tags
+    if (mp.extras && mp.extras.length > 0) {
+      const extMap = {
+        salt: {label:'Saltklorinator', cls:'dtag-teal'},
+        'ph-auto': {label:'Auto pH', cls:'dtag-blue'},
+        uv: {label:'UV-anlæg', cls:'dtag-amber'},
+        robot: {label:'Poolrobot', cls:'dtag-gray'},
+        cover: {label:'Automatisk låg', cls:'dtag-gray'},
+        heatex: {label:'Varmeveksler', cls:'dtag-amber'},
+        waterfall: {label:'Vandfald/dyser', cls:'dtag-blue'},
+        light: {label:'Belysning', cls:'dtag-gray'},
+        spa: {label:'Spa/boblesystem', cls:'dtag-blue'},
+      };
+      html2 += '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:10px">';
+      mp.extras.forEach(id => {
+        const ex = extMap[id];
+        if (ex) html2 += '<span class="dash-tag ' + ex.cls + '"><i class="ti ti-check" style="font-size:10px"></i>' + ex.label + '</span>';
+      });
+      html2 += '</div>';
+    }
+
+    if (mp.elprice) {
+      html2 += '<div style="font-size:12px;color:var(--text3);margin-top:8px"><i class="ti ti-currency-krone-danish" style="font-size:12px;vertical-align:-1px;margin-right:3px"></i>Strømpris: ' + mp.elprice + ' kr/kWh</div>';
+    }
+
+    html2 += '</div>'; // dash-card
+  }
+  html2 += '</div>'; // dash-section
+
+  // ── BEREGNEDE ANBEFALINGER ─────────────────────────────────────────────────
+  const pfVol = ls.pfVol || (mp && mp.vol);
+  const pfTurns = parseFloat(ls.pfTurns) || 3;
+  const pfPipe = ls.pfPipe || '50';
+  const pfPipelen = parseFloat(ls.pfPipelen) || 15;
+  const pwWatt = parseFloat(ls.pwWatt) || 0;
+  const pwType = ls.pwType || 'fixed';
+  const pwPrice = parseFloat(ls.pwPrice) || 3.0;
+  const pwHpWatt = parseFloat(ls.pwHpWatt) || 0;
+  const pwHpHours = parseFloat(ls.pwHpHours) || 0;
+  const pwHpMonths = parseFloat(ls.pwHpMonths) || 5;
+
+  if (pfVol) {
+    const vol2 = parseFloat(pfVol);
+    const flowH = 24 / pfTurns;
+    const flowNeeded = vol2 / flowH;
+    const headLoss = 0.5 + pfPipelen * 0.02;
+    const head = Math.ceil(headLoss + 3);
+    const filterAreaNeeded = (flowNeeded * 1.25) / 15;
+    const filterDiaRec = Math.ceil(Math.sqrt((filterAreaNeeded * 4) / Math.PI) * 1000 / 25) * 25;
+    const filterDiaMin = Math.ceil(Math.sqrt((flowNeeded / 25 * 4) / Math.PI) * 1000 / 25) * 25;
+    const pumpKwCalc2 = (flowNeeded * 1.15 / 3600 * 1000 * 9.81 * head) / (0.55 * 1000);
+    const pumpWCalc = Math.round(Math.ceil(pumpKwCalc2 * 10) / 10 * 1000);
+
+    html2 += '<div class="dash-section">';
+    html2 += '<div class="dash-header"><div class="dash-header-left"><i class="ti ti-filter"></i>Pumpe &amp; filter – anbefalinger</div><span class="dash-edit" onclick="nav(\'filter\')"><i class="ti ti-arrow-right" style="font-size:12px"></i>Beregner</span></div>';
+    html2 += '<div class="dash-card">';
+    html2 += '<div class="dash-row">';
+    html2 += ditem('Volumen', parseFloat(pfVol).toFixed(1), 'm³');
+    html2 += ditem('Omløb/døgn', pfTurns, 'x');
+    html2 += ditem('Flow nødvendigt', flowNeeded.toFixed(1), 'm³/t');
+    html2 += ditem('Omløbstid', flowH.toFixed(1), 't pr. omløb');
+    html2 += '</div>';
+    html2 += '<div class="dash-divider"></div>';
+    html2 += '<div class="dash-row">';
+    html2 += '<div class="dash-item"><div class="di-label">Anbefalet pumpe (min.)</div><div class="di-value">' + pumpWCalc + ' W</div><div class="di-unit">· ' + Math.ceil(flowNeeded * 1.15).toFixed(0) + ' m³/t · ' + head + ' m løftehøjde</div></div>';
+    html2 += '</div>';
+    html2 += '<div class="dash-row" style="margin-top:8px">';
+    html2 += '<div class="dash-item"><div class="di-label">Filterkar anbefalet</div><div class="di-value">Ø' + filterDiaRec + ' mm</div><div class="di-unit">min. Ø' + filterDiaMin + ' mm · ved 15 m/t filterhastighed</div></div>';
+    html2 += '</div>';
+    html2 += '<div class="dash-row" style="margin-top:6px">';
+    html2 += ditem('Rørdiameter', pfPipe, 'mm');
+    html2 += ditem('Rørlængde', pfPipelen, 'm');
+    html2 += '</div>';
+    html2 += '</div></div>'; // card + section
+  }
+
+  // ── STRØM ──────────────────────────────────────────────────────────────────
+  if (pwWatt > 0) {
+    const kw = pwWatt / 1000;
+    const kwdFixed = kw * 24;
+    let kwdPump = kwdFixed;
+    let savingPct = 0;
+    if (pwType === 'var') {
+      const fh2 = parseFloat(ls.pwFullH) || 6;
+      const lf2 = parseFloat(ls.pwLowF) || 0.4;
+      const kwdVar = kw * fh2 + kw * Math.pow(lf2, 3) * (24 - fh2);
+      savingPct = Math.round((1 - kwdVar / kwdFixed) * 100);
+      kwdPump = kwdVar;
+    }
+    const kwdHP = pwHpWatt > 0 ? (pwHpWatt / 1000) * pwHpHours : 0;
+    const kwdTotal = kwdPump + kwdHP;
+    const krDay = kwdTotal * pwPrice;
+    const krMon = krDay * 30;
+
+    html2 += '<div class="dash-section">';
+    html2 += '<div class="dash-header"><div class="dash-header-left"><i class="ti ti-bolt"></i>Strøm</div><span class="dash-edit" onclick="nav(\'power\')"><i class="ti ti-arrow-right" style="font-size:12px"></i>Beregner</span></div>';
+    html2 += '<div class="dash-card">';
+    html2 += '<div class="dash-row">';
+    html2 += ditem('Pumpe', pwWatt + ' W' + (pwType === 'var' ? ' (variabel)' : ' (fast)'), '');
+    html2 += ditem('Pumpe pr. dag', kwdPump.toFixed(1), 'kWh' + (savingPct > 0 ? ' · ' + savingPct + '% spart' : ''));
+    html2 += ditem('Pumpe pr. måned', Math.round(kwdPump * 30) + ' kWh', '· ' + Math.round(kwdPump * 30 * pwPrice) + ' kr');
+    html2 += '</div>';
+    if (kwdHP > 0) {
+      html2 += '<div class="dash-divider"></div>';
+      html2 += '<div class="dash-row">';
+      html2 += ditem('Varmepumpe', pwHpWatt + ' W · ' + pwHpHours + ' t/dag', '');
+      html2 += ditem('VP pr. dag', kwdHP.toFixed(1), 'kWh');
+      html2 += ditem('VP pr. måned', Math.round(kwdHP * 30) + ' kWh', '· ' + Math.round(kwdHP * 30 * pwPrice) + ' kr');
+      html2 += '</div>';
+      html2 += '<div class="dash-divider"></div>';
+      html2 += '<div class="dash-row">';
+      html2 += '<div class="dash-item"><div class="di-label">Samlet pr. måned</div><div class="di-value" style="font-size:18px;color:var(--g800)">' + Math.round(krMon) + ' kr</div><div class="di-unit">' + Math.round(kwdTotal * 30) + ' kWh · pumpe + varmepumpe</div></div>';
+      html2 += ditem('VP sæson (' + pwHpMonths + ' mdr.)', Math.round(kwdHP * 30 * pwHpMonths * pwPrice) + ' kr', 'estimat');
+      html2 += '</div>';
+    } else {
+      html2 += '<div class="dash-row" style="margin-top:4px">';
+      html2 += '<div class="dash-item"><div class="di-label">Samlet pr. måned</div><div class="di-value" style="font-size:18px;color:var(--g800)">' + Math.round(krMon) + ' kr</div><div class="di-unit">ved ' + pwPrice + ' kr/kWh</div></div>';
+      html2 += '</div>';
+    }
+    html2 += '</div></div>';
+  }
+
+  // ── SALT ───────────────────────────────────────────────────────────────────
+  const saltVol = parseFloat(ls.saltVol || (mp && mp.vol)) || 0;
+  const saltCur = parseFloat(ls.saltCur) || 0;
+  const saltTarget = parseFloat(ls.saltTarget) || 3.2;
+  if (saltVol > 0 && (mp && mp.extras && mp.extras.includes('salt'))) {
+    const diff2 = Math.max(0, saltTarget - saltCur);
+    const kgNeeded2 = (diff2 * saltVol * 1000) / (1000 * 0.99);
+    html2 += '<div class="dash-section">';
+    html2 += '<div class="dash-header"><div class="dash-header-left"><i class="ti ti-droplets"></i>Salt</div><span class="dash-edit" onclick="nav(\'salt\')"><i class="ti ti-arrow-right" style="font-size:12px"></i>Beregner</span></div>';
+    html2 += '<div class="dash-card">';
+    html2 += '<div class="dash-row">';
+    html2 += ditem('Nuværende', saltCur.toFixed(1), 'g/L');
+    html2 += ditem('Målværdi', saltTarget, 'g/L');
+    if (kgNeeded2 > 0.1) {
+      html2 += '<div class="dash-item"><div class="di-label">Mangler</div><div class="di-value" style="color:var(--a800)">' + kgNeeded2.toFixed(1) + ' kg</div><div class="di-unit">salt at tilsætte</div></div>';
+    } else {
+      html2 += '<div class="dash-item"><div class="di-label">Status</div><div class="di-value" style="color:var(--g800)">OK</div><div class="di-unit">målværdi nået</div></div>';
+    }
+    html2 += '</div></div></div>';
+  }
+
+  // ── VANDKEMI ───────────────────────────────────────────────────────────────
+  html2 += '<div class="dash-section">';
+  html2 += '<div class="dash-header"><div class="dash-header-left"><i class="ti ti-flask"></i>Vandkemi – seneste måling</div><span class="dash-edit" onclick="nav(\'chem\')"><i class="ti ti-arrow-right" style="font-size:12px"></i>Log</span></div>';
+
+  if (!lastChem) {
+    html2 += '<div class="dash-card-empty" onclick="nav(\'chem\')">';
+    html2 += '<p><i class="ti ti-plus-circle" style="font-size:16px;color:#378ADD"></i>Ingen målinger endnu – klik for at tilføje den første måling</p>';
+    html2 += '</div>';
+  } else {
+    const chemParams = [
+      {k:'ph',  label:'pH',         unit:'',      ranges:{low:7.2,high:7.6}},
+      {k:'cl',  label:'Fri klor',   unit:'mg/L',  ranges:{low:0.5,high:1.5}},
+      {k:'alk', label:'Alkalinitet',unit:'mg/L',  ranges:{low:80, high:120}},
+      {k:'ca',  label:'Kalcium',    unit:'mg/L',  ranges:{low:200,high:400}},
+      {k:'cya', label:'CYA',        unit:'mg/L',  ranges:{low:20, high:50}},
+      {k:'salt',label:'Salt',       unit:'mg/L',  ranges:{low:2700,high:3400}},
+      {k:'temp',label:'Temp.',      unit:'°C',    ranges:null},
+    ];
+    const st = overallSt(lastChem);
+    const stIcon  = st==='ok' ? 'ti-circle-check' : st==='warn' ? 'ti-alert-triangle' : 'ti-alert-circle';
+    const stColor = st==='ok' ? 'var(--g800)' : st==='warn' ? 'var(--a800)' : 'var(--red)';
+    const stText  = st==='ok' ? 'Alt OK' : st==='warn' ? 'Juster snarest' : 'Kræver opmærksomhed';
+
+    html2 += '<div class="dash-card">';
+    html2 += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">';
+    html2 += '<span class="dash-chem-date"><i class="ti ti-clock" style="font-size:11px;vertical-align:-1px;margin-right:3px"></i>' + lastChem.date + (lastChem.note ? ' · ' + lastChem.note : '') + '</span>';
+    html2 += '<span style="display:flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:' + stColor + '"><i class="ti ' + stIcon + '" style="font-size:13px"></i>' + stText + '</span>';
+    html2 += '</div>';
+
+    html2 += '<div class="chem-mini-grid">';
+    chemParams.forEach(p => {
+      const val = lastChem[p.k];
+      if (!val && val !== 0) return;
+      const fval = parseFloat(val);
+      let cls = 'cmi-na';
+      if (p.ranges) {
+        cls = fval < p.ranges.low ? 'cmi-low' : fval > p.ranges.high ? 'cmi-high' : 'cmi-ok';
+      }
+      const display = p.k === 'ph' ? fval.toFixed(1) : p.k === 'temp' ? fval.toFixed(1) : fval >= 100 ? Math.round(fval).toString() : fval.toFixed(1);
+      html2 += '<div class="chem-mini-item ' + cls + '"><div class="cmi-label">' + p.label + '</div><div class="cmi-val">' + display + '</div><div class="cmi-unit">' + p.unit + '</div></div>';
+    });
+    html2 += '</div>';
+
+    // Show condensed recommendation if not all OK
+    if (st !== 'ok' && lastChem.recs) {
+      const shortRec = lastChem.recs.replace(/<[^>]*>/g, '').split('\n').filter(Boolean).slice(0,2).join(' ');
+      html2 += '<div style="margin-top:8px;padding:8px 10px;background:var(--b50);border-radius:var(--r);font-size:12px;color:var(--b800);line-height:1.5">';
+      html2 += '<i class="ti ti-sparkles" style="font-size:12px;vertical-align:-1px;margin-right:3px"></i>';
+      html2 += shortRec.length > 180 ? shortRec.slice(0, 180) + '...' : shortRec;
+      html2 += ' <span style="cursor:pointer;text-decoration:underline;color:var(--b600)" onclick="nav(\'chem\')">Se fuld anbefaling</span>';
+      html2 += '</div>';
+    }
+    html2 += '</div>'; // dash-card
+
+    // Previous measurements count
+    if (log.length > 1) {
+      html2 += '<div style="font-size:12px;color:var(--text3);margin-top:4px;text-align:right;cursor:pointer" onclick="nav(\'chem\')">' + (log.length-1) + ' tidligere måling' + (log.length-1 === 1 ? '' : 'er') + ' i log →</div>';
+    }
+  }
+  html2 += '</div>'; // dash-section
+
+  el.innerHTML = html2;
+}
+
+function ditem(label, value, unit) {
+  return '<div class="dash-item"><div class="di-label">' + label + '</div><div class="di-value">' + value + '</div>' + (unit ? '<div class="di-unit">' + unit + '</div>' : '') + '</div>';
+}
+
+// ── VANDVEJ DIAGRAM ───────────────────────────────────────────────────────────
+function renderFlowDiagram() {
+  const container = document.getElementById('home-flow-container');
+  if (!container) return;
+  const mp = getMPProfile();
+
+  if (!mp || !mp.vol) {
+    container.innerHTML = '<div class="flow-empty" onclick="nav(\'mypool\')"><i class="ti ti-ripple" aria-hidden="true"></i>Udfyld "Min Pool" for at se vandvejsdiagrammet for din pool</div>';
+    return;
+  }
+
+  // Build equipment list in correct flow order
+  // Korrekt vandvejsrækkefølge: Pool → Skimmer → Pumpe → Filter → UV → Varmepumpe/Varmeveksler → Salt/pH → Retur til pool
+  const hasSalt   = mp.extras && mp.extras.includes('salt');
+  const hasPhAuto = mp.extras && mp.extras.includes('ph-auto');
+  const hasUV     = mp.extras && mp.extras.includes('uv');
+  const hasHP     = (mp.hpWatt && parseFloat(mp.hpWatt) > 0) || mp.hpModel;
+  const hasHeatEx = mp.extras && mp.extras.includes('heatex');
+  const hasWF     = mp.extras && mp.extras.includes('waterfall');
+  const hasCover  = mp.extras && mp.extras.includes('cover');
+  const hasRobot  = mp.extras && mp.extras.includes('robot');
+  const hasLight  = mp.extras && mp.extras.includes('light');
+
+  const isSeparate = !mp.systype || mp.systype === 'separate';
+  const pumpLabel  = isSeparate
+    ? (mp.pumpModel ? shortenModel(mp.pumpModel) : 'Pumpe')
+    : (mp.comboModel ? shortenModel(mp.comboModel) : 'Filteranlæg');
+  const filterLabel = isSeparate
+    ? (mp.filterModel ? shortenModel(mp.filterModel) : 'Sandfilter')
+    : null; // combo has pump+filter as one
+
+  const mediaLabels = { sand:'Filtersand', glass:'Filterglas', afm:'AFM glas', balls:'Filterkugler' };
+  const filterMedia = isSeparate
+    ? (mp.filterMedia ? mediaLabels[mp.filterMedia] : '')
+    : (mp.comboMedia ? mediaLabels[mp.comboMedia] : '');
+
+  // Build node list
+  const nodes = [];
+  nodes.push({ id:'pool',   icon:'ti-ripple',       label:'Pool', sub: mp.vol ? mp.vol+' m³' : '', color:'blue', main:true });
+  nodes.push({ id:'skim',   icon:'ti-arrow-up',      label:'Skimmer', sub:'Overflade', color:'gray' });
+
+  if (isSeparate) {
+    nodes.push({ id:'pump',   icon:'ti-engine',        label:pumpLabel, sub: mp.pumpWatt ? mp.pumpWatt+' W' : 'Pumpe', color:'teal' });
+    nodes.push({ id:'filter', icon:'ti-filter',        label:filterLabel || 'Filter', sub: filterMedia || 'Sandfilter', color:'teal' });
+  } else {
+    nodes.push({ id:'combo',  icon:'ti-box',           label:pumpLabel, sub: filterMedia || 'Pumpe + filter', color:'teal' });
+  }
+
+  if (hasUV)     nodes.push({ id:'uv',     icon:'ti-sun',           label:'UV-anlæg', sub:'Desinfektion', color:'amber' });
+  if (hasHP)     nodes.push({ id:'hp',     icon:'ti-temperature-plus', label: mp.hpModel ? shortenModel(mp.hpModel) : 'Varmepumpe', sub: mp.hpWatt ? mp.hpWatt+' W' : 'Opvarmning', color:'coral' });
+  if (hasHeatEx) nodes.push({ id:'heatex', icon:'ti-exchange',      label:'Varmeveksler', sub:'Opvarmning', color:'coral' });
+  if (hasSalt)   nodes.push({ id:'salt',   icon:'ti-droplets',      label: mp.saltModel ? shortenModel(mp.saltModel) : 'Saltklorinator', sub:'Desinfektion', color:'purple' });
+  if (hasPhAuto) nodes.push({ id:'ph',     icon:'ti-flask',         label:'Auto pH', sub: mp.phType ? phTypeLabel(mp.phType) : 'Dosering', color:'purple' });
+
+  nodes.push({ id:'retur',  icon:'ti-arrow-down-circle', label:'Retur til pool', sub:'Bundindblæsning', color:'blue', main:true });
+
+  // Accessories (don't affect flow, shown separately)
+  const accessories = [];
+  if (hasRobot) accessories.push({ icon:'ti-robot',   label:'Poolrobot' });
+  if (hasCover) accessories.push({ icon:'ti-stack',   label:'Automatisk låg' });
+  if (hasLight) accessories.push({ icon:'ti-bulb',    label:'Belysning' });
+  if (hasWF)    accessories.push({ icon:'ti-waterfall', label:'Vandfald/dyser' });
+
+  container.innerHTML = buildFlowSVG(nodes, accessories, mp, hasSalt, hasHP || hasHeatEx, hasPhAuto);
+}
+
+function shortenModel(s) {
+  if (!s) return '';
+  // Keep first 18 chars max
+  return s.length > 18 ? s.slice(0, 16) + '…' : s;
+}
+
+function phTypeLabel(t) {
+  return t === 'minus' ? 'pH-minus' : t === 'both' ? 'pH ±' : t === 'co2' ? 'CO₂' : 'Dosering';
+}
+
+function buildFlowSVG(nodes, accessories, mp, hasSalt, hasHeat, hasPhAuto) {
+  const N       = nodes.length;
+  const BOX_W   = 110;
+  const BOX_H   = 56;
+  const GAP_X   = 28;   // horizontal gap between boxes
+  const ROW_H   = 110;  // vertical distance between rows
+  const COLS    = 4;    // boxes per row
+  const PAD_L   = 20;
+  const PAD_T   = 24;
+
+  // Color map
+  const colorMap = {
+    blue:   { fill:'#E6F1FB', stroke:'#85B7EB', title:'#0C447C', sub:'#185FA5' },
+    teal:   { fill:'#E1F5EE', stroke:'#5DCAA5', title:'#085041', sub:'#0F6E56' },
+    gray:   { fill:'#F1EFE8', stroke:'#B4B2A9', title:'#444441', sub:'#5F5E5A' },
+    amber:  { fill:'#FAEEDA', stroke:'#EF9F27', title:'#633806', sub:'#854F0B' },
+    coral:  { fill:'#FAECE7', stroke:'#F0997B', title:'#4A1B0C', sub:'#993C1D' },
+    purple: { fill:'#EEEDFE', stroke:'#AFA9EC', title:'#26215C', sub:'#534AB7' },
+  };
+  const colorMapDark = {
+    blue:   { fill:'#0c2a45', stroke:'#85B7EB', title:'#B5D4F4', sub:'#6AACE8' },
+    teal:   { fill:'#085041', stroke:'#5DCAA5', title:'#9FE1CB', sub:'#5DCAA5' },
+    gray:   { fill:'#2C2C2A', stroke:'#888780', title:'#D3D1C7', sub:'#B4B2A9' },
+    amber:  { fill:'#2a1e06', stroke:'#EF9F27', title:'#FAC775', sub:'#FAB040' },
+    coral:  { fill:'#2a0f08', stroke:'#F0997B', title:'#F5C4B3', sub:'#F0997B' },
+    purple: { fill:'#1e1030', stroke:'#AFA9EC', title:'#CECBF6', sub:'#AFA9EC' },
+  };
+
+  // Lay out nodes in rows of COLS
+  const rows = [];
+  for (let i = 0; i < N; i += COLS) rows.push(nodes.slice(i, i + COLS));
+
+  // Total width used per row
+  const rowW  = (col) => col.length * BOX_W + (col.length - 1) * GAP_X;
+  const totalW = 680;
+
+  // Build SVG string
+  let shapes = '';
+  let arrows  = '';
+
+  // Track box centers for arrows
+  const centers = []; // [{cx, cy}]
+
+  rows.forEach((row, ri) => {
+    const rw     = rowW(row);
+    const startX = (totalW - rw) / 2;
+    const y      = PAD_T + ri * ROW_H;
+
+    row.forEach((node, ci) => {
+      const x  = startX + ci * (BOX_W + GAP_X);
+      const cx = x + BOX_W / 2;
+      const cy = y + BOX_H / 2;
+      centers.push({ cx, cy, x, y, node });
+
+      const c = colorMap[node.color] || colorMap.gray;
+      // Slightly larger for main nodes
+      const isMain = node.main;
+      const bw = isMain ? BOX_W + 8 : BOX_W;
+      const bx = isMain ? x - 4 : x;
+      const sw = isMain ? 1.5 : 0.5;
+
+      shapes += `<g class="node" onclick="nav('mypool')" style="cursor:pointer">`;
+      shapes += `<rect x="${bx}" y="${y}" width="${bw}" height="${BOX_H}" rx="8" fill="${c.fill}" stroke="${c.stroke}" stroke-width="${sw}"/>`;
+      // Icon
+      shapes += `<text x="${cx}" y="${y+18}" text-anchor="middle" font-size="14" font-family="tabler-icons" fill="${c.title}" aria-hidden="true">${iconCode(node.icon)}</text>`;
+      // Label
+      shapes += `<text x="${cx}" y="${y+34}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="500" fill="${c.title}" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">${escX(node.label)}</text>`;
+      // Sub
+      if (node.sub) {
+        shapes += `<text x="${cx}" y="${y+47}" text-anchor="middle" dominant-baseline="central" font-size="10" fill="${c.sub}" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">${escX(node.sub)}</text>`;
+      }
+      shapes += `</g>`;
+    });
+  });
+
+  // Draw arrows between consecutive nodes
+  // Snake layout: row 0 left→right, row 1 right→left, etc.
+  for (let i = 0; i < centers.length - 1; i++) {
+    const cur  = centers[i];
+    const next = centers[i + 1];
+    const curRow  = Math.floor(i / COLS);
+    const nextRow = Math.floor((i + 1) / COLS);
+
+    if (curRow === nextRow) {
+      // Same row: horizontal arrow
+      const ltr = (curRow % 2 === 0);
+      const x1 = ltr ? cur.x + BOX_W     : cur.x;
+      const x2 = ltr ? next.x             : next.x + BOX_W;
+      const ay = cur.cy;
+      arrows += `<line x1="${x1}" y1="${ay}" x2="${x2 + (ltr?-8:8)}" y2="${ay}" stroke="#378ADD" stroke-width="1.5" marker-end="url(#farrow)" opacity="0.6"/>`;
+    } else {
+      // Row transition: vertical arrow connecting end of one row to start of next
+      const ltr = (curRow % 2 === 0); // current row direction
+      // End node of this row
+      const endNode = centers[i];
+      // Start node of next row
+      const startNode = centers[i + 1];
+      const ex = ltr ? endNode.x + BOX_W / 2 : endNode.x + BOX_W / 2;
+      const sy = startNode.y;
+      const ey = endNode.y + BOX_H;
+      const sx = startNode.cx;
+      // L-shaped path: down then across
+      const midY = ey + (sy - ey) / 2;
+      arrows += `<path d="M${ex} ${ey} L${ex} ${midY} L${sx} ${midY} L${sx} ${sy}" fill="none" stroke="#378ADD" stroke-width="1.5" marker-end="url(#farrow)" opacity="0.6"/>`;
+    }
+  }
+
+  // Accessories row
+  let accSVG = '';
+  let svgH = PAD_T + rows.length * ROW_H + 20;
+
+  if (accessories.length > 0) {
+    const accY = svgH + 10;
+    const accW = 90;
+    const accGap = 12;
+    const totalAccW = accessories.length * accW + (accessories.length - 1) * accGap;
+    const accStartX = (totalW - totalAccW) / 2;
+    svgH = accY + 44 + 30;
+
+    // Label
+    accSVG += `<text x="${totalW/2}" y="${accY - 4}" text-anchor="middle" font-size="11" fill="#9a9a96" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">Tilbehør – påvirker ikke vandvejen</text>`;
+
+    accessories.forEach((acc, ai) => {
+      const ax = accStartX + ai * (accW + accGap);
+      const acx = ax + accW / 2;
+      accSVG += `<g>`;
+      accSVG += `<rect x="${ax}" y="${accY}" width="${accW}" height="44" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>`;
+      accSVG += `<text x="${acx}" y="${accY+15}" text-anchor="middle" font-size="13" font-family="tabler-icons" fill="#5F5E5A" aria-hidden="true">${iconCode(acc.icon)}</text>`;
+      accSVG += `<text x="${acx}" y="${accY+34}" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5F5E5A" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">${escX(acc.label)}</text>`;
+      accSVG += `</g>`;
+    });
+  }
+
+  // Wrong-order warnings
+  let warnSVG = '';
+  let warnY = svgH + (accessories.length > 0 ? 10 : 10);
+  const warns = [];
+  if (hasHeat && hasSalt) {
+    warns.push('Varmepumpe/veksler skal placeres FØR saltklorinator i vandvejen');
+  }
+  if (hasPhAuto && hasSalt) {
+    warns.push('pH-regulering placeres typisk EFTER saltklorinatoranlægget');
+  }
+  if (warns.length > 0) {
+    svgH = warnY + warns.length * 22 + 20;
+    warns.forEach((w, wi) => {
+      warnSVG += `<g>`;
+      warnSVG += `<rect x="20" y="${warnY + wi*24}" width="640" height="20" rx="4" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>`;
+      warnSVG += `<text x="32" y="${warnY + wi*24 + 13}" font-size="11" fill="#633806" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">⚠ ${escX(w)}</text>`;
+      warnSVG += `</g>`;
+    });
+    svgH = warnY + warns.length * 28 + 16;
+  }
+
+  return `<div style="background:var(--bg);border:.5px solid var(--border);border-radius:var(--rl);padding:1rem;margin-bottom:1rem">
+<div style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;display:flex;align-items:center;gap:6px;justify-content:space-between">
+  <span><i class="ti ti-ripple" aria-hidden="true" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>Vandvejsdiagram – korrekt rækkefølge</span>
+  <span style="font-size:11px;font-weight:400;color:var(--text3);cursor:pointer" onclick="nav('mypool')"><i class="ti ti-edit" style="font-size:12px;vertical-align:-1px"></i> Rediger udstyr</span>
+</div>
+<svg width="100%" viewBox="0 0 680 ${svgH}" role="img" aria-label="Vandvejsdiagram for din pool">
+  <title>Vandvej – ${mp.name || 'din pool'}</title>
+  <defs>
+    <marker id="farrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#378ADD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  ${arrows}
+  ${shapes}
+  ${accSVG}
+  ${warnSVG}
+</svg>
+</div>`;
+}
+
+function iconCode(cls) {
+  // Map tabler icon class names to unicode codepoints for SVG text rendering
+  // Tabler icons webfont uses specific unicode range
+  const map = {
+    'ti-ripple':'\uEB48','ti-engine':'\uEA53','ti-filter':'\uEA71',
+    'ti-flask':'\uEA74','ti-droplets':'\uEA4E','ti-temperature-plus':'\uECD4',
+    'ti-sun':'\uEBF9','ti-exchange':'\uEA5C','ti-box':'\uEA28',
+    'ti-arrow-up':'\uEA22','ti-arrow-down-circle':'\uEA0D',
+    'ti-robot':'\uEB4B','ti-stack':'\uEBF1','ti-bulb':'\uEA2B',
+    'ti-waterfall':'\uECB4','ti-user-circle':'\uEC12',
+  };
+  return map[cls] || '\uEA2B';
+}
+
+function escX(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function addMeasurement(){
+  const e={
+    id:Date.now(),date:new Date().toLocaleString('da-DK'),
+    ph:v('m-ph'),cl:v('m-cl'),alk:v('m-alk'),ca:v('m-ca'),cya:v('m-cya'),salt:v('m-salt'),temp:v('m-temp'),note:v('m-note'),
+    recs:null,loading:false
+  };
+  if(!e.ph&&!e.cl&&!e.alk){alert('Angiv mindst pH, klor eller alkalinitet.');return;}
+  const mp=getMPProfile();
+  e.recs = buildChemRecs(e, mp);
+  const log=getChemLog();log.unshift(e);saveChemLog(log);renderChemLog();
+  ['m-ph','m-cl','m-alk','m-ca','m-cya','m-salt','m-temp','m-note'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+// ── REGELBASERET KEMIANBEFALINGER ─────────────────────────────────────────────
+// Kilder: PHTA, TroubleFreePool, In The Swim, Pool & Hot Tub Alliance, LaMotte, Orenda
+function buildChemRecs(e, mp) {
+  const hasSalt   = mp && mp.extras && mp.extras.includes('salt');
+  const hasPhAuto = mp && mp.extras && mp.extras.includes('ph-auto');
+  const hasUV     = mp && mp.extras && mp.extras.includes('uv');
+  const vol       = mp && mp.vol ? parseFloat(mp.vol) : 0;
+  const temp      = parseFloat(e.temp) || 22;
+  const ph        = parseFloat(e.ph);
+  const cl        = parseFloat(e.cl);
+  const alk       = parseFloat(e.alk);
+  const ca        = parseFloat(e.ca);
+  const cya       = parseFloat(e.cya);
+  const salt      = parseFloat(e.salt);
+
+  // Ranges justeret for saltpool vs. normal pool
+  // Kilde: TroubleFreePool + PHTA + Sky Blue + In The Swim
+  const ranges = {
+    ph:   { low: 7.2, high: hasSalt ? 7.6 : 7.8, ideal: [7.2, 7.6] },
+    cl:   {
+      low:  hasSalt ? 1.0 : 0.5,
+      high: hasUV   ? 1.5 : 3.0,
+      ideal: hasSalt ? [1.0, 3.0] : [1.0, 3.0]
+    },
+    alk:  { low: hasSalt ? 60 : 80, high: 120, ideal: [80, 120] },
+    ca:   { low: 200, high: 400, ideal: [200, 350] },
+    cya:  { low: 20,  high: hasSalt ? 90 : 60, ideal: hasSalt ? [60, 80] : [30, 50] },
+    salt: { low: 2700, high: 3400, ideal: [3000, 3200] }
+  };
+
+  const recs  = [];  // { level:'ok'|'warn'|'bad', param, msg, action }
+  let allOk   = true;
+
+  // Helper: kg of chemical per m³ per ppm
+  function doseKg(ppmNeeded, chemFactor) {
+    if (!vol || !ppmNeeded) return null;
+    // ppmNeeded * vol (m3) * 1000 (L/m3) / 1000000 (ppm->fraction) * 1000 (g->kg) / chemFactor
+    return ((ppmNeeded * vol) / chemFactor).toFixed(2);
+  }
+
+  // ── pH ──────────────────────────────────────────────────────────────────────
+  if (!isNaN(ph)) {
+    if (ph < 7.0) {
+      allOk = false;
+      const rise = Math.round((7.4 - ph) * 10) / 10;
+      const sodaDose = vol ? (rise * vol * 18).toFixed(0) + ' g' : null; // ca. 18g soda/m³/0.1 pH
+      recs.push({ level:'bad', param:'pH', icon:'ti-alert-circle',
+        msg: 'pH ' + ph.toFixed(1) + ' er <strong>for lavt</strong> (under 7.0). Vandet er korrosivt og kan beskadige pool, pumpe og brugernes øjne.',
+        action: 'Tilsæt <strong>pH-Plus (natriumkarbonat / soda)</strong>' + (sodaDose ? ' – ca. ' + sodaDose + ' pr. 0.1 pH-stigning for din pool' : '') + '. Tilsæt lidt ad gangen og gentest efter 4–6 timers cirkulation.' + (hasPhAuto ? ' <em>Din automatiske pH-regulering burde fange dette – tjek om doseringspumpen virker.</em>' : '')
+      });
+    } else if (ph < 7.2) {
+      allOk = false;
+      recs.push({ level:'warn', param:'pH', icon:'ti-alert-triangle',
+        msg: 'pH ' + ph.toFixed(1) + ' er <strong>lidt lavt</strong> (ideal 7.2–7.6).',
+        action: 'Tilsæt lidt <strong>pH-Plus</strong>. Gentest efter 4–6 timer.' + (hasPhAuto ? ' Din automatiske pH-regulering burde justere dette.' : '')
+      });
+    } else if (ph > 8.0) {
+      allOk = false;
+      const drop = Math.round((ph - 7.4) * 10) / 10;
+      const acidDose = vol ? (drop * vol * 50).toFixed(0) + ' ml 14,5% saltsyre' : null; // ca.
+      recs.push({ level:'bad', param:'pH', icon:'ti-alert-circle',
+        msg: 'pH ' + ph.toFixed(1) + ' er <strong>for højt</strong>. Klor mister effektivitet – ved pH 8.0 er kun ~20% aktivt. Risiko for kalkudfældning.',
+        action: 'Tilsæt <strong>pH-Minus (saltsyre / svovlsyre)</strong>' + (acidDose ? ' – estimeret ' + acidDose : '') + '. Tilsæt forsigtigt med pumpen kørende. Gentest efter 4–6 timer.' + (hasPhAuto ? ' <em>Din automatiske pH-regulering burde fange dette – tjek beholderniveau.</em>' : '')
+      });
+    } else if (ph > 7.6) {
+      allOk = false;
+      recs.push({ level:'warn', param:'pH', icon:'ti-alert-triangle',
+        msg: 'pH ' + ph.toFixed(1) + ' er <strong>lidt højt</strong> (ideal 7.2–7.6). ' + (hasSalt ? 'Saltpoole har tendens til pH-stigning.' : ''),
+        action: 'Tilsæt lidt <strong>pH-Minus</strong> og gentest.' + (hasPhAuto ? ' Automatisk pH-regulering burde justere.' : '')
+      });
+    } else {
+      recs.push({ level:'ok', param:'pH', icon:'ti-circle-check',
+        msg: 'pH ' + ph.toFixed(1) + ' er <strong>OK</strong> ✓', action: null });
+    }
+  }
+
+  // ── KLOR ─────────────────────────────────────────────────────────────────────
+  if (!isNaN(cl)) {
+    const clLow = ranges.cl.low;
+    const clHigh = ranges.cl.high;
+    if (cl < 0.3) {
+      allOk = false;
+      recs.push({ level:'bad', param:'Klor', icon:'ti-alert-circle',
+        msg: 'Fri klor ' + cl.toFixed(1) + ' mg/L er <strong>kritisk lavt</strong>. Bakterier og alger kan vokse ukontrolleret.',
+        action: hasSalt
+          ? 'Øg saltklorinatorens output eller driftstid. Tjek om saltindholdet er tilstrækkeligt (2700–3400 mg/L). Overvej et stødklor (chok) med calciumhypochlorit.'
+          : 'Tilsæt <strong>stødklor (chok)</strong> straks' + (vol ? ' – ca. ' + (vol * 10).toFixed(0) + ' g calciumhypochlorit (70%)' : '') + '. Kør pumpen natten over. Gentest om morgenen.'
+      });
+    } else if (cl < clLow) {
+      allOk = false;
+      recs.push({ level:'warn', param:'Klor', icon:'ti-alert-triangle',
+        msg: 'Fri klor ' + cl.toFixed(1) + ' mg/L er <strong>lav</strong> (anbefalet ' + clLow + '–' + clHigh + ' mg/L).',
+        action: hasSalt
+          ? 'Øg saltklorinatorens output eller tilsæt køretid. Tjek CYA-niveau.'
+          : 'Tilsæt kloreringsmiddel.' + (vol ? ' Ca. ' + (vol * 5).toFixed(0) + ' g granulat (10 g/m³ hæver ~1 mg/L).' : '') + (hasUV ? ' UV-anlæg reducerer klorbehovet – nuværende niveau kan accepteres.' : '')
+      });
+    } else if (cl > 5.0) {
+      allOk = false;
+      recs.push({ level:'warn', param:'Klor', icon:'ti-alert-triangle',
+        msg: 'Fri klor ' + cl.toFixed(1) + ' mg/L er <strong>højt</strong>. Kan irritere øjne og hud. Vent med badning.',
+        action: 'Lad vandet cirkulere i sollys i 24–48 timer. Kloren vil falde naturligt. Undgå at tilsætte mere klor.'
+      });
+    } else {
+      recs.push({ level:'ok', param:'Klor', icon:'ti-circle-check',
+        msg: 'Fri klor ' + cl.toFixed(1) + ' mg/L er <strong>OK</strong> ✓', action: null });
+    }
+  }
+
+  // ── ALKALINITET ───────────────────────────────────────────────────────────────
+  if (!isNaN(alk)) {
+    const alkLow = ranges.alk.low;
+    if (alk < 40) {
+      allOk = false;
+      const bakingSoda = vol ? (((80 - alk) * vol * 1.4)).toFixed(0) + ' g' : null; // 1.4g/m³/ppm
+      recs.push({ level:'bad', param:'Alkalinitet', icon:'ti-alert-circle',
+        msg: 'Alkalinitet ' + alk.toFixed(0) + ' mg/L er <strong>kritisk lav</strong>. pH vil svinge vilkårligt ("pH bounce").',
+        action: 'Tilsæt <strong>alkalinitet-increaser (natriumbicarbonat / bagepulver)</strong>' + (bakingSoda ? ' – ca. ' + bakingSoda + ' for at nå 80 mg/L' : '') + '. Tilsæt fordelt over poolen, kør pumpen 4+ timer. Juster pH bagefter.'
+      });
+    } else if (alk < alkLow) {
+      allOk = false;
+      const bikarbDose = vol ? (((alkLow + 10 - alk) * vol * 1.4)).toFixed(0) + ' g' : null;
+      recs.push({ level:'warn', param:'Alkalinitet', icon:'ti-alert-triangle',
+        msg: 'Alkalinitet ' + alk.toFixed(0) + ' mg/L er <strong>lav</strong> (anbefalet ' + alkLow + '–120 mg/L).',
+        action: 'Tilsæt <strong>natriumbicarbonat (bagepulver)</strong>' + (bikarbDose ? ' – ca. ' + bikarbDose : '') + '. Gentest pH 24 timer efter.'
+      });
+    } else if (alk > 180) {
+      allOk = false;
+      recs.push({ level:'warn', param:'Alkalinitet', icon:'ti-alert-triangle',
+        msg: 'Alkalinitet ' + alk.toFixed(0) + ' mg/L er <strong>høj</strong>. Kan give pH-stigning og uklart vand.',
+        action: 'Sænk med <strong>pH-Minus (saltsyre)</strong> i delte doser. Alternativt: delvist vandskifte med frisk vand.'
+      });
+    } else {
+      recs.push({ level:'ok', param:'Alkalinitet', icon:'ti-circle-check',
+        msg: 'Alkalinitet ' + alk.toFixed(0) + ' mg/L er <strong>OK</strong> ✓', action: null });
+    }
+  }
+
+  // ── KALCIUMHÅRDHED ────────────────────────────────────────────────────────────
+  if (!isNaN(ca)) {
+    if (ca < 150) {
+      allOk = false;
+      const caDose = vol ? ((200 - ca) * vol * 1.2).toFixed(0) + ' g' : null;
+      recs.push({ level:'warn', param:'Kalcium', icon:'ti-alert-triangle',
+        msg: 'Kalciumhårdhed ' + ca.toFixed(0) + ' mg/L er <strong>lav</strong>. Aggressivt vand, der kan angribe beton, folie og varmeveksler.',
+        action: 'Tilsæt <strong>kalciumchlorid (hårdhedsforøger)</strong>' + (caDose ? ' – ca. ' + caDose + ' for at nå 200 mg/L' : '') + '.'
+      });
+    } else if (ca > 500) {
+      allOk = false;
+      recs.push({ level:'warn', param:'Kalcium', icon:'ti-alert-triangle',
+        msg: 'Kalciumhårdhed ' + ca.toFixed(0) + ' mg/L er <strong>høj</strong>. Kalkudfældning og belægning på filteret er sandsynligt.',
+        action: 'Delvist vandskifte med blødere vand. Tjek og rens filteret. Overvej sekvestringsmiddel (antikalk).'
+      });
+    } else {
+      recs.push({ level:'ok', param:'Kalcium', icon:'ti-circle-check',
+        msg: 'Kalciumhårdhed ' + ca.toFixed(0) + ' mg/L er <strong>OK</strong> ✓', action: null });
+    }
+  }
+
+  // ── CYANURIC ACID (STABILISER) ────────────────────────────────────────────────
+  if (!isNaN(cya)) {
+    const cyaHigh = ranges.cya.high;
+    const cyaIdeal = ranges.cya.ideal;
+    if (cya < 15) {
+      allOk = false;
+      const cyaDose = vol ? ((30 - cya) * vol * 1.0).toFixed(0) + ' g' : null;
+      recs.push({ level:'warn', param:'Cyanuric acid', icon:'ti-alert-triangle',
+        msg: 'CYA ' + cya.toFixed(0) + ' mg/L er <strong>lav</strong>. Kloren forbruges hurtigt i sollys (95% kan dissipere på 1 time).',
+        action: 'Tilsæt <strong>stabilisator (cyanuric acid / isocyanursyre)</strong>' + (cyaDose ? ' – ca. ' + cyaDose : '') + '. Brug sok-metoden foran en returjet. Gentest efter 48 timer.'
+      });
+    } else if (cya > 90) {
+      allOk = false;
+      recs.push({ level:'bad', param:'Cyanuric acid', icon:'ti-alert-circle',
+        msg: 'CYA ' + cya.toFixed(0) + ' mg/L er <strong>kritisk høj</strong> (over 90). "Chlor-lock" (klorblokering) – kloren er bundet og ineffektiv. Risiko for algevækst selv med normal klorværdi.',
+        action: 'Eneste løsning: <strong>delvist vandskifte</strong>. Udskift 30–50% af vandet med frisk. Overvej at stoppe med kloreringstabletter (de indeholder CYA). Skift til flydende klor eller calciumhypochlorit.' + (hasSalt ? ' Saltklorinatorer bør have CYA 60–80 mg/L.' : '')
+      });
+    } else if (cya > cyaHigh) {
+      allOk = false;
+      recs.push({ level:'warn', param:'Cyanuric acid', icon:'ti-alert-triangle',
+        msg: 'CYA ' + cya.toFixed(0) + ' mg/L er <strong>over anbefalet</strong> (ideal ' + cyaIdeal[0] + '–' + cyaIdeal[1] + ' mg/L for ' + (hasSalt ? 'saltpool' : 'normal pool') + ').',
+        action: 'Sænk ved delvist vandskifte. Stop evt. tilsætning af stabilisator.'
+      });
+    } else {
+      recs.push({ level:'ok', param:'Cyanuric acid', icon:'ti-circle-check',
+        msg: 'CYA ' + cya.toFixed(0) + ' mg/L er <strong>OK</strong> ✓', action: null });
+    }
+  }
+
+  // ── SALT (kun saltpool) ───────────────────────────────────────────────────────
+  if (!isNaN(salt) && salt > 0) {
+    if (!hasSalt) {
+      // Salt målt men ingen saltklorinator registreret
+      recs.push({ level:'warn', param:'Salt', icon:'ti-info-circle',
+        msg: 'Du har målt salt (' + salt.toFixed(0) + ' mg/L), men har ikke registreret en saltklorinator i "Min Pool".',
+        action: 'Opdater din Min Pool-profil hvis du har en saltklorinator.'
+      });
+    } else if (salt < 2000) {
+      allOk = false;
+      const saltKg = vol ? (((2700 - salt) * vol) / 1000).toFixed(1) + ' kg' : null;
+      recs.push({ level:'bad', param:'Salt', icon:'ti-alert-circle',
+        msg: 'Saltindhold ' + salt.toFixed(0) + ' mg/L er <strong>kritisk lavt</strong>. Saltklorinatoren kan ikke producere tilstrækkeligt klor.',
+        action: 'Tilsæt <strong>poolsalt (99%+ NaCl)</strong>' + (saltKg ? ' – ca. ' + saltKg + ' for at nå 2700 mg/L' : '') + '. Kør pumpen i 24 timer inden næste måling.'
+      });
+    } else if (salt < 2700) {
+      allOk = false;
+      const saltKgNeeded = vol ? (((3000 - salt) * vol) / 1000).toFixed(1) + ' kg' : null;
+      recs.push({ level:'warn', param:'Salt', icon:'ti-alert-triangle',
+        msg: 'Saltindhold ' + salt.toFixed(0) + ' mg/L er <strong>lav</strong> (anbefalet 2700–3400 mg/L).',
+        action: 'Tilsæt <strong>poolsalt</strong>' + (saltKgNeeded ? ' – ca. ' + saltKgNeeded : '') + '. Kør pumpen godt igennem inden måling.'
+      });
+    } else if (salt > 4000) {
+      allOk = false;
+      recs.push({ level:'warn', param:'Salt', icon:'ti-alert-triangle',
+        msg: 'Saltindhold ' + salt.toFixed(0) + ' mg/L er <strong>højt</strong> (over 4000 mg/L). Kan korrodere metalkomponenter.',
+        action: 'Delvist vandskifte med frisk vand. Sænk til 2700–3400 mg/L.'
+      });
+    } else {
+      recs.push({ level:'ok', param:'Salt', icon:'ti-circle-check',
+        msg: 'Saltindhold ' + salt.toFixed(0) + ' mg/L er <strong>OK</strong> ✓', action: null });
+    }
+  }
+
+  // ── TEMPERATUR-KONTEKST ───────────────────────────────────────────────────────
+  let tempNote = '';
+  if (temp >= 28) {
+    tempNote = '<div style="font-size:12px;color:var(--a600);background:var(--a50);border-radius:var(--r);padding:8px 10px;margin-top:8px"><i class="ti ti-thermometer-sun" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i><strong>Høj vandtemperatur (' + temp + '°C):</strong> Varm vand øger klorforbruget markant og fremmer bakterievækst. Test oftere (dagligt), hold klor i øvre ende af anbefalet interval.</div>';
+  } else if (temp <= 12) {
+    tempNote = '<div style="font-size:12px;color:var(--b600);background:var(--b50);border-radius:var(--r);padding:8px 10px;margin-top:8px"><i class="ti ti-thermometer-snow" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i><strong>Lav vandtemperatur (' + temp + '°C):</strong> Kemikalier reagerer langsommere. Vent 8–12 timer efter tilsætning inden næste måling.</div>';
+  }
+
+  // ── SAML ANBEFALING ───────────────────────────────────────────────────────────
+  if (allOk && recs.every(r => r.level === 'ok')) {
+    return '<div style="background:var(--g50);border:.5px solid #C0DD97;border-radius:var(--r);padding:10px 14px"><div style="font-weight:600;color:var(--g800);margin-bottom:4px"><i class="ti ti-circle-check" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>Alle værdier er OK ✓</div><div style="font-size:13px;color:var(--g600)">Vandet er velbalanceret. Fortsæt den regelmæssige testning.</div></div>' + tempNote;
+  }
+
+  // Sort: bad first, then warn, then ok
+  const order = { bad: 0, warn: 1, ok: 2 };
+  recs.sort((a, b) => order[a.level] - order[b.level]);
+
+  let html2 = '';
+
+  // Summary line
+  const badCount  = recs.filter(r => r.level === 'bad').length;
+  const warnCount = recs.filter(r => r.level === 'warn').length;
+  if (badCount > 0) {
+    html2 += '<div style="font-weight:600;color:var(--red);margin-bottom:8px;font-size:13px"><i class="ti ti-alert-circle" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>' + badCount + ' kritisk' + (badCount>1?'e':'')+' problem' + (badCount>1?'er':'') + (warnCount ? ' + ' + warnCount + ' advarsel' + (warnCount>1?'er':'') : '') + ' fundet</div>';
+  } else if (warnCount > 0) {
+    html2 += '<div style="font-weight:600;color:var(--a600);margin-bottom:8px;font-size:13px"><i class="ti ti-alert-triangle" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>' + warnCount + ' advarsel' + (warnCount>1?'er':'') + ' – juster snarest</div>';
+  }
+
+  // Order to fix: alk first, then pH, then rest (from In The Swim/PHTA recommendation)
+  const fixOrder = ['Alkalinitet','pH','Klor','Kalcium','Cyanuric acid','Salt'];
+  const sorted = [...recs.filter(r=>r.level!=='ok').sort((a,b)=>{const fa=fixOrder.indexOf(a.param),fb=fixOrder.indexOf(b.param);return (fa===-1?99:fa)-(fb===-1?99:fb);}),...recs.filter(r=>r.level==='ok')];
+
+  sorted.forEach(rec => {
+    const bgCol = rec.level==='bad' ? '#FCEBEB' : rec.level==='warn' ? 'var(--a50)' : 'var(--g50)';
+    const bdrCol = rec.level==='bad' ? 'var(--red)' : rec.level==='warn' ? 'var(--a200)' : '#C0DD97';
+    const txtCol = rec.level==='bad' ? 'var(--red)' : rec.level==='warn' ? 'var(--a800)' : 'var(--g800)';
+    html2 += '<div style="background:'+bgCol+';border:.5px solid '+bdrCol+';border-radius:var(--r);padding:10px 12px;margin-bottom:8px">';
+    html2 += '<div style="font-size:13px;font-weight:600;color:'+txtCol+';margin-bottom:'+(rec.action?'5px':'0')+'"><i class="ti '+rec.icon+'" style="font-size:14px;vertical-align:-1px;margin-right:4px"></i>'+rec.param+': '+rec.msg+'</div>';
+    if (rec.action) html2 += '<div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:4px"><i class="ti ti-arrow-right" style="font-size:12px;vertical-align:-1px;margin-right:3px;color:#378ADD"></i>'+rec.action+'</div>';
+    html2 += '</div>';
+  });
+
+  // Add fix-order tip if multiple issues
+  if (badCount + warnCount > 1) {
+    html2 += '<div style="font-size:11px;color:var(--text3);margin-top:4px;line-height:1.5"><i class="ti ti-info-circle" style="font-size:12px;vertical-align:-1px;margin-right:3px"></i>Anbefalet rækkefølge: ret <strong>alkalinitet</strong> først, derefter <strong>pH</strong>, til sidst <strong>klor</strong>. Tilsæt kun ét kemikalie ad gangen og gentest efter 4–6 timer. Kilde: PHTA og TroubleFreePool.</div>';
+  }
+
+  return html2 + tempNote;
+}
+
 
 function renderChemLog(){
   const log=getChemLog();
   const container=document.getElementById('chem-log');
-  if(log.length===0){container.innerHTML='<div class="empty-state"><i class="ti ti-flask"></i><p>Ingen målinger endnu. Tilføj din første måling ovenfor.</p></div>';return;}
-  const params=[{key:'ph',name:'pH',unit:'',range:'7.2–7.6'},{key:'chlorine',name:'Fri klor',unit:'mg/L',range:'0.5–1.5'},{key:'alk',name:'Alkalinitet',unit:'mg/L',range:'80–120'},{key:'calcium',name:'Kalcium',unit:'mg/L',range:'200–400'},{key:'cya',name:'Cyanuric acid',unit:'mg/L',range:'20–50'},{key:'salt',name:'Salt',unit:'mg/L',range:'2700–3400'},{key:'temp',name:'Temperatur',unit:'°C',range:'–'}];
+  if(!container)return;
+  if(log.length===0){container.innerHTML='<div class="empty"><i class="ti ti-flask"></i><p>Ingen målinger endnu. Tilføj din første måling ovenfor.</p></div>';return;}
+  const params=[{k:'ph',n:'pH',u:'',r:'7.2–7.6'},{k:'cl',n:'Fri klor',u:'mg/L',r:'0.5–1.5'},{k:'alk',n:'Alkalinitet',u:'mg/L',r:'80–120'},{k:'ca',n:'Kalcium',u:'mg/L',r:'200–400'},{k:'cya',n:'Cyanuric acid',u:'mg/L',r:'20–50'},{k:'salt',n:'Salt',u:'mg/L',r:'2700–3400'},{k:'temp',n:'Temp.',u:'°C',r:'–'}];
   container.innerHTML=log.map((e,i)=>{
-    const st=overallStatus(e);
-    const dotCls=st==='ok'?'status-ok':st==='warn'?'status-warn':'status-bad';
-    const paramRows=params.filter(p=>e[p.key]).map(p=>{
-      const v=parseFloat(e[p.key]);const s=statusFor(p.key,v);
-      const scls=s==='ok'?'ok':s==='low'?'low':s==='high'?'high':'warn';
-      const slbl=s==='ok'?'OK':s==='low'?'For lav':s==='high'?'For høj':'–';
-      return`<div class="param-row"><span class="pname">${p.name} <span style="font-size:11px;color:var(--text3)">${p.range}</span></span><span class="pval">${e[p.key]} ${p.unit}</span><span class="pstatus ${scls}">${slbl}</span></div>`;
+    const st=overallSt(e);
+    const dc=st==='ok'?'s-ok':st==='warn'?'s-warn':'s-bad';
+    const prows=params.filter(p=>e[p.k]).map(p=>{
+      const val=parseFloat(e[p.k]);const s=statusFor(p.k,val);
+      const sc=s==='ok'?'ok':s==='low'?'low':s==='high'?'high':'warn';
+      const sl=s==='ok'?'OK':s==='low'?'For lav':s==='high'?'For høj':'–';
+      return '<div class="prow"><span class="pn">'+p.n+' <span style="font-size:10px;color:var(--text3)">'+p.r+'</span></span><span class="pv">'+e[p.k]+' '+p.u+'</span><span class="ps '+sc+'">'+sl+'</span></div>';
     }).join('');
-    const recsHtml=e.loading?'<div class="ai-recs"><div class="rec-head"><span class="spinner"></span> Henter anbefalinger...</div></div>':e.recs?`<div class="ai-recs"><div class="rec-head"><i class="ti ti-sparkles" style="font-size:14px"></i> AI-anbefaling</div>${e.recs}</div>`:'';
-    return`<div class="log-entry" id="log-${e.id}">
-      <div class="log-header" onclick="toggleLogEntry(${e.id})">
-        <div class="status-dot ${dotCls}"></div>
-        <div class="log-date">${e.date}${e.note?' · <span style="font-weight:400;color:var(--text2)">'+e.note+'</span>':''}</div>
-        <button class="delete-btn" onclick="event.stopPropagation();deleteMeasurement(${e.id})"><i class="ti ti-trash" style="font-size:12px"></i></button>
-        <i class="ti ti-chevron-down" style="font-size:16px;color:var(--text3);flex-shrink:0;transition:transform .2s" id="chevron-${e.id}"></i>
-      </div>
-      <div class="log-params${i===0?' show':''}" id="params-${e.id}">
-        ${paramRows}
-        ${recsHtml}
-      </div>
-    </div>`;
+    const recHtml=e.loading?'<div class="ai-rec"><h4><span class="spinner"></span> Henter anbefalinger...</h4></div>':e.recs?'<div class="ai-rec"><h4><i class="ti ti-sparkles" style="font-size:13px"></i> AI-anbefaling</h4>'+e.recs+'</div>':'';
+    return '<div class="log-entry" id="le-'+e.id+'"><div class="log-header" onclick="toggleLog('+e.id+')"><div class="sdot '+dc+'"></div><div class="log-date">'+e.date+(e.note?' &middot; <span style="font-weight:400;color:var(--text2)">'+e.note+'</span>':'')+'</div><button class="del-btn" onclick="event.stopPropagation();delLog('+e.id+')"><i class="ti ti-trash" style="font-size:11px"></i></button><i class="ti ti-chevron-down" style="font-size:15px;color:var(--text3);flex-shrink:0;transition:transform .2s" id="chev-'+e.id+'"></i></div><div class="log-params'+(i===0?' show':'')+'" id="lp-'+e.id+'">'+prows+recHtml+'</div></div>';
   }).join('');
 }
-
-function toggleLogEntry(id){
-  const p=document.getElementById('params-'+id);
-  const c=document.getElementById('chevron-'+id);
-  const entry=document.getElementById('log-'+id);
-  const open=p.classList.toggle('show');
-  c.style.transform=open?'rotate(180deg)':'';
-  entry.classList.toggle('expanded',open);
-}
-
-function deleteMeasurement(id){
-  if(!confirm('Slet denne måling?'))return;
-  const log=getChemLog().filter(e=>e.id!==id);
-  saveChemLog(log);renderChemLog();
-}
+function toggleLog(id){const p=document.getElementById('lp-'+id);const c=document.getElementById('chev-'+id);const e=document.getElementById('le-'+id);const open=p.classList.toggle('show');c.style.transform=open?'rotate(180deg)':'';e.classList.toggle('expanded',open);}
+function delLog(id){if(!confirm('Slet denne måling?'))return;saveChemLog(getChemLog().filter(e=>e.id!==id));renderChemLog();}
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-loadSetup();
-updateSaltField();
+load();
+loadMyPool();
+renderFlowDiagram();
+renderDashboard();
 </script>
 </body>
 </html>
